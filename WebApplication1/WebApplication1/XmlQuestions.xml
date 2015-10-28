@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<categories>
+  <ethicandrules>
+
+    <question id="1">
+      Vad heter vi ?
+      <answer>
+        <answer id="1">Bengt</answer>
+        <answer id="2">Göran</answer>
+        <answer id="3">Sven</answer>
+        <answer id="4">Åke</answer>
+      </answer>
+      <correctanswer>1</correctanswer>
+    </question>
+
+    <question id="2">
+      Var bor vi ?
+      <answer>
+        <answer id="1">Linköping</answer>
+        <answer id="2">Motala</answer>
+        <answer id="3">Lund</answer>
+        <answer id="4">Malmö</answer>
+      </answer>
+      <correctanswer>1</correctanswer>
+    </question>
+
+    <question id="3">
+      Hur gamla är vi ?
+      <answer>
+        <answer id="1">12</answer>
+        <answer id="2">18</answer>
+        <answer id="3">24</answer>
+        <answer id="4">34</answer>
+      </answer>
+      <correctanswer>4</correctanswer>
+    </question>
+
+  </ethicandrules>
+</categories>
