@@ -18,7 +18,7 @@ namespace WebApplication1
     {
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
-        
+
         {
 
 
@@ -28,14 +28,14 @@ namespace WebApplication1
 
             xmldoc2.LoadXml("<categories><products></products><economy></economy><ethics></ethics></categories>");
             //xmldoc2.Load(Server.MapPath("usertest.xml"));
-            
+
 
             XmlNodeList nodeListAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='2']/answer/answer");
             XmlNodeList nodeListCorrectAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='1']/correctanswer");
 
             //for(int i = 1; i <= 25; i++)
             // {
-
+            // }
             // Skriv kod här ifall frågorna inte skall slumpas(Exakt samma som i foreach)
 
 
