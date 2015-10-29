@@ -22,28 +22,69 @@ namespace WebApplication1
 
 
             XmlDocument xmldoc = new XmlDocument();
-
+            XmlDocument xmldoc2 = new XmlDocument();
             xmldoc.Load(Server.MapPath("XmlQuestions.xml"));
 
-
+            xmldoc2.LoadXml("<categories><products></products><economy></economy><ethics></ethics></categories>");
+            //xmldoc2.Load(Server.MapPath("usertest.xml"));
+            
 
             XmlNodeList nodeListAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='2']/answer/answer");
             XmlNodeList nodeListCorrectAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='1']/correctanswer");
-           //for(int i = 1; i <= 25; i++)
-           // {
+
+            //for(int i = 1; i <= 25; i++)
+            // {
+
+            // Skriv kod här ifall frågorna inte skall slumpas(Exakt samma som i foreach)
+
+
+
+
+   
   
-                // Skriv kod här ifall frågorna inte skall slumpas(Exakt samma som i foreach)
-
-
-
-
-
-
-
-           // }
             int[] m = RandomNumbers(1, 25, 4);
             foreach (int i in m)
             {
+                
+                
+                Label lbl = new Label();
+                if (i <= 8)
+                {
+        
+                    XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']"), true);
+                    XmlNode parent = xmldoc2.SelectSingleNode("categories/products");
+                    parent.AppendChild(newnode);
+                    xmldoc2.Save(Server.MapPath("usertest.xml"));
+
+                }
+
+                else if (i > 8 && i <= 16)
+                {
+                   
+                    XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/economy/question[@id='"+i+"']"), true);
+                    XmlNode parent = xmldoc2.SelectSingleNode("categories/economy");
+                    parent.AppendChild(newnode);
+                    xmldoc2.Save(Server.MapPath("usertest.xml"));
+                }
+
+                else if (i > 16)
+                {
+                   
+                    XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']"), true);
+                    XmlNode parent = xmldoc2.SelectSingleNode("categories/ethics");
+                    parent.AppendChild(newnode);
+                    xmldoc2.Save(Server.MapPath("usertest.xml"));
+                }
+
+
+
+            }
+            XmlNodeList lst = xmldoc2.SelectNodes("categories/question");
+            foreach(XmlNode nodes in lst)
+            {
+                string s = nodes.Attributes["id"].Value;
+                int i = Convert.ToInt16(s);
+                
                 TableRow rw = new TableRow();
                 TableRow rw2 = new TableRow();
                 TableRow rw3 = new TableRow();
@@ -67,37 +108,37 @@ namespace WebApplication1
                 rai3.GroupName = "gr" + i.ToString();
                 rai4.GroupName = "gr" + i.ToString();
                 rai.ID = "raid" + i;
-
-
-
                 Label lbl = new Label();
+
                 if (i <= 8)
                 {
-                    lbl.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']").FirstChild.InnerText;
-                    rai.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
-                    rai2.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
-                    rai3.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
-                    rai4.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+                    lbl.Text = xmldoc2.SelectSingleNode("/categories/products/question[@id='" + i + "']").FirstChild.InnerText;
+                    rai.Text = xmldoc2.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    rai2.Text = xmldoc2.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    rai3.Text = xmldoc2.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    rai4.Text = xmldoc2.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
 
 
                 }
 
                 else if (i > 8 && i <= 16)
                 {
-                    lbl.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']").FirstChild.InnerText;
-                    rai.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
-                    rai2.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
-                    rai3.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
-                    rai4.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+                    lbl.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']").FirstChild.InnerText;
+                    rai.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    rai2.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    rai3.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    rai4.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+
                 }
 
                 else if (i > 16)
                 {
-                    lbl.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']").FirstChild.InnerText;
-                    rai.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
-                    rai2.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
-                    rai3.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
-                    rai4.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+                    lbl.Text = xmldoc2.SelectSingleNode("/categories/ethics/question[@id='" + i + "']").FirstChild.InnerText;
+                    rai.Text = xmldoc2.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    rai2.Text = xmldoc2.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    rai3.Text = xmldoc2.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    rai4.Text = xmldoc2.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+
                 }
 
 
@@ -124,12 +165,7 @@ namespace WebApplication1
 
             }
 
-            //lblQuestion.Text = xmldoc.SelectSingleNode("/categories/ethicandrules/question[@id='1']").FirstChild.InnerText;
 
-            //RadioButton1.Text = nodeListAnswer[0].FirstChild.InnerText;
-            //RadioButton2.Text = nodeListAnswer[1].FirstChild.InnerText;
-            //RadioButton3.Text = nodeListAnswer[2].InnerText;
-            //RadioButton4.Text = nodeListAnswer[3].FirstChild.InnerText;
         }
 
 
