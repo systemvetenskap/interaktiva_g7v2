@@ -29,7 +29,20 @@ namespace WebApplication1
 
             XmlNodeList nodeListAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='2']/answer/answer");
             XmlNodeList nodeListCorrectAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='1']/correctanswer");
-           for(int i = 1; i <= 25; i++)
+           //for(int i = 1; i <= 25; i++)
+           // {
+  
+                // Skriv kod här ifall frågorna inte skall slumpas(Exakt samma som i foreach)
+
+
+
+
+
+
+
+           // }
+            int[] m = RandomNumbers(1, 25, 4);
+            foreach (int i in m)
             {
                 TableRow rw = new TableRow();
                 TableRow rw2 = new TableRow();
@@ -55,10 +68,10 @@ namespace WebApplication1
                 rai4.GroupName = "gr" + i.ToString();
                 rai.ID = "raid" + i;
 
-                
+
 
                 Label lbl = new Label();
-                if(i <=8)
+                if (i <= 8)
                 {
                     lbl.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']").FirstChild.InnerText;
                     rai.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
@@ -77,7 +90,7 @@ namespace WebApplication1
                     rai3.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
                     rai4.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
                 }
-                   
+
                 else if (i > 16)
                 {
                     lbl.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']").FirstChild.InnerText;
@@ -86,7 +99,7 @@ namespace WebApplication1
                     rai3.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
                     rai4.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
                 }
-                    
+
 
 
                 cl.Controls.Add(lbl);
@@ -108,15 +121,9 @@ namespace WebApplication1
                 table1.Controls.Add(rw4);
                 table1.Controls.Add(rw5);
                 table1.Controls.Add(rw6);
-                
-
-
-
-
-
-
 
             }
+
             //lblQuestion.Text = xmldoc.SelectSingleNode("/categories/ethicandrules/question[@id='1']").FirstChild.InnerText;
 
             //RadioButton1.Text = nodeListAnswer[0].FirstChild.InnerText;
