@@ -11,9 +11,15 @@
     <div>
     
         <asp:RadioButton ID="RadioButton1" runat="server" />
+        <br />
         <asp:RadioButton ID="RadioButton2" runat="server" />
+        <br />
         <asp:RadioButton ID="RadioButton3" runat="server" />
+        <br />
         <asp:RadioButton ID="RadioButton4" runat="server" />
+
+        <br />
+        <br />
 
         <asp:Button ID="Button1" runat="server" Text="Nästa" />
     
