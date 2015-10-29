@@ -5,11 +5,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using Npgsql;
+using System.Data;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace WebApplication1
+
 {
     public partial class quest : System.Web.UI.Page
     {
+        NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         
         {
@@ -21,7 +27,94 @@ namespace WebApplication1
 
             XmlNodeList nodeListAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='2']/answer/answer");
             XmlNodeList nodeListCorrectAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='1']/correctanswer");
+           for(int i = 1; i <= 25; i++)
+            {
+                TableRow rw = new TableRow();
+                TableRow rw2 = new TableRow();
+                TableRow rw3 = new TableRow();
+                TableRow rw4 = new TableRow();
+                TableRow rw5 = new TableRow();
+                TableRow rw6 = new TableRow();
 
+                TableCell cl = new TableCell();
+                TableCell cl2 = new TableCell();
+                TableCell cl3 = new TableCell();
+                TableCell cl4 = new TableCell();
+                TableCell cl5 = new TableCell();
+                TableCell cl6 = new TableCell();
+
+                RadioButton rai = new RadioButton();
+                RadioButton rai2 = new RadioButton();
+                RadioButton rai3 = new RadioButton();
+                RadioButton rai4 = new RadioButton();
+                rai.GroupName = "gr" + i.ToString();
+                rai2.GroupName = "gr" + i.ToString();
+                rai3.GroupName = "gr" + i.ToString();
+                rai4.GroupName = "gr" + i.ToString();
+                rai.ID = "raid" + i;
+
+                
+
+                Label lbl = new Label();
+                if(i <=8)
+                {
+                    lbl.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']").FirstChild.InnerText;
+                    rai.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    rai2.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    rai3.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    rai4.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+
+
+                }
+
+                else if (i > 8 && i <= 16)
+                {
+                    lbl.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']").FirstChild.InnerText;
+                    rai.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    rai2.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    rai3.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    rai4.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+                }
+                   
+                else if (i > 16)
+                {
+                    lbl.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']").FirstChild.InnerText;
+                    rai.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    rai2.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    rai3.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    rai4.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+                }
+                    
+
+
+                cl.Controls.Add(lbl);
+                cl2.Controls.Add(rai);
+                cl3.Controls.Add(rai2);
+                cl4.Controls.Add(rai3);
+                cl5.Controls.Add(rai4);
+
+                rw.Controls.Add(cl);
+                rw2.Controls.Add(cl2);
+                rw3.Controls.Add(cl3);
+                rw4.Controls.Add(cl4);
+                rw5.Controls.Add(cl5);
+                rw6.Controls.Add(cl6);
+
+                table1.Controls.Add(rw);
+                table1.Controls.Add(rw2);
+                table1.Controls.Add(rw3);
+                table1.Controls.Add(rw4);
+                table1.Controls.Add(rw5);
+                table1.Controls.Add(rw6);
+                
+
+
+
+
+
+
+
+            }
             //lblQuestion.Text = xmldoc.SelectSingleNode("/categories/ethicandrules/question[@id='1']").FirstChild.InnerText;
 
             //RadioButton1.Text = nodeListAnswer[0].FirstChild.InnerText;
@@ -86,5 +179,13 @@ namespace WebApplication1
             return tempList;
         }
         #endregion
+
+        protected void Button1_Click1(object sender, EventArgs e)
+        {
+       
+            
+            
+
+        }
     }
 }

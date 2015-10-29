@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+<%--        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <br />
         <br />
     
@@ -25,7 +25,13 @@
         <br />
         <br />
 
-        <asp:Button ID="Button1" runat="server" Text="Nästa" />
+        <asp:Button ID="Button1" runat="server" Text="Nästa" OnClick="Button1_Click1" />--%>
+
+        <asp:table id="table1" runat ="server">
+        
+
+
+        </asp:table>
     
     </div>
     </form>
