@@ -13,6 +13,8 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         
         {
+
+
             XmlDocument xmldoc = new XmlDocument();
 
             xmldoc.Load(Server.MapPath("XmlQuestions.xml"));
@@ -28,7 +30,6 @@ namespace WebApplication1
             //RadioButton2.Text = nodeListAnswer[1].FirstChild.InnerText;
             //RadioButton3.Text = nodeListAnswer[2].InnerText;
             //RadioButton4.Text = nodeListAnswer[3].FirstChild.InnerText;
-            //RadioButton5.Text = nodeListCorrectAnswer[0].FirstChild.InnerText;
         }
 
 

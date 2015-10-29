@@ -8,9 +8,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div id="questionbox">
     
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblQuestion" runat="server" Text="Label"></asp:Label>
         <br />
         <br />
     
@@ -25,9 +25,10 @@
         <br />
         <br />
 
-        <asp:Button ID="Button1" runat="server" Text="Nästa" />
-    
     </div>
+        <p>
+        <asp:Button ID="Button1" runat="server" Text="Nästa" />
+        </p>
     </form>
 </body>
 </html>
