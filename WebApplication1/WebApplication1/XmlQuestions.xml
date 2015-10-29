@@ -54,7 +54,7 @@
         <answer id="3">Ger kunden en blankett (fullmakt) att fylla i </answer>
         <answer id="4">Det går inte</answer>
       </answer>
-      <correctanswer></correctanswer>
+      <correctanswer>4</correctanswer>
     </question>
 
     <question id="6">
