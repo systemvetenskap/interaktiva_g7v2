@@ -10,6 +10,13 @@
     <form id="form1" runat="server">
     <div>
     
+        <asp:RadioButton ID="RadioButton1" runat="server" />
+        <asp:RadioButton ID="RadioButton2" runat="server" />
+        <asp:RadioButton ID="RadioButton3" runat="server" />
+        <asp:RadioButton ID="RadioButton4" runat="server" />
+
+        <asp:Button ID="Button1" runat="server" Text="Nästa" />
+    
     </div>
     </form>
 </body>
