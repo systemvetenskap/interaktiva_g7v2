@@ -9,6 +9,7 @@ using Npgsql;
 using System.Data;
 using System.IO;
 using System.Xml.Serialization;
+using System.Xml.Linq;
 
 namespace WebApplication1
 
@@ -79,12 +80,15 @@ namespace WebApplication1
 
 
             }
-            XmlNodeList lst = xmldoc2.SelectNodes("categories/question");
-            foreach(XmlNode nodes in lst)
+            XmlNodeList lst  = xmldoc2.SelectNodes("categories/products/question");
+       
+            foreach (XmlNode nd in lst)
             {
-                string s = nodes.Attributes["id"].Value;
-                int i = Convert.ToInt16(s);
                 
+               
+                string s = nd.Attributes["id"].Value;
+                int i = Convert.ToInt16(s);
+                                  
                 TableRow rw = new TableRow();
                 TableRow rw2 = new TableRow();
                 TableRow rw3 = new TableRow();
@@ -163,6 +167,124 @@ namespace WebApplication1
                 table1.Controls.Add(rw5);
                 table1.Controls.Add(rw6);
 
+            }
+            XmlNodeList lst2 = xmldoc2.SelectNodes("categories/economy/question");
+            foreach(XmlNode nd in lst2)
+            {
+                string s = nd.Attributes["id"].Value;
+                int i = Convert.ToInt16(s);
+                TableRow rw = new TableRow();
+                TableRow rw2 = new TableRow();
+                TableRow rw3 = new TableRow();
+                TableRow rw4 = new TableRow();
+                TableRow rw5 = new TableRow();
+                TableRow rw6 = new TableRow();
+
+                TableCell cl = new TableCell();
+                TableCell cl2 = new TableCell();
+                TableCell cl3 = new TableCell();
+                TableCell cl4 = new TableCell();
+                TableCell cl5 = new TableCell();
+                TableCell cl6 = new TableCell();
+
+                RadioButton rai = new RadioButton();
+                RadioButton rai2 = new RadioButton();
+                RadioButton rai3 = new RadioButton();
+                RadioButton rai4 = new RadioButton();
+                rai.GroupName = "gr" + i.ToString();
+                rai2.GroupName = "gr" + i.ToString();
+                rai3.GroupName = "gr" + i.ToString();
+                rai4.GroupName = "gr" + i.ToString();
+                rai.ID = "raid" + i;
+                Label lbl = new Label();
+                if (i > 8 && i <= 16)
+                {
+                    lbl.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']").FirstChild.InnerText;
+                    rai.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    rai2.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    rai3.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    rai4.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+
+                }
+                cl.Controls.Add(lbl);
+                cl2.Controls.Add(rai);
+                cl3.Controls.Add(rai2);
+                cl4.Controls.Add(rai3);
+                cl5.Controls.Add(rai4);
+
+                rw.Controls.Add(cl);
+                rw2.Controls.Add(cl2);
+                rw3.Controls.Add(cl3);
+                rw4.Controls.Add(cl4);
+                rw5.Controls.Add(cl5);
+                rw6.Controls.Add(cl6);
+
+                table1.Controls.Add(rw);
+                table1.Controls.Add(rw2);
+                table1.Controls.Add(rw3);
+                table1.Controls.Add(rw4);
+                table1.Controls.Add(rw5);
+                table1.Controls.Add(rw6);
+
+
+            }
+            XmlNodeList lst3 = xmldoc2.SelectNodes("categories/ethics/question");
+            foreach(XmlNode nd in lst3)
+            {
+                string s = nd.Attributes["id"].Value;
+                int i = Convert.ToInt16(s);
+                TableRow rw = new TableRow();
+                TableRow rw2 = new TableRow();
+                TableRow rw3 = new TableRow();
+                TableRow rw4 = new TableRow();
+                TableRow rw5 = new TableRow();
+                TableRow rw6 = new TableRow();
+
+                TableCell cl = new TableCell();
+                TableCell cl2 = new TableCell();
+                TableCell cl3 = new TableCell();
+                TableCell cl4 = new TableCell();
+                TableCell cl5 = new TableCell();
+                TableCell cl6 = new TableCell();
+
+                RadioButton rai = new RadioButton();
+                RadioButton rai2 = new RadioButton();
+                RadioButton rai3 = new RadioButton();
+                RadioButton rai4 = new RadioButton();
+                rai.GroupName = "gr" + i.ToString();
+                rai2.GroupName = "gr" + i.ToString();
+                rai3.GroupName = "gr" + i.ToString();
+                rai4.GroupName = "gr" + i.ToString();
+                rai.ID = "raid" + i;
+                Label lbl = new Label();
+                if (i > 16)
+                {
+                    lbl.Text = xmldoc2.SelectSingleNode("/categories/ethics/question[@id='" + i + "']").FirstChild.InnerText;
+                    rai.Text = xmldoc2.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    rai2.Text = xmldoc2.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    rai3.Text = xmldoc2.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    rai4.Text = xmldoc2.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+
+                }
+                cl.Controls.Add(lbl);
+                cl2.Controls.Add(rai);
+                cl3.Controls.Add(rai2);
+                cl4.Controls.Add(rai3);
+                cl5.Controls.Add(rai4);
+
+                rw.Controls.Add(cl);
+                rw2.Controls.Add(cl2);
+                rw3.Controls.Add(cl3);
+                rw4.Controls.Add(cl4);
+                rw5.Controls.Add(cl5);
+                rw6.Controls.Add(cl6);
+
+                table1.Controls.Add(rw);
+                table1.Controls.Add(rw2);
+                table1.Controls.Add(rw3);
+                table1.Controls.Add(rw4);
+                table1.Controls.Add(rw5);
+                table1.Controls.Add(rw6);
             }
 
 
