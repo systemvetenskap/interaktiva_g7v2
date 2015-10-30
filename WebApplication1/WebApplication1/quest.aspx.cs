@@ -20,39 +20,24 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         
         {
-            //Skapar nytt xmldokument
+            //Skapar två nya xmldokument
             XmlDocument xmldoc = new XmlDocument();
             XmlDocument xmldoc2 = new XmlDocument();
 
             //Laddar in vårat xmldokument i xmldoc
             xmldoc.Load(Server.MapPath("XmlQuestions.xml"));
 
+            //Laddar endast in taggar i xmldoc2 som är identiska med XmlQuestions.xml
             xmldoc2.LoadXml("<categories><products></products><economy></economy><ethics></ethics></categories>");
-            //xmldoc2.Load(Server.MapPath("usertest.xml"));
 
-
-            XmlNodeList nodeListAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='2']/answer/answer");
-            XmlNodeList nodeListCorrectAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='1']/correctanswer");
-
-            //for(int i = 1; i <= 25; i++)
-            // {
-            // }
-            // Skriv kod här ifall frågorna inte skall slumpas(Exakt samma som i foreach)
-
-
-
-
-   
-  
+            //Skapar ny array och stoppar in 25 st variabler av typen int
             int[] m = RandomNumbers(1, 25, 4);
+
+            //Hämtar frågor och stoppar in det i arrayen m från varje kategori av frågor
             foreach (int i in m)
-            {
-                
-                
-                Label lbl = new Label();
+            {                           
                 if (i <= 8)
-                {
-        
+                {   //Om variablen i är mindre än 8 så hämtas frågorna i kategorin products     
                     XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']"), true);
                     XmlNode parent = xmldoc2.SelectSingleNode("categories/products");
                     parent.AppendChild(newnode);
@@ -61,8 +46,7 @@ namespace WebApplication1
                 }
 
                 else if (i > 8 && i <= 16)
-                {
-                   
+                {   //Om variablen i är större än 8 och mindre än 16 så hämtas frågorna i kategorin ecomony                 
                     XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/economy/question[@id='"+i+"']"), true);
                     XmlNode parent = xmldoc2.SelectSingleNode("categories/economy");
                     parent.AppendChild(newnode);
@@ -70,23 +54,17 @@ namespace WebApplication1
                 }
 
                 else if (i > 16)
-                {
-                   
+                {   //Om variablen i är större än 16 så hämtas frågorna i kategorin ethics                
                     XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']"), true);
                     XmlNode parent = xmldoc2.SelectSingleNode("categories/ethics");
                     parent.AppendChild(newnode);
                     xmldoc2.Save(Server.MapPath("usertest.xml"));
                 }
-
-
-
             }
             XmlNodeList lst  = xmldoc2.SelectNodes("categories/products/question");
        
             foreach (XmlNode nd in lst)
-            {
-                
-               
+            {      
                 string s = nd.Attributes["id"].Value;
                 int i = Convert.ToInt16(s);
                                   
