@@ -12,7 +12,7 @@
     
     
         <asp:table id="table1" runat ="server">        </asp:table>
-        <asp:Button ID="btnSubmint" runat="server" Text="Lämna in" />
+        <asp:Button ID="btnSubmint" runat="server" Text="Lämna in" OnClick="btnSubmint_Click" />
     
     </div>
     </form>
