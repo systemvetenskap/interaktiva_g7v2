@@ -16,14 +16,17 @@ namespace WebApplication1
 {
     public partial class quest : System.Web.UI.Page
     {
-        NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
+        //NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
-
+        
         {
 
 
+            //Skapar nytt xmldokument
             XmlDocument xmldoc = new XmlDocument();
             XmlDocument xmldoc2 = new XmlDocument();
+
+            //Laddar in vårat xmldokument i xmldoc
             xmldoc.Load(Server.MapPath("XmlQuestions.xml"));
 
             xmldoc2.LoadXml("<categories><products></products><economy></economy><ethics></ethics></categories>");
@@ -96,6 +99,7 @@ namespace WebApplication1
                 TableRow rw5 = new TableRow();
                 TableRow rw6 = new TableRow();
 
+                //Skapar nya celler i raderna ovan
                 TableCell cl = new TableCell();
                 TableCell cl2 = new TableCell();
                 TableCell cl3 = new TableCell();
@@ -103,15 +107,22 @@ namespace WebApplication1
                 TableCell cl5 = new TableCell();
                 TableCell cl6 = new TableCell();
 
+                //Skapar nya radiobuttons
                 RadioButton rai = new RadioButton();
                 RadioButton rai2 = new RadioButton();
                 RadioButton rai3 = new RadioButton();
                 RadioButton rai4 = new RadioButton();
+
+                //Ger ett gruppnamn till radiobuttons 
                 rai.GroupName = "gr" + i.ToString();
                 rai2.GroupName = "gr" + i.ToString();
                 rai3.GroupName = "gr" + i.ToString();
                 rai4.GroupName = "gr" + i.ToString();
+
+                //Sätter ett unikt namn till varje radiobutton
                 rai.ID = "raid" + i;
+
+                //Skapar ny label för varje fråga
                 Label lbl = new Label();
 
                 if (i <= 8)
@@ -124,7 +135,6 @@ namespace WebApplication1
 
 
                 }
-
                 else if (i > 8 && i <= 16)
                 {
                     lbl.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']").FirstChild.InnerText;
@@ -134,7 +144,6 @@ namespace WebApplication1
                     rai4.Text = xmldoc2.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
 
                 }
-
                 else if (i > 16)
                 {
                     lbl.Text = xmldoc2.SelectSingleNode("/categories/ethics/question[@id='" + i + "']").FirstChild.InnerText;
@@ -167,7 +176,7 @@ namespace WebApplication1
                 table1.Controls.Add(rw5);
                 table1.Controls.Add(rw6);
 
-            }
+                }
             XmlNodeList lst2 = xmldoc2.SelectNodes("categories/economy/question");
             foreach(XmlNode nd in lst2)
             {
@@ -207,11 +216,13 @@ namespace WebApplication1
 
                 }
                 cl.Controls.Add(lbl);
+                //Lägger till radiobuttons i cellen
                 cl2.Controls.Add(rai);
                 cl3.Controls.Add(rai2);
                 cl4.Controls.Add(rai3);
                 cl5.Controls.Add(rai4);
 
+                //Lägger till cellerna i varje rad
                 rw.Controls.Add(cl);
                 rw2.Controls.Add(cl2);
                 rw3.Controls.Add(cl3);
@@ -219,6 +230,7 @@ namespace WebApplication1
                 rw5.Controls.Add(cl5);
                 rw6.Controls.Add(cl6);
 
+                //Lägger till raderna i table1 
                 table1.Controls.Add(rw);
                 table1.Controls.Add(rw2);
                 table1.Controls.Add(rw3);
@@ -297,27 +309,11 @@ namespace WebApplication1
             Response.Write("Test");
         }
 
-        #region radionumbers 
-        public void getNumbers()
-        {
-            int[] m = RandomNumbers(1, 25, 5);
-            string[] questions = new string[25]; // Initialize.
-
-            for (int i = 0; i < m.Length; i++)
-            {
-                questions[i] = m[i].ToString();
-            }
-        }
-
-        public static int[] RandomNumbers(int min, int max)
-        {
-            return RandomNumbers(min, max, 2);
-        }
-        public static int[] RandomNumbers(int min, int max, int derangement)
+        public static int[] RandomNumbers(int min, int max, int derangement)//Metod för att slumpa fram frågorna
         {
             if (min > max)
             {
-                throw new Exception("The first parameter must be less (or equal) than the second.");
+                throw new Exception("Första parametern måste vara mindre eller lika med andra.");
             }
             Random random = new Random();
             int count = max - min; ;
@@ -328,7 +324,6 @@ namespace WebApplication1
                 tempList[counter] = i;
                 counter++;
             }
-
             for (int i = 0; i < derangement; i++)
                 for (int j = 0; j < count; j++)
                 {
@@ -336,7 +331,6 @@ namespace WebApplication1
                     int l = random.Next(0, count + 1);
                     if (k != l)
                     {
-                        //Swap TempList[k] with TempList[l]
                         tempList[k] += tempList[l];
                         tempList[l] = tempList[k] - tempList[l];
                         tempList[k] = tempList[k] - tempList[l];
@@ -344,7 +338,7 @@ namespace WebApplication1
                 }
             return tempList;
         }
-        #endregion
+ 
 
         protected void Button1_Click1(object sender, EventArgs e)
         {

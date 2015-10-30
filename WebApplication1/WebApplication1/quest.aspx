@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div id="questionbox">
     
-
+    
         <asp:table id="table1" runat ="server">        </asp:table>
         <asp:Button ID="btnSubmint" runat="server" Text="Lämna in" />
     
