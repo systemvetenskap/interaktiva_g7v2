@@ -19,8 +19,7 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         
         {
-
-
+            
             XmlDocument xmldoc = new XmlDocument();
 
             xmldoc.Load(Server.MapPath("XmlQuestions.xml"));
@@ -33,12 +32,7 @@ namespace WebApplication1
            // {
   
                 // Skriv kod här ifall frågorna inte skall slumpas(Exakt samma som i foreach)
-
-
-
-
-
-
+                
 
            // }
             int[] m = RandomNumbers(1, 25, 4);

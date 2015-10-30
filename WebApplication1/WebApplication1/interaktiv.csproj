@@ -49,7 +49,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Npgsql">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Npgsql.dll</HintPath>
+      <HintPath>..\..\..\..\..\AppData\Roaming\Skype\My Skype Received Files\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="quest.aspx" />
+    <Content Include="stilmall.css" />
     <Content Include="Web.config" />
     <Content Include="XmlQuestions.xml" />
   </ItemGroup>

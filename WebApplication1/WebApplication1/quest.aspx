@@ -4,7 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Home</title>
+    <link href="stilmall.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,7 +28,7 @@
 
         <asp:Button ID="Button1" runat="server" Text="Nästa" OnClick="Button1_Click1" />--%>
 
-        <asp:table id="table1" runat ="server">
+        <asp:table class="tbl" id="table1" runat ="server">
         
 
 
