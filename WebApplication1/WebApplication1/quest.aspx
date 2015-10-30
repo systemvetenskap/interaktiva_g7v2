@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Home</title>
-    <link href="stilmall.css" type="text/css" rel="stylesheet" />
+    <link href="stilmall.css" type="text/css" rel="stylesheet" /> 
 </head>
 <body>
     <form id="form1" runat="server">
@@ -23,12 +23,27 @@
             </ul> 
         </div>
         <!-- Questions -->
+
+            <script type="text/javascript">
+                function coundDown(secs, elem)
+                {
+                    var element = document.getElementById(elem);
+                     element.innerHTML = "Tid kvar: " + secs + "";
+                    if (secs < 1)
+                    {
+                        clearTimeout(timer);
+                        //Kod här för när timern är slut
+                       
+                    }
+                    secs--;
+                    var timer = setTimeout('countDown('+secs+',"'+elem+'")',1000);
+                }
+                </script>
     <div class="questionbox">
-    
-        <asp:table class="tbl" id="table1" runat ="server">
-        
-        </asp:table>
+        <asp:Label ID="LabelTimer" runat="server" Text="Label"></asp:Label>
+        <asp:table class="tbl" id="table1" runat ="server"></asp:table>
         </div>
+            <script type="text/javascript">countDown(1800,"LabelTimer");</script>
         <!-- Footer -->
         <div class="footer">
         </div>
