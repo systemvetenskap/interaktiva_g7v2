@@ -11,9 +11,6 @@
     <form id="form1" runat="server">
     <div id="questionbox">
     
-<%--        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-        <br />
-        <br />
     
         <asp:RadioButton ID="RadioButton1" runat="server" />
         <br />

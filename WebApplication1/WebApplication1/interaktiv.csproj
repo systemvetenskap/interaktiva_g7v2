@@ -80,6 +80,7 @@
   <ItemGroup>
     <Content Include="quest.aspx" />
     <Content Include="stilmall.css" />
+    <Content Include="usertest.xml" />
     <Content Include="Web.config" />
     <Content Include="XmlQuestions.xml" />
   </ItemGroup>
