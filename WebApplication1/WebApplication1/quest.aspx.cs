@@ -21,29 +21,17 @@ namespace WebApplication1
         {
 
 
+            //Skapar nytt xmldokument
             XmlDocument xmldoc = new XmlDocument();
 
+            //Laddar in vårat xmldokument i xmldoc
             xmldoc.Load(Server.MapPath("XmlQuestions.xml"));
 
-
-
-            XmlNodeList nodeListAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='2']/answer/answer");
-            XmlNodeList nodeListCorrectAnswer = xmldoc.SelectNodes("/categories/ethicandrules/question[@id='1']/correctanswer");
-           //for(int i = 1; i <= 25; i++)
-           // {
-  
-                // Skriv kod här ifall frågorna inte skall slumpas(Exakt samma som i foreach)
-
-
-
-
-
-
-
-           // }
+            //Skapar ny array m där vi stoppar in nummer mellan 1-25. Använder metoden RandomNumbers()
             int[] m = RandomNumbers(1, 25, 4);
             foreach (int i in m)
             {
+                //Skapar nya tabell rader
                 TableRow rw = new TableRow();
                 TableRow rw2 = new TableRow();
                 TableRow rw3 = new TableRow();
@@ -51,6 +39,7 @@ namespace WebApplication1
                 TableRow rw5 = new TableRow();
                 TableRow rw6 = new TableRow();
 
+                //Skapar nya celler i raderna ovan
                 TableCell cl = new TableCell();
                 TableCell cl2 = new TableCell();
                 TableCell cl3 = new TableCell();
@@ -58,56 +47,59 @@ namespace WebApplication1
                 TableCell cl5 = new TableCell();
                 TableCell cl6 = new TableCell();
 
+                //Skapar nya radiobuttons
                 RadioButton rai = new RadioButton();
                 RadioButton rai2 = new RadioButton();
                 RadioButton rai3 = new RadioButton();
                 RadioButton rai4 = new RadioButton();
+
+                //Ger ett gruppnamn till radiobuttons 
                 rai.GroupName = "gr" + i.ToString();
                 rai2.GroupName = "gr" + i.ToString();
                 rai3.GroupName = "gr" + i.ToString();
                 rai4.GroupName = "gr" + i.ToString();
+
+                //Sätter ett unikt namn till varje radiobutton
                 rai.ID = "raid" + i;
 
-
-
+                //Skapar ny label för varje fråga
                 Label lbl = new Label();
                 if (i <= 8)
                 {
+                    //Om variabeln i som loopar igenom arrayen är mindre än 8 så görs detta
                     lbl.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']").FirstChild.InnerText;
                     rai.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                     rai2.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
                     rai3.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
                     rai4.Text = xmldoc.SelectSingleNode("/categories/products/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
-
-
                 }
-
                 else if (i > 8 && i <= 16)
                 {
+                    //Om variabeln i som loopar igenom arrayen är större än 8 och mindre än 16 så görs detta
                     lbl.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']").FirstChild.InnerText;
                     rai.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                     rai2.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
                     rai3.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
                     rai4.Text = xmldoc.SelectSingleNode("/categories/economy/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
                 }
-
                 else if (i > 16)
                 {
+                    //Om variabeln i som loopar igenom arrayen är större än 16
                     lbl.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']").FirstChild.InnerText;
                     rai.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                     rai2.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
                     rai3.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
                     rai4.Text = xmldoc.SelectSingleNode("/categories/ethics/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
                 }
-
-
-
+                //Lägger till labeln i cellen
                 cl.Controls.Add(lbl);
+                //Lägger till radiobuttons i cellen
                 cl2.Controls.Add(rai);
                 cl3.Controls.Add(rai2);
                 cl4.Controls.Add(rai3);
                 cl5.Controls.Add(rai4);
 
+                //Lägger till cellerna i varje rad
                 rw.Controls.Add(cl);
                 rw2.Controls.Add(cl2);
                 rw3.Controls.Add(cl3);
@@ -115,6 +107,7 @@ namespace WebApplication1
                 rw5.Controls.Add(cl5);
                 rw6.Controls.Add(cl6);
 
+                //Lägger till raderna i table1 
                 table1.Controls.Add(rw);
                 table1.Controls.Add(rw2);
                 table1.Controls.Add(rw3);
@@ -123,13 +116,6 @@ namespace WebApplication1
                 table1.Controls.Add(rw6);
 
             }
-
-            //lblQuestion.Text = xmldoc.SelectSingleNode("/categories/ethicandrules/question[@id='1']").FirstChild.InnerText;
-
-            //RadioButton1.Text = nodeListAnswer[0].FirstChild.InnerText;
-            //RadioButton2.Text = nodeListAnswer[1].FirstChild.InnerText;
-            //RadioButton3.Text = nodeListAnswer[2].InnerText;
-            //RadioButton4.Text = nodeListAnswer[3].FirstChild.InnerText;
         }
 
 
@@ -139,27 +125,11 @@ namespace WebApplication1
             Response.Write("Test");
         }
 
-        #region radionumbers 
-        public void getNumbers()
-        {
-            int[] m = RandomNumbers(1, 25, 5);
-            string[] questions = new string[25]; // Initialize.
-
-            for (int i = 0; i < m.Length; i++)
-            {
-                questions[i] = m[i].ToString();
-            }
-        }
-
-        public static int[] RandomNumbers(int min, int max)
-        {
-            return RandomNumbers(min, max, 2);
-        }
-        public static int[] RandomNumbers(int min, int max, int derangement)
+        public static int[] RandomNumbers(int min, int max, int derangement)//Metod för att slumpa fram frågorna
         {
             if (min > max)
             {
-                throw new Exception("The first parameter must be less (or equal) than the second.");
+                throw new Exception("Första parametern måste vara mindre eller lika med andra.");
             }
             Random random = new Random();
             int count = max - min; ;
@@ -170,7 +140,6 @@ namespace WebApplication1
                 tempList[counter] = i;
                 counter++;
             }
-
             for (int i = 0; i < derangement; i++)
                 for (int j = 0; j < count; j++)
                 {
@@ -178,7 +147,6 @@ namespace WebApplication1
                     int l = random.Next(0, count + 1);
                     if (k != l)
                     {
-                        //Swap TempList[k] with TempList[l]
                         tempList[k] += tempList[l];
                         tempList[l] = tempList[k] - tempList[l];
                         tempList[k] = tempList[k] - tempList[l];
@@ -186,7 +154,7 @@ namespace WebApplication1
                 }
             return tempList;
         }
-        #endregion
+ 
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
