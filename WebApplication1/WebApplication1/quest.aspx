@@ -42,6 +42,7 @@
     <div class="questionbox">
         <asp:Label ID="LabelTimer" runat="server" Text="Label"></asp:Label>
         <asp:table class="tbl" id="table1" runat ="server"></asp:table>
+        
         </div>
             <script type="text/javascript">countDown(1800,"LabelTimer");</script>
         <!-- Footer -->

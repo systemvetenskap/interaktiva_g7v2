@@ -49,6 +49,7 @@ namespace WebApplication1
             //Lägger in alla question nodes i en XML lista
             XmlNodeList lst  = xmldoc2.SelectNodes("categories/question");
             //Loopar igenom xml listan 1st
+            int count = 1;
             foreach (XmlNode nd in lst)
             {      
                     string s = nd.Attributes["id"].Value;
@@ -84,7 +85,7 @@ namespace WebApplication1
 
 
                 
-                lbl.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText;
+                lbl.Text = count +": "+ (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
                 rai.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                 rai2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
                 rai3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
@@ -118,6 +119,7 @@ namespace WebApplication1
                 table1.Controls.Add(rw5);
                 rw6.Attributes.Add("class", "empty");
                 table1.Controls.Add(rw6);
+                count++;
             }
         }
         protected void btnSubmint_Click(object sender, EventArgs e)

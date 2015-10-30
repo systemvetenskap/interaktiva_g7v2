@@ -59,11 +59,16 @@ div.questionbox{
     margin: 5% 3% 5% 3%;
     background-color:white;
 }
+table.tbl {
+     border-spacing: 1px;
+}
 
 table.tbl td
  { 
  font-family: Verdana;
  color: #404040;
+
+ 
  }
 
 
@@ -74,6 +79,8 @@ div.questionbox table.tbl  tr.question{
     font-weight: bold;
     color:aquamarine;
     font-size:14px;
+
+    
 }
 div.questionbox table.tbl  tr.answers{
     
@@ -83,11 +90,13 @@ div.questionbox table.tbl  tr.answers{
 }
 div.questionbox table.tbl  tr.empty{
     height: 20px;
+
 }
 
-div.questionbox table.tbl  tb.questionCell{
-    padding:20px 20px 0 0;
-    background-color:aquamarine;
+div.questionbox table.tbl  td.questionCell{
+    padding: 15px;
+    
+    
 }
 
 
