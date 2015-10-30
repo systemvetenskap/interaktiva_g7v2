@@ -23,30 +23,17 @@
             </ul> 
         </div>
         <!-- Questions -->
-        <div class="questionbox">
+    <div class="questionbox">
     
-          <%--  <asp:RadioButton ID="RadioButton1" runat="server" />
-            <br />
-            <asp:RadioButton ID="RadioButton2" runat="server" />
-            <br />
-            <asp:RadioButton ID="RadioButton3" runat="server" />
-            <br />
-            <asp:RadioButton ID="RadioButton4" runat="server" />
-
-            <br />
-            <br />
-
-            <asp:Button ID="Button1" runat="server" Text="Nästa" OnClick="Button1_Click1" />--%>
-
-            <asp:table class="tbl" id="table1" runat ="server">
-
-            </asp:table>
+        <asp:table class="tbl" id="table1" runat ="server">
+        
+        </asp:table>
         </div>
         <!-- Footer -->
         <div class="footer">
         </div>
-
-      </div>
+    
+    </div>
     </form>
 </body>
 </html>
