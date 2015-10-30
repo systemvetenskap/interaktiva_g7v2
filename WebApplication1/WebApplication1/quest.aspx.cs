@@ -76,12 +76,15 @@ namespace WebApplication1
                     //Skapar ny label för varje fråga
                 Label lbl = new Label();
 
-                    lbl.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText;
-                    rai.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
-                    rai2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
-                    rai3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
-                    rai4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
-                    //Lägger in label i cellen
+
+                
+                lbl.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText;
+                rai.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                rai2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                rai3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                rai4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+                //Lägger in label i cellen
+                cl.Attributes.Add("class", "questionCell");
                 cl.Controls.Add(lbl);
                     //Lägger in radiobutton i cellerna
                 cl2.Controls.Add(rai);
@@ -99,10 +102,15 @@ namespace WebApplication1
 
                 rw.Attributes.Add("class", "question");
                 table1.Controls.Add(rw);
+                rw2.Attributes.Add("class", "answers answer1");
                 table1.Controls.Add(rw2);
+                rw3.Attributes.Add("class", "answers answer2");
                 table1.Controls.Add(rw3);
+                rw4.Attributes.Add("class", "answers answer3");
                 table1.Controls.Add(rw4);
+                rw5.Attributes.Add("class", "answers answer4");
                 table1.Controls.Add(rw5);
+                rw6.Attributes.Add("class", "empty");
                 table1.Controls.Add(rw6);
             }
         }

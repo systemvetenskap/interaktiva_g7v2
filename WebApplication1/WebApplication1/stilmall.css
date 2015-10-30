@@ -55,28 +55,37 @@ div.nav ul li a:hover, div.nav ul li a:visited{
 }
 
 div.questionbox{
-
-    padding: 5% 3% 5% 3%;
-
+    max-width: 70%;
+    margin: 5% 3% 5% 3%;
+    background-color:white;
 }
-
 
 table.tbl td
  { 
  font-family: Verdana;
- font-weight: normal;
- font-size: 14px;
  color: #404040;
- width: 260px;
- background-color: #fafafa;
- border: 1px #d79900 solid;
- border-collapse: collapse;
- border-spacing: 0px;}
+ }
+
 
 
 div.questionbox table.tbl  tr.question{
-
     background-color: #eb9b00;
-    text-align:center;
+    height:35px;
+    font-weight: bold;
     color:aquamarine;
+    font-size:14px;
 }
+div.questionbox table.tbl  tr.answers{
+    
+    background-color: #fafafa;
+    height: 30px;
+    font-size: 14px;
+}
+div.questionbox table.tbl  tr.empty{
+    height: 20px;
+}
+
+
+
+
+
