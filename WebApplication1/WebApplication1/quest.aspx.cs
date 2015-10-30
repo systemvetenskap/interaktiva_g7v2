@@ -40,7 +40,6 @@ namespace WebApplication1
                     parent.AppendChild(newnode);
                     xmldoc2.Save(Server.MapPath("usertest.xml"));
             }
-
             //Lägger in alla question nodes i en XML lista
             XmlNodeList lst  = xmldoc2.SelectNodes("categories/question");
             //Loopar igenom xml listan 1st
@@ -103,10 +102,10 @@ namespace WebApplication1
                 table1.Controls.Add(rw4);
                 table1.Controls.Add(rw5);
                 table1.Controls.Add(rw6);
-        }
+            }
         }
         protected void btnSubmint_Click(object sender, EventArgs e)
-            {
+        {
 
         }
         public static int[] RandomNumbers(int min, int max, int derangement)//Metod för att slumpa fram frågorna
