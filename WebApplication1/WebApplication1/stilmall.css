@@ -85,7 +85,10 @@ div.questionbox table.tbl  tr.empty{
     height: 20px;
 }
 
-
+div.questionbox table.tbl  tb.questionCell{
+    padding:20px 20px 0 0;
+    background-color:aquamarine;
+}
 
 
 
