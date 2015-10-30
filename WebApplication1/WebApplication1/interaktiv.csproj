@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="quest.aspx" />
+    <Content Include="usertest.xml" />
     <Content Include="Web.config" />
     <Content Include="XmlQuestions.xml" />
   </ItemGroup>
