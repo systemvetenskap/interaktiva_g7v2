@@ -10,28 +10,9 @@
     <form id="form1" runat="server">
     <div id="questionbox">
     
-<%--        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-        <br />
-        <br />
-    
-        <asp:RadioButton ID="RadioButton1" runat="server" />
-        <br />
-        <asp:RadioButton ID="RadioButton2" runat="server" />
-        <br />
-        <asp:RadioButton ID="RadioButton3" runat="server" />
-        <br />
-        <asp:RadioButton ID="RadioButton4" runat="server" />
 
-        <br />
-        <br />
-
-        <asp:Button ID="Button1" runat="server" Text="Nästa" OnClick="Button1_Click1" />--%>
-
-        <asp:table id="table1" runat ="server">
-        
-
-
-        </asp:table>
+        <asp:table id="table1" runat ="server">        </asp:table>
+        <asp:Button ID="btnSubmint" runat="server" Text="Lämna in" />
     
     </div>
     </form>
