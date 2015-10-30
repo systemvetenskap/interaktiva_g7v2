@@ -61,7 +61,7 @@ div.questionbox{
 }
 
 
-table.tbl td
+table.tbl tr
  { 
  font-family: Verdana;
  font-weight: normal;
@@ -78,5 +78,6 @@ div.questionbox table.tbl  tr.question{
 
     background-color: #eb9b00;
     text-align:center;
-    color:aquamarine;
+    color:Black;
+    font-weight: bold;
 }
