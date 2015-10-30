@@ -96,7 +96,9 @@ namespace WebApplication1
                 rw4.Controls.Add(cl4);
                 rw5.Controls.Add(cl5);
                 rw6.Controls.Add(cl6);
-                    //Lägger in raderna i tabellen som heter table1
+                //Lägger in raderna i tabellen som heter table1
+
+                rw.Attributes.Add("class", "question");
                 table1.Controls.Add(rw);
                 table1.Controls.Add(rw2);
                 table1.Controls.Add(rw3);

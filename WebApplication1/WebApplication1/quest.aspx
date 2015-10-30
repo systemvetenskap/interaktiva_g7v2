@@ -9,29 +9,44 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="questionbox">
+         <!-- Container -->
+        <div class="container">  
+
+        <!-- Header -->
+        <div class="header">          
+            <h1>JE Bank</h1>
+        </div>
+        <!-- Navigation -->
+        <div class="nav">
+            <ul class="clear">
+                <li><a class="home" href = "index.html">Home</a></li>
+            </ul> 
+        </div>
+        <!-- Questions -->
+        <div class="questionbox">
     
-    
-      <%--  <asp:RadioButton ID="RadioButton1" runat="server" />
-        <br />
-        <asp:RadioButton ID="RadioButton2" runat="server" />
-        <br />
-        <asp:RadioButton ID="RadioButton3" runat="server" />
-        <br />
-        <asp:RadioButton ID="RadioButton4" runat="server" />
+          <%--  <asp:RadioButton ID="RadioButton1" runat="server" />
+            <br />
+            <asp:RadioButton ID="RadioButton2" runat="server" />
+            <br />
+            <asp:RadioButton ID="RadioButton3" runat="server" />
+            <br />
+            <asp:RadioButton ID="RadioButton4" runat="server" />
 
-        <br />
-        <br />
+            <br />
+            <br />
 
-        <asp:Button ID="Button1" runat="server" Text="Nästa" OnClick="Button1_Click1" />--%>
+            <asp:Button ID="Button1" runat="server" Text="Nästa" OnClick="Button1_Click1" />--%>
 
-        <asp:table class="tbl" id="table1" runat ="server">
-        
+            <asp:table class="tbl" id="table1" runat ="server">
 
+            </asp:table>
+        </div>
+        <!-- Footer -->
+        <div class="footer">
+        </div>
 
-        </asp:table>
-    
-    </div>
+      </div>
     </form>
 </body>
 </html>
