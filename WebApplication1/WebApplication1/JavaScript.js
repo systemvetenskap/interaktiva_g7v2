@@ -21,8 +21,6 @@ $(document).ready(function () {
     var top = $('#timerbox').offset().top - parseFloat($('#timerbox').css('marginTop').replace(/auto/, 0));
     $(window).scroll(function (event) {
         var y = $(this).scrollTop();
-        //if y > top, it means that if we scroll down any more, parts of our element will be outside the viewport
-        //so we move the element down so that it remains in view.
         if (y >= top) {
             var difference = y - top;
             $('#timerbox').css("top", difference);
