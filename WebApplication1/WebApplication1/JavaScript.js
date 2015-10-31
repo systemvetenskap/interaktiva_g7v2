@@ -1,4 +1,4 @@
-﻿var mins = 30; //1 minut tills vidare..
+﻿var mins = 1; //1 minut tills vidare..
 var secs = mins * 60;
 
 var counter = setInterval(timer, 1000); //1000 gör att den körs varje sekund
