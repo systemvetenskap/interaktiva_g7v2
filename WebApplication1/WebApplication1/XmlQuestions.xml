@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <categories>
   <!--//Kategori produkter-->
-    <question id="1" category="products" multi ="false">
+    <question id="1" category="products" multi ="false" image="true">
       I vilka länder finns JEBanken ?
       <answer>
         <answer id="1" correct="true">Sverige</answer>
@@ -9,11 +9,13 @@
         <answer id="3" correct="false">Kina</answer>
         <answer id="4" correct="false">Irland</answer>
       </answer>
+      <image>Images\\bat.jpg</image>
       <useranswer></useranswer>
     </question>
 
-    <question id="2" category="products" multi ="false">
+    <question id="2" category="products" multi ="false" image ="false">
       Vem är delägare i JEBanken ?
+      
       <answer>
         <answer id="1" correct="false">Vladimir Putin</answer>
         <answer id="2" correct="true">The Copper Gorilla Clan</answer>
@@ -23,20 +25,19 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="3" category="products" multi ="false">
-      Vad är maxbeloppet en kund får ta ut vid ett bankbesök?
-      <answer>
+    <question id="3" category="products" multi ="false" image ="false">
+      Vad är maxbeloppet en kund får ta ut vid ett bankbesök?"<answer>
         <answer id="1" correct="false">10.000 kronor</answer>
         <answer id="2" correct="true">20.000 kronor</answer>
         <answer id="3" correct="false">70.000 kronor</answer>
         <answer id="4" correct="false">100.000 kronor</answer>
       </answer>
+      <image>image.jpg</image>
       <useranswer></useranswer>
     </question>
 
-    <question id="4" category="products" multi ="false">
-      Hur lång tid bör man spendera per kund ?
-      <answer>
+    <question id="4" category="products" multi ="false" image ="false">
+      Hur lång tid bör man spendera per kund ?"<answer>
         <answer id="1" correct="false">Tio minuter</answer>
         <answer id="2" correct="false">Tjugo minuter</answer>
         <answer id="3" correct="false">Trettio minuter</answer>
@@ -45,9 +46,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="5" category="products" multi ="false">
-      Om en kund kommer in och vill ta ut pengar från någon annans konto, vad gör du ?
-      <answer>
+    <question id="5" category="products" multi ="false" image ="false">
+      Om en kund kommer in och vill ta ut pengar från någon annans konto, vad gör du ?"<answer>
         <answer id="1" correct="false">Ringer upp kontoägaren och ber om bekräftelse</answer>
         <answer id="2" correct="false">Ber att kunden visar upp en blankett med fullmakt</answer>
         <answer id="3" correct="false">Ger kunden en blankett (fullmakt) att fylla i </answer>
@@ -56,9 +56,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="6" category="products" multi ="false">
-      Om en kund vill sätta in exempelvis 10 miljoner på sitt konto, vad gör du ?
-      <answer>
+    <question id="6" category="products" multi ="false" image ="false">
+      Om en kund vill sätta in exempelvis 10 miljoner på sitt konto, vad gör du ?"<answer>
         <answer id="1" correct="false">Frågar var kunden fått så här mycket pengar ifrån ?</answer>
         <answer id="2" correct="false">Sätter in pengarna utan att ifrågasätta någonting</answer>
         <answer id="3" correct="false">Säger till kunden att maxbeloppet för insättning är 1 miljon kronor per dag</answer>
@@ -67,9 +66,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="7" category="products" multi ="false">
-      Det kommer in en rånarliga med avsikt att råna banken, vad gör du ?
-      <answer>
+    <question id="7" category="products" multi ="false" image ="false">
+      Det kommer in en rånarliga med avsikt att råna banken, vad gör du ?"<answer>
         <answer id="1" correct="true">Trycker på larmet så fort som möjligt</answer>
         <answer id="2" correct="false">Säger till biffen (vakten) att aktivera sig</answer>
         <answer id="3" correct="false">Ringer polisen</answer>
@@ -78,9 +76,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="8" category="products" multi ="false">
-      Vilka valutor kan man ta ut pengar i på JEBanken ?
-      <answer>
+    <question id="8" category="products" multi ="false" image ="false">
+      Vilka valutor kan man ta ut pengar i på JEBanken ?"<answer>
         <answer id="1" correct="false">Svenska kronor endast</answer>
         <answer id="2" correct="false">Norska kronor</answer>
         <answer id="3" correct="false">Schweizer franc</answer>
@@ -90,9 +87,8 @@
     </question>
   <!--//Slut kategori produkter
   //Kategori ekonomi-->
-    <question id="9" category="economy" multi ="false">
-      Vad är JEBankens ränta på lån ?
-      <answer>
+    <question id="9" category="economy" multi ="false" image ="false">
+      Vad är JEBankens ränta på lån ?"<answer>
         <answer id="1" correct="false">5%</answer>
         <answer id="2" correct="false">3%</answer>
         <answer id="3" correct="false">7%</answer>
@@ -101,9 +97,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="10" category="economy" multi ="false">
-      Vad är minimumbeloppet att amortera per månad på ett lån över 1 miljon?
-      <answer>
+    <question id="10" category="economy" multi ="false" image ="false">
+      Vad är minimumbeloppet att amortera per månad på ett lån över 1 miljon?"<answer>
         <answer id="1" correct="false">1000 kronor</answer>
         <answer id="2" correct="false">2000 kronor</answer>
         <answer id="3" correct="false">3000 kronor</answer>
@@ -112,7 +107,7 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="11" category="economy" multi ="false">
+    <question id="11" category="economy" multi ="false" image ="false">
       Kan en privatperson betala räkningar via mobilen ?
       <answer>
         <answer id="1" correct="false">Ja, med våran mobilapplikation</answer>
@@ -123,9 +118,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="12" category="economy" multi ="false">
-      Hur mycket omsatte JEBanken år 2014 ?
-      <answer>
+    <question id="12" category="economy" multi ="false" image ="false">
+      Hur mycket omsatte JEBanken år 2014 ?"<answer>
         <answer id="1" correct="false">23 miljarder</answer>
         <answer id="2" correct="true">53 miljarder</answer>
         <answer id="3" correct="false">34 miljarder</answer>
@@ -134,9 +128,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="13" category="economy" multi ="false">
-      Vart hittar man som anställd de rekommenderade räntorna för de olika lånen hos JEBanen ?
-      <answer>
+    <question id="13" category="economy" multi ="false" image ="false">
+      Vart hittar man som anställd de rekommenderade räntorna för de olika lånen hos JEBanen ?"<answer>
         <answer id="1" correct="false">På JEBankens hemsida</answer>
         <answer id="2" correct="true">Riksdagens hemsida</answer>
         <answer id="3" correct="true">I vårt interna system</answer>
@@ -145,9 +138,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="14" category="economy" multi ="false">
-      Vilken bank har vi samarbetat med mest ?
-      <answer>
+    <question id="14" category="economy" multi ="false" image ="false">
+      Vilken bank har vi samarbetat med mest ?"<answer>
         <answer id="1" correct="false">TU Banken</answer>
         <answer id="2" correct="true">JS Banken</answer>
         <answer id="3" correct="false">TCG Banken</answer>
@@ -156,9 +148,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="15" category="economy" multi ="false">
-      Vem har varit den största låntagaren under en lång tid hos JEBanken ?
-      <answer>
+    <question id="15" category="economy" multi ="false" image ="false">
+      Vem har varit den största låntagaren under en lång tid hos JEBanken ?"<answer>
         <answer id="1" correct="false">Siba</answer>
         <answer id="2" correct="false">Björn Borg</answer>
         <answer id="3" correct="true">Saab</answer>
@@ -167,9 +158,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="16" category="economy" multi ="false">
-      Vilken bank har omsatt mest pengar år 2014 ?
-      <answer>
+    <question id="16" category="economy" multi ="false" image ="false">
+      Vilken bank har omsatt mest pengar år 2014 ?"<answer>
         <answer id="1" correct="false">TU Banken</answer>
         <answer id="2" correct="false">JS Banken</answer>
         <answer id="3" correct="true">TCG Banken</answer>
@@ -179,9 +169,8 @@
     </question>
   <!--//Slut kategori ekonomi
   //Kategori etik-->
-    <question id="17" category="ethics" multi ="false">
-      Vilka kunder bör kunna förhandla till sig lägre ränta ?
-      <answer>
+    <question id="17" category="ethics" multi ="false" image ="false">
+      Vilka kunder bör kunna förhandla till sig lägre ränta ?"<answer>
         <answer id="1" correct="true">De med stabil ekonomi</answer>
         <answer id="2" correct="false">De som varit kunder längre än 10 år hos JEBanken</answer>
         <answer id="3" correct="false">De som har det svårast ekonomiskt</answer>
@@ -190,9 +179,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="18" category="ethics" multi ="false">
-      Hur ska kändisar och människor med mycket pengar behandlas ?
-      <answer>
+    <question id="18" category="ethics" multi ="false" image ="false">
+      Hur ska kändisar och människor med mycket pengar behandlas ?"<answer>
         <answer id="1" correct="true">Som alla andra kunder</answer>
         <answer id="2" correct="false">Med ekonomiska fördelar</answer>
         <answer id="3" correct="false">Sämre än vanligt folk</answer>
@@ -201,9 +189,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="19" category="ethics" multi ="false">
-      Kritik har framförts i media om JEBanken, hur agerar du när en kund framför detta och klagar ?
-      <answer>
+    <question id="19" category="ethics" multi ="false" image ="false">
+      Kritik har framförts i media om JEBanken, hur agerar du när en kund framför detta och klagar ?"<answer>
         <answer id="1" correct="true">Jag håller mig till vårat regelverk och tänker på min sekretess</answer>
         <answer id="2" correct="false">Jag ber kunden hålla tyst</answer>
         <answer id="3" correct="false">Om kritiken är befogad håller jag med kunden </answer>
@@ -212,9 +199,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="20" category="ethics" multi ="false">
-      Du märker att telefonen ringer under din rast och din arbetskollega är på toaletten, vad gör du ?
-      <answer>
+    <question id="20" category="ethics" multi ="false" image ="false">
+      Du märker att telefonen ringer under din rast och din arbetskollega är på toaletten, vad gör du ?"<answer>
         <answer id="1" correct="true">Ignorerar samtalet, jag är på rast!</answer>
         <answer id="2" correct="false">Springer till telefonen och svarar</answer>
         <answer id="3" correct="false">Bankar på dörren till toaletten och ber arbetskollegan att svara i telefonen</answer>
@@ -223,9 +209,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="21" category="ethics" multi ="false">
-      Du får ett telefonsamtal med en mycket viktig kund som har klagomål du inte kan hantera, vad gör du ?
-      <answer>
+    <question id="21" category="ethics" multi ="false" image ="false">
+      Du får ett telefonsamtal med en mycket viktig kund som har klagomål du inte kan hantera, vad gör du ?"<answer>
         <answer id="1" correct="true">Kopplar samtalet till min närmaste chef </answer>
         <answer id="2" correct="false">Avslutar samtalet</answer>
         <answer id="3" correct="false">Säger till kunden att hen får återkomma vid ett senare tillfälle</answer>
@@ -234,9 +219,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="22" category="ethics" multi ="false">
-      Du känner dig sjuk men har inte råd att vara hemma, vad gör du ?
-      <answer>
+    <question id="22" category="ethics" multi ="false" image ="false">
+      Du känner dig sjuk men har inte råd att vara hemma, vad gör du ?"<answer>
         <answer id="1" correct="true">Sjukanmäler mig och stannar hemma för att inte smitta andra</answer>
         <answer id="2" correct="false">Går till jobbet ändå</answer>
         <answer id="3" correct="false">Jobbar halva dagen för att få in lite pengar i alla fall</answer>
@@ -245,9 +229,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="23" category="ethics" multi ="false">
-      Du behöver nya möbler, exempelvis ett nytt skrivbord, en ny stol eller en ny dator. Vad gör du ?
-      <answer>
+    <question id="23" category="ethics" multi ="false" image ="false">
+      Du behöver nya möbler, exempelvis ett nytt skrivbord, en ny stol eller en ny dator. Vad gör du ?"<answer>
         <answer id="1" correct="false">Fyller i rätt blankett för att ansöka om detta</answer>
         <answer id="2" correct="true">Säger till närmaste chef</answer>
         <answer id="3" correct="false">Snor pengar till detta då jag jobbar på en bank</answer>
@@ -256,9 +239,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="24" category="ethics" multi ="false">
-      Du vet om att din arbetskollega som också är en god vän har brutit mot JEBankens regelverk, vad gör du ?
-      <answer>
+    <question id="24" category="ethics" multi ="false" image ="false">
+      Du vet om att din arbetskollega som också är en god vän har brutit mot JEBankens regelverk, vad gör du ?"<answer>
         <answer id="1" correct="true">Säger till närmaste chef</answer>
         <answer id="2" correct="false">Håller tyst då det är en god vän</answer>
         <answer id="3" correct="false">Jag skäller ut arbetskollegan eftersom regelverket är min bibel, och är nöjd med det</answer>
@@ -267,9 +249,8 @@
       <useranswer></useranswer>
     </question>
 
-    <question id="25" category="ethics" multi ="true">
-      Du vill ha ett lån, och jobbar på JEBanken. Vad gäller ?
-      <answer>
+    <question id="25" category="ethics" multi ="true" image ="false">
+      Du vill ha ett lån, och jobbar på JEBanken. Vad gäller ?"<answer>
         <answer id="1" correct="false">Som anställd på JEBanken har jag speciella förmåner</answer>
         <answer id="2" correct="true">Samma regelverk och räntor som för vanliga kunder</answer>
         <answer id="3" correct="false">Det beror på vilken avdelning och vilken position jag har</answer>

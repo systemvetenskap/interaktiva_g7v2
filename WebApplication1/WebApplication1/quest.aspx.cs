@@ -34,30 +34,32 @@ namespace WebApplication1
             wrong.LoadXml("<test></test>");
             //Laddar in vårat xmldokument i xmldoc
             xmldoc.Load(Server.MapPath("XmlQuestions.xml"));
-            xmldoc2.Load(Server.MapPath("usertest.xml"));
+            //xmldoc2.Load(Server.MapPath("usertest.xml"));
 
             //Laddar endast in taggar i xmldoc2 som är identiska med XmlQuestions.xml
-            //xmldoc2.LoadXml("<categories></categories>");
+            xmldoc2.LoadXml("<categories></categories>");
 
             //Skapar ny array och stoppar in 25 st variabler av typen int
             int[] m = RandomNumbers(1, 25, 4);
 
             //Hämtar frågor från orginaldokumentet och stoppar in detta i det nya
-            //foreach (int i in m)
-            //{
-            //        XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']"), true);
-            //        XmlNode parent = xmldoc2.SelectSingleNode("categories");
-            //        parent.AppendChild(newnode);
-            //        xmldoc2.Save(Server.MapPath("usertest.xml"));
-            //}
+            foreach (int i in m)
+            {
+                XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']"), true);
+                XmlNode parent = xmldoc2.SelectSingleNode("categories");
+                parent.AppendChild(newnode);
+                xmldoc2.Save(Server.MapPath("usertest.xml"));
+            }
             //Lägger in alla question nodes i en XML lista
             XmlNodeList lst  = xmldoc2.SelectNodes("categories/question");
             //Loopar igenom xml listan 1st
             int count = 1;
             foreach (XmlNode nd in lst)
             {      
-                    string s = nd.Attributes["id"].Value;
+                string s = nd.Attributes["id"].Value;
                 string b = nd.Attributes["multi"].Value;
+                string img = nd.Attributes["image"].Value;
+           
                     int i = Convert.ToInt16(s);
                     //Skapar nya rader                  
                 TableRow rw = new TableRow();
@@ -73,6 +75,7 @@ namespace WebApplication1
                 TableCell cl4 = new TableCell();
                 TableCell cl5 = new TableCell();
                 TableCell cl6 = new TableCell();
+                TableCell imgcell = new TableCell();
                     //Skapar nya radiobuttons
                 RadioButton rai = new RadioButton();
                 RadioButton rai2 = new RadioButton();
@@ -151,10 +154,12 @@ namespace WebApplication1
                     cl5.Controls.Add(c4);
 
                 }
+  
            
                 //Lägger in label i cellen
                 cl.Attributes.Add("class", "questionCell");
                 cl.Controls.Add(lbl);
+              
                     //Lägger in radiobutton i cellerna
        
                     //Lägger in cellen på raden
@@ -179,6 +184,16 @@ namespace WebApplication1
                 rw6.Attributes.Add("class", "empty");
                 table1.Controls.Add(rw6);
                 count++;
+                if (img == "true")
+                {
+                    Image bild = new Image();
+                    string imagelink = xmldoc2.SelectSingleNode("categories/question[@id='" + i + "']/image").InnerText;
+                    bild.ImageUrl = imagelink;
+
+                    rw.Controls.Add(imgcell);
+                    imgcell.Controls.Add(bild);
+
+                }
             }
         }
         protected void btnSubmint_Click(object sender, EventArgs e)
@@ -255,33 +270,40 @@ namespace WebApplication1
                             }
            
                         }
-                        //else if(cl is CheckBox)
-                        //{
-                        //    CheckBox chk = (CheckBox)cl;
-                        //    if (chk.Attributes["correct"] == "true" && chk.Checked)
-                        //    {
-                        //        string s = chk.ID;
-                        //        string x = chk.Text;
-                        //        XmlNode nd = right.SelectSingleNode("/test");
-                        //        XmlElement el = right.CreateElement(s);
-                        //        el.InnerText = x;
-                        //        nd.AppendChild(el);
+                        else if (cl is CheckBox)
+                        {
+                            CheckBox chk = (CheckBox)cl;
+                            string cor = chk.Attributes["correct"];
+                            if (chk.Checked == true)
+                            {
+                                if(cor == "true")
+                                {
+                                    string s = chk.ID;
+                                    string x = chk.Text;
+                                    XmlNode nd = right.SelectSingleNode("/test");
+                                    XmlElement el = right.CreateElement(s);
+                                    el.InnerText = x;
+                                    nd.AppendChild(el);
 
-                        //        right.Save("C:\\Users\\Henrik\\Desktop\\correctanswer.xml");
-                        //    }
-                        //    else if(chk.Attributes["correct"] == "false" && chk.Checked)
-                        //    {
-                        //        string s = chk.ID;
-                        //        string x = chk.Text;
-                        //        XmlNode nd = wrong.SelectSingleNode("/test");
-                        //        XmlElement el = wrong.CreateElement(s);
-                        //        el.InnerText = x;
-                        //        nd.AppendChild(el);
+                                    right.Save("C:\\Users\\Henrik\\Desktop\\correctanswer.xml");
 
-                        //        right.Save("C:\\Users\\Henrik\\Desktop\\wronganswer.xml");
-                        //    }
+                                }
+                                else if(cor == "false")
+                                {
+                                    string s = chk.ID;
+                                    string x = chk.Text;
+                                    XmlNode nd = wrong.SelectSingleNode("/test");
+                                    XmlElement el = wrong.CreateElement(s);
+                                    el.InnerText = x;
+                                    nd.AppendChild(el);
 
-                        //}
+                                    wrong.Save("C:\\Users\\Henrik\\Desktop\\correctanswer.xml");
+                                }
+                        
+                            }
+       
+
+                        }
 
                     }
                 }

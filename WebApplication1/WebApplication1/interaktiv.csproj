@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\background.jpg" />
+    <Content Include="Images\bat.jpg" />
     <Content Include="Images\header1.png" />
     <Content Include="JavaScript.js" />
     <Content Include="packages.config" />
