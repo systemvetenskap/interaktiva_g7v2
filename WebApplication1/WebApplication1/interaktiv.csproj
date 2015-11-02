@@ -71,7 +71,11 @@
   <ItemGroup>
     <Content Include="Images\background.jpg" />
     <Content Include="Images\bat.jpg" />
+    <Content Include="Images\calvin.png" />
+    <Content Include="Images\dollarsign.jpg" />
+    <Content Include="Images\globe.png" />
     <Content Include="Images\header1.png" />
+    <Content Include="Images\nyser.jpg" />
     <Content Include="JavaScript.js" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
