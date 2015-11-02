@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
-using Npgsql;
+//using Npgsql;
 using System.Data;
 using System.IO;
 using System.Xml.Serialization;
