@@ -30,7 +30,8 @@
             </div>
         <div class="questionbox">
 
-        &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table>       
+        &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
+            <asp:Button class="btnsub" ID="btn1" text="Lämna in" runat="server" OnClick="btn1_Click" />      
         </div>
         <!-- Footer -->
         <div class="footer">

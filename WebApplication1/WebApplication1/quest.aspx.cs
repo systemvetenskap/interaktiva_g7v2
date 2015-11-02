@@ -53,6 +53,7 @@ namespace WebApplication1
             foreach (XmlNode nd in lst)
             {      
                     string s = nd.Attributes["id"].Value;
+                string b = nd.Attributes["multi"].Value;
                     int i = Convert.ToInt16(s);
                     //Skapar nya rader                  
                 TableRow rw = new TableRow();
@@ -73,7 +74,12 @@ namespace WebApplication1
                 RadioButton rai2 = new RadioButton();
                 RadioButton rai3 = new RadioButton();
                 RadioButton rai4 = new RadioButton();
-                    //Ger ett gruppnamn till radiobuttons 
+
+                CheckBox c = new CheckBox();
+                CheckBox c2 = new CheckBox();
+                CheckBox c3 = new CheckBox();
+                CheckBox c4 = new CheckBox();
+                //Ger ett gruppnamn till radiobuttons 
                 rai.GroupName = "gr" + i.ToString();
                 rai2.GroupName = "gr" + i.ToString();
                 rai3.GroupName = "gr" + i.ToString();
@@ -84,20 +90,69 @@ namespace WebApplication1
                 Label lbl = new Label();
 
 
-                
-                lbl.Text = count +": "+ (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
-                rai.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
-                rai2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
-                rai3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
-                rai4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+                if(b == "false")
+                {
+                    lbl.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
+                    rai.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
+                    string at = n.Attributes["correct"].Value;
+                    rai.Attributes.Add("correct", at);
+
+                    rai2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='2']");
+                    at = n.Attributes["correct"].Value;
+                    rai2.Attributes.Add("correct", at);
+
+                    rai3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='3']");
+                    at = n.Attributes["correct"].Value;
+                    rai3.Attributes.Add("correct", at);
+
+                    rai4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='4']");
+                    at = n.Attributes["correct"].Value;
+                    rai4.Attributes.Add("correct", at);
+
+                    cl2.Controls.Add(rai);
+                    cl3.Controls.Add(rai2);
+                    cl4.Controls.Add(rai3);
+                    cl5.Controls.Add(rai4);
+                }
+                if(b == "true")
+                {
+                    lbl.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
+                    c.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
+                    string at = n.Attributes["correct"].Value;
+                    c.Attributes.Add("correct", at);
+
+                    c2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='2']");
+                    at = n.Attributes["correct"].Value;
+                    c2.Attributes.Add("correct", at);
+
+                    c3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='3']");
+                    at = n.Attributes["correct"].Value;
+                    c3.Attributes.Add("correct", at);
+
+                    c4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='4']");
+                    at = n.Attributes["correct"].Value;
+                    c4.Attributes.Add("correct", at);
+
+                    cl2.Controls.Add(c);
+                    cl3.Controls.Add(c2);
+                    cl4.Controls.Add(c3);
+                    cl5.Controls.Add(c4);
+
+                }
+           
                 //Lägger in label i cellen
                 cl.Attributes.Add("class", "questionCell");
                 cl.Controls.Add(lbl);
                     //Lägger in radiobutton i cellerna
-                cl2.Controls.Add(rai);
-                cl3.Controls.Add(rai2);
-                cl4.Controls.Add(rai3);
-                cl5.Controls.Add(rai4);
+       
                     //Lägger in cellen på raden
                 rw.Controls.Add(cl);
                 rw2.Controls.Add(cl2);
@@ -154,6 +209,17 @@ namespace WebApplication1
                     }
                 }
             return tempList;
+        }
+
+        protected void btn1_Click(object sender, EventArgs e)
+        {
+            foreach(TableRow rw in table1.Controls)
+            {
+                foreach(TableCell cell in rw.Controls)
+                {
+
+                }
+            }
         }
     }
 }
