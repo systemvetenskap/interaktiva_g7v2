@@ -1,9 +1,10 @@
 ﻿body {
     font-family: Arial, sans-serif;
-    background-color: #253648;
     margin: 0;
     padding: 0;
     background-image: url(images/background.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -19,7 +20,7 @@ div.container{
 }
 
 div.header{
-    background-color: #3b7895;
+    background-color: #eb9b00;
     padding: 10px 0 10px 0;
     height: 100px;
     max-width: 100%;
@@ -31,11 +32,12 @@ div.header h1{
     color: white;
     position: relative;
     top: 15px;
+    padding: 1% 5%;
 }
 
 div.nav{
-    background-color: #3b7895;
-    min-width: 100%;
+    background-color: #253648;
+    border-bottom: inset #eb9b00;
 }
 
 div.nav ul{
@@ -47,7 +49,6 @@ div.nav ul{
 div.nav ul li{
     list-style: none;
     float: left;
-    
     background-color:#253648;
 }
 
@@ -76,8 +77,6 @@ table.tbl td
  { 
  font-family: Verdana;
  color: #404040;
-
- 
  }
 
 
@@ -92,7 +91,7 @@ div.questionbox table.tbl  tr.question{
 }
 div.questionbox table.tbl  tr.answers{
     
-    background-color: #fafafa;
+    background-color: rgba(0, 109, 120, 0.11);
     height: 30px;
     font-size: 14px;
 }
@@ -116,6 +115,15 @@ div.questionbox table.tbl  td.questionCell{
     
     border-radius:5px;
 }
+
+div.footer{
+    background-color: #253648;
+    height: 200px;
+}
+
+.clear:before, .clear:after{content: ""; display: table;}
+.clear:after {clear: both;}
+.clear {*zoom: 1;}
 
 
 

@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
          <!-- Container -->
-        <div class="container">  
+        <div class="container"> 
 
         <!-- Header -->
         <div class="header">          
@@ -28,15 +28,15 @@
         <asp:Label ID="LabelTimer" runat="server" Text="Tid kvar:"></asp:Label>
         <span id="timer"></span>
             </div>
-    <div class="questionbox">
+        <div class="questionbox">
 
         &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table>       
         </div>
         <!-- Footer -->
         <div class="footer">
         </div>
+    </div> 
     
-    </div>
     </form>
 </body>
 </html>
