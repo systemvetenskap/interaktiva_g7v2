@@ -18,6 +18,8 @@ namespace WebApplication1
 {
     public partial class quest : System.Web.UI.Page
     {
+        XmlDocument right = new XmlDocument();
+        XmlDocument wrong = new XmlDocument();
         //NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,24 +30,26 @@ namespace WebApplication1
             //Skapar två nya xmldokument
             XmlDocument xmldoc = new XmlDocument();
             XmlDocument xmldoc2 = new XmlDocument();
-
+            right.LoadXml("<test></test>");
+            wrong.LoadXml("<test></test>");
             //Laddar in vårat xmldokument i xmldoc
             xmldoc.Load(Server.MapPath("XmlQuestions.xml"));
+            xmldoc2.Load(Server.MapPath("usertest.xml"));
 
             //Laddar endast in taggar i xmldoc2 som är identiska med XmlQuestions.xml
-            xmldoc2.LoadXml("<categories></categories>");
+            //xmldoc2.LoadXml("<categories></categories>");
 
             //Skapar ny array och stoppar in 25 st variabler av typen int
             int[] m = RandomNumbers(1, 25, 4);
 
             //Hämtar frågor från orginaldokumentet och stoppar in detta i det nya
-            foreach (int i in m)
-            {
-                    XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']"), true);
-                    XmlNode parent = xmldoc2.SelectSingleNode("categories");
-                    parent.AppendChild(newnode);
-                    xmldoc2.Save(Server.MapPath("usertest.xml"));
-            }
+            //foreach (int i in m)
+            //{
+            //        XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']"), true);
+            //        XmlNode parent = xmldoc2.SelectSingleNode("categories");
+            //        parent.AppendChild(newnode);
+            //        xmldoc2.Save(Server.MapPath("usertest.xml"));
+            //}
             //Lägger in alla question nodes i en XML lista
             XmlNodeList lst  = xmldoc2.SelectNodes("categories/question");
             //Loopar igenom xml listan 1st
@@ -213,11 +217,73 @@ namespace WebApplication1
 
         protected void btn1_Click(object sender, EventArgs e)
         {
-            foreach(TableRow rw in table1.Controls)
+            foreach(TableRow rw in table1.Rows)
             {
-                foreach(TableCell cell in rw.Controls)
+                foreach(TableCell cell in rw.Cells)
                 {
+                    foreach(Control cl in cell.Controls)
+                    {
+                        if(cl is RadioButton)
+                        {
+                            RadioButton rad = (RadioButton)cl;
+                            string cor = rad.Attributes["correct"];
+                            if (rad.Checked == true)
+                            {
+                                if(cor == "true")
+                                {
+                                    string s = rad.ID;
+                                    string x = rad.Text;
+                                    XmlNode nd = right.SelectSingleNode("/test");
+                                    XmlElement el = right.CreateElement("test");
+                                    el.InnerText = x;
+                                    nd.AppendChild(el);
 
+                                    right.Save("C:\\Users\\Henrik\\Desktop\\correctanswer.xml");
+                                }
+                                else if(cor == "false")
+                                {
+                                    string s = rad.ID;
+                                    string x = rad.Text;
+                                    XmlNode nd = wrong.SelectSingleNode("/test");
+                                    XmlElement el = wrong.CreateElement("test");
+                                    el.InnerText = x;
+                                    nd.AppendChild(el);
+
+                                    wrong.Save("C:\\Users\\Henrik\\Desktop\\wronganswer.xml");
+                                }
+                        
+                            }
+           
+                        }
+                        //else if(cl is CheckBox)
+                        //{
+                        //    CheckBox chk = (CheckBox)cl;
+                        //    if (chk.Attributes["correct"] == "true" && chk.Checked)
+                        //    {
+                        //        string s = chk.ID;
+                        //        string x = chk.Text;
+                        //        XmlNode nd = right.SelectSingleNode("/test");
+                        //        XmlElement el = right.CreateElement(s);
+                        //        el.InnerText = x;
+                        //        nd.AppendChild(el);
+
+                        //        right.Save("C:\\Users\\Henrik\\Desktop\\correctanswer.xml");
+                        //    }
+                        //    else if(chk.Attributes["correct"] == "false" && chk.Checked)
+                        //    {
+                        //        string s = chk.ID;
+                        //        string x = chk.Text;
+                        //        XmlNode nd = wrong.SelectSingleNode("/test");
+                        //        XmlElement el = wrong.CreateElement(s);
+                        //        el.InnerText = x;
+                        //        nd.AppendChild(el);
+
+                        //        right.Save("C:\\Users\\Henrik\\Desktop\\wronganswer.xml");
+                        //    }
+
+                        //}
+
+                    }
                 }
             }
         }
