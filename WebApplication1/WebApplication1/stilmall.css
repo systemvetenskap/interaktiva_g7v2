@@ -3,6 +3,7 @@
     background-color: #253648;
     margin: 0;
     padding: 0;
+    background-image: url(images/background.jpg);
 }
 
 h1 {
@@ -10,16 +11,18 @@ h1 {
     padding: 0;
 }
 
-.container{
+div.container{
     max-width: 1100px;
     margin: 0 auto 0 auto;
-    padding: 0 25px;
+    border: 1px solid black;
+    background-color:white;
 }
 
 div.header{
     background-color: #3b7895;
     padding: 10px 0 10px 0;
     height: 100px;
+    max-width: 100%;
     background-image: url(images/header1.png);
 }
 
@@ -32,14 +35,20 @@ div.header h1{
 
 div.nav{
     background-color: #3b7895;
+    min-width: 100%;
 }
+
 div.nav ul{
     margin: 0;
     padding: 0;
+    width:100%;
+    
 }
 div.nav ul li{
     list-style: none;
     float: left;
+    
+    background-color:#253648;
 }
 
 div.nav ul li a:link, div.nav ul li a:visited{
@@ -70,7 +79,6 @@ table.tbl td
 
  
  }
-
 
 
 div.questionbox table.tbl  tr.question{

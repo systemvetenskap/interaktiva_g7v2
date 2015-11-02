@@ -69,6 +69,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\background.jpg" />
     <Content Include="JavaScript.js" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
