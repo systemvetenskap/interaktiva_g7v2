@@ -398,18 +398,18 @@ namespace WebApplication1
                             if (rad.Checked == true)
                             {
 
-                                if (cor == "true")
+                                    if (cor == "true")
                                     {
-                                    rw.Attributes.Remove("class");
-                                    rw.Attributes.Add("class", "green");
+                                        rw.Attributes.Remove("class");
+                                        rw.Attributes.Add("class", "green");
                        
-                                }
-                                else if(cor == "false")
-                                {
-                                    rw.Attributes.Remove("class");
-                                    rw.Attributes.Add("class", "red");
+                                    }
+                                    else if(cor == "false")
+                                    {
+                                        rw.Attributes.Remove("class");
+                                        rw.Attributes.Add("class", "red");
+                                    }
                             }
-                        }
                             else if(rad.Checked == false)
                             {
                                 if(cor == "true")
@@ -417,18 +417,24 @@ namespace WebApplication1
                                     rw.Attributes.Remove("class");
                                     rw.Attributes.Add("class", "green");
 
+                                }
+
+                            }
+
+                        }
+                        else if(cl is CheckBox)
+                        {
+                            CheckBox chk = (CheckBox)cl;
+                            string cor = chk.Attributes["correct"];
+
+                        }
+
+
                     }
 
                 }
 
-                }
-
-
-                }
-
-                }
-
-                }
+            }
 
 
 
