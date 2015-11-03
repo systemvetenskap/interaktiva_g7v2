@@ -81,7 +81,7 @@ table.tbl td
 
 
 div.questionbox table.tbl  tr.question{
-    background-color: #eb9b00;
+    
 
     height:35px;
     font-weight: bold;
@@ -103,6 +103,7 @@ div.questionbox table.tbl  tr.empty{
 }
 
 div.questionbox table.tbl  td.questionCell{
+    background-color: #eb9b00;
     padding: 15px;
     
     

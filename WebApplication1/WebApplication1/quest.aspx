@@ -26,9 +26,9 @@
         <!-- Questions -->
         <div id="timerbox">
         <asp:Label ID="LabelTimer" runat="server" Text="Tid kvar:"></asp:Label>
-        <span id="timer"></span>
+        <span id="timer" runat="server"></span>
             </div>
-        <div class="questionbox">
+        <div class="questionbox" id="qDiv" runat="server">
 
         &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
             <asp:Button class="btnsub" ID="btn1" text="Lämna in" runat="server" OnClick="btn1_Click" />      

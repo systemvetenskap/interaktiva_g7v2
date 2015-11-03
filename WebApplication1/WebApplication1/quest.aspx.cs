@@ -22,6 +22,7 @@ namespace WebApplication1
         XmlDocument wrong = new XmlDocument();
         XmlDocument xmldoc = new XmlDocument();
         XmlDocument xmldoc2 = new XmlDocument();
+        Table table;
         TableRow row1, row2, row3, row4,row5,row6;
         TableCell cell1, cell2, cell3, cell4, cell5, cell6, imgcell;
         RadioButton radiob1, radiob2, radiob3, radiob4;
@@ -68,6 +69,7 @@ namespace WebApplication1
                     count++;
 
                 }
+     
             }
             else if(IsPostBack)
             {
@@ -85,7 +87,7 @@ namespace WebApplication1
                     count++;
 
                 }
-              
+     
 
             }
 
@@ -236,57 +238,57 @@ namespace WebApplication1
             {
                if(prod/prodcat >= 0.60)
                 {
-                    XmlNode nd = wrong.SelectSingleNode("/test");
-                    XmlElement el = wrong.CreateElement("test");
-                    el.InnerText = "du är godkänd i kategori products!";
-                    nd.AppendChild(el);
+                    //XmlNode nd = wrong.SelectSingleNode("/test");
+                    //XmlElement el = wrong.CreateElement("test");
+                    //el.InnerText = "du är godkänd i kategori products!";
+                    //nd.AppendChild(el);
 
-                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                    //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
                 }
                else if(prod / prodcat < 0.60)
                 {
-                    XmlNode nd = wrong.SelectSingleNode("/test");
-                    XmlElement el = wrong.CreateElement("test");
-                    el.InnerText = "du är inte godkänd i kategori products!";
-                    nd.AppendChild(el);
+                    //XmlNode nd = wrong.SelectSingleNode("/test");
+                    //XmlElement el = wrong.CreateElement("test");
+                    //el.InnerText = "du är inte godkänd i kategori products!";
+                    //nd.AppendChild(el);
 
-                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                    //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
                 }
                if(eco/ecocat >= 0.60)
                 {
-                    XmlNode nd = wrong.SelectSingleNode("/test");
-                    XmlElement el = wrong.CreateElement("test");
-                    el.InnerText = "du är godkänd i kategori economy!";
-                    nd.AppendChild(el);
+                    //XmlNode nd = wrong.SelectSingleNode("/test");
+                    //XmlElement el = wrong.CreateElement("test");
+                    //el.InnerText = "du är godkänd i kategori economy!";
+                    //nd.AppendChild(el);
 
-                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                    //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
                 }
                 else if (eco / ecocat < 0.60)
                 {
-                    XmlNode nd = wrong.SelectSingleNode("/test");
-                    XmlElement el = wrong.CreateElement("test");
-                    el.InnerText = "du är inte godkänd i kategori economy!";
-                    nd.AppendChild(el);
+                    //XmlNode nd = wrong.SelectSingleNode("/test");
+                    //XmlElement el = wrong.CreateElement("test");
+                    //el.InnerText = "du är inte godkänd i kategori economy!";
+                    //nd.AppendChild(el);
 
-                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                    //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
                 }
                 if (eth/ethcat >= 0.60)
                 {
-                    XmlNode nd = wrong.SelectSingleNode("/test");
-                    XmlElement el = wrong.CreateElement("test");
-                    el.InnerText = "du är godkänd i kategori ethics!";
-                    nd.AppendChild(el);
+                    //XmlNode nd = wrong.SelectSingleNode("/test");
+                    //XmlElement el = wrong.CreateElement("test");
+                    //el.InnerText = "du är godkänd i kategori ethics!";
+                    //nd.AppendChild(el);
 
-                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                    //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
                 }
                 else if (eth/ethcat < 0.60)
                 {
-                    XmlNode nd = wrong.SelectSingleNode("/test");
-                    XmlElement el = wrong.CreateElement("test");
-                    el.InnerText = "du är inte godkänd i kategori ethics!";
-                    nd.AppendChild(el);
+                    //XmlNode nd = wrong.SelectSingleNode("/test");
+                    //XmlElement el = wrong.CreateElement("test");
+                    //el.InnerText = "du är inte godkänd i kategori ethics!";
+                    //nd.AppendChild(el);
 
-                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                    //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
                 }
 
 
@@ -294,6 +296,7 @@ namespace WebApplication1
         }
         protected void loadQuest(string i, string attributeMulti, string img, int count)
         {
+            table = new Table();
             //Skapar nya rader                  
              row1 = new TableRow();
              row2 = new TableRow();
@@ -375,6 +378,7 @@ namespace WebApplication1
                 radiob4.Attributes.Add("correct", at);
                 //Lägger in radiobuttons i cellerna
                 cell1.Controls.Add(lblQuestion);
+                cell1.ColumnSpan = 2;
                 cell2.Controls.Add(radiob1);
                 cell3.Controls.Add(radiob2);
                 cell4.Controls.Add(radiob3);
@@ -427,6 +431,7 @@ namespace WebApplication1
                 checkbox4.Attributes.Add("correct", at);
                 //Lägger in checkboxar i cellerna
                 cell1.Controls.Add(lblQuestion);
+                cell1.ColumnSpan = 2;
                 cell2.Controls.Add(checkbox1);
                 cell3.Controls.Add(checkbox2);
                 cell4.Controls.Add(checkbox3);
@@ -445,6 +450,7 @@ namespace WebApplication1
             row6.Controls.Add(cell6);
             //Lägger till attribut till de olika radobjekten
             row1.Attributes.Add("class", "question");
+
             table1.Controls.Add(row1);
             //row2.Attributes.Add("class", "answers answer1");
             row2.Attributes.Add("class", "answers");
@@ -457,16 +463,72 @@ namespace WebApplication1
             table1.Controls.Add(row5);
             row6.Attributes.Add("class", "empty");
             table1.Controls.Add(row6);
-            //count++;
-            
+            count++;
+
+            //table.Controls.Add(row1);
+            ////row2.Attributes.Add("class", "answers answer1");
+            //row2.Attributes.Add("class", "answers");
+            //table.Controls.Add(row2);
+            //row3.Attributes.Add("class", "answers");
+            //table.Controls.Add(row3);
+            //row4.Attributes.Add("class", "answers");
+            //table.Controls.Add(row4);
+            //row5.Attributes.Add("class", "answers");
+            //table.Controls.Add(row5);
+            //row6.Attributes.Add("class", "empty");
+            //table.Controls.Add(row6);
+            //table.Attributes.Add("class", "tbl");
+            ////table.Attributes.Add("id", "table1");
+            //table.Attributes.Add("runat", "server");
+            //table.ID = count.ToString();           
+            //qDiv.Controls.Add(table);
+            //Button btn = new Button();
+            //btn.Text = "Nästa";
+            //btn.Click += new EventHandler(next_quest);
+            //qDiv.Controls.Add(btn);       
+
             //Om attributet image är satt till true
             if (img == "true")
             {
                 Image bild = new Image();
                 string imagelink = xmldoc2.SelectSingleNode("categories/question[@id='" + i + "']/image").InnerText;
                 bild.ImageUrl = imagelink;
-                row1.Controls.Add(imgcell);
+                imgcell.RowSpan = 4;
+                row2.Controls.Add(imgcell);
                 imgcell.Controls.Add(bild);
+            }
+            //foreach (Control t in qDiv.Controls)
+            //{
+            //    if (t is Table)
+            //    {
+            //        Table tab = (Table)t;
+                 
+            //        if (tab.ID != "1")
+            //        {
+            //            tab.Visible = false;
+            //        }
+            //    }
+
+            //}
+
+
+        }
+        protected void next_quest(object sender, EventArgs e)
+        {
+            foreach(Control t in qDiv.Controls)
+            {
+                if(t is Table)
+                {
+                    Table tab = (Table)t;
+                    if (tab.ID == "1")
+                    {
+                        tab.Visible = false;
+                    }
+                    else if (tab.ID == "2") 
+                    {
+                        tab.Visible = true;
+                    }
+                }
             }
 
         }
