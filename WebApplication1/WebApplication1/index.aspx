@@ -25,15 +25,17 @@
             </ul> 
         </div>
         <!-- Questions -->
-        <div id="timerbox">
-        <asp:Label ID="LabelTimer" runat="server" Text="Tid kvar:"></asp:Label>
-        <span id="timer"></span>
-            </div>
-<%--        <div class="questionbox">
 
-        &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
-            <asp:Button class="btnsub" ID="btn1" text="Lämna in" runat="server" OnClick="btn1_Click" />      
-        </div>--%>
+        <div class="loginbox">
+            <h3>Ange användarnamn och lösenord för att logga in</h3>
+            <asp:Label ID="lblUsername" runat="server" Text="Användarnamn"></asp:Label><br>
+            <input id="username" type="text" /><br />
+            <br>
+            <asp:Label ID="lblPassword" runat="server" Text="Lösenord"></asp:Label><br>
+            <input id="password" type="text" /><br />
+            <br>
+            <asp:Button class="btnLogIn" ID="btn1" text="Logga in" runat="server"/>      
+        </div>
         <!-- Footer -->
         <div class="footer">
         </div>

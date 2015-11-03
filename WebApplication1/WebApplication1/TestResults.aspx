@@ -25,10 +25,6 @@
             </ul> 
         </div>
         <!-- Questions -->
-        <div id="timerbox">
-        <asp:Label ID="LabelTimer" runat="server" Text="Tid kvar:"></asp:Label>
-        <span id="timer"></span>
-            </div>
 <%--        <div class="questionbox">
 
         &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
