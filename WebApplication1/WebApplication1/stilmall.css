@@ -91,7 +91,8 @@ div.questionbox table.tbl  tr.question{
 }
 div.questionbox table.tbl  tr.answers{
     
-    background-color: rgba(0, 109, 120, 0.11);
+    background-color: rgba(0,255,0,0.3);
+    /*background-color: rgba(0, 109, 120, 0.11);*/
     height: 30px;
     font-size: 14px;
 }
@@ -119,6 +120,19 @@ div.questionbox table.tbl  td.questionCell{
 div.footer{
     background-color: #253648;
     height: 200px;
+}
+div.questionbox table.tbl  tr.green{
+    
+    background-color: rgba(0,255,0,0.3);
+    height: 30px;
+    font-size: 14px;
+ 
+}
+div.questionbox table.tbl  tr.red{
+    
+    background-color: rgba(255,0,0,0.3);;
+    height: 30px;
+    font-size: 14px;
 }
 
 .clear:before, .clear:after{content: ""; display: table;}
