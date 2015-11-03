@@ -82,7 +82,8 @@ table.tbl td
 
 
 div.questionbox table.tbl  tr.question{
-    background-color: #eb9b00;
+    
+
     height:35px;
     font-weight: bold;
     color:aquamarine;
@@ -91,6 +92,7 @@ div.questionbox table.tbl  tr.question{
     
 }
 div.questionbox table.tbl  tr.answers{
+    
     
     background-color: rgba(0, 109, 120, 0.11);
     height: 30px;
@@ -102,6 +104,7 @@ div.questionbox table.tbl  tr.empty{
 }
 
 div.questionbox table.tbl  td.questionCell{
+    background-color: #eb9b00;
     padding: 15px;
     
     
@@ -120,6 +123,19 @@ div.questionbox table.tbl  td.questionCell{
 div.footer{
     background-color: #253648;
     height: 200px;
+}
+div.questionbox table.tbl  tr.green{
+    
+    background-color: rgba(0,255,0,0.3);
+    height: 30px;
+    font-size: 14px;
+ 
+}
+div.questionbox table.tbl  tr.red{
+    
+    background-color: rgba(255,0,0,0.3);
+    height: 30px;
+    font-size: 14px;
 }
 
 div.loginbox{
