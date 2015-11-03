@@ -34,7 +34,7 @@
   </question>
 
   <question id="4" category="products" multi ="true" image ="false">
-    Vad har Henrik sysselsatt sig med innan studierna ?<answer>
+    Vad har Henrik sysselsatt sig med innan studierna ? Det finns två svar som är rätt<answer>
       <answer id="1" correct="true">Jobbat i musikstudio</answer>
       <answer id="2" correct="true">Semi rockstjärna (enligt honom själv)</answer>
       <answer id="3" correct="false">Kört budbil</answer>
@@ -56,7 +56,7 @@
   <!--//Slut kategori produkter
   //Kategori ekonomi-->
   <question id="6" category="economy" multi ="true" image ="false">
-    Vad har Michael sysselsatt sig med innan studierna ?<answer>
+    Vad har Michael sysselsatt sig med innan studierna ? Det finns två svar som är rätt<answer>
       <answer id="1" correct="true">Jobbat som elektriker</answer>
       <answer id="2" correct="true">Jobbat i Norge</answer>
       <answer id="3" correct="false">Varit proffsboxare</answer>
@@ -139,7 +139,7 @@
   </question>
 
   <question id="14" category="ethics" multi ="true" image ="true">
-    Vad är Lady Gaga känd för ?<answer>
+    Vad är Lady Gaga känd för ? Det finns tre svar som är rätt<answer>
       <answer id="1" correct="true">Serien American Horror Story</answer>
       <answer id="2" correct="true">Sin musik</answer>
       <answer id="3" correct="false">Sin välgörenhet</answer>
@@ -150,11 +150,11 @@
   </question>
 
   <question id="15" category="ethics" multi ="true" image ="true">
-    Vilka filmer är Arnold Schwarzenegger känd för ?<answer>
+    Vilka filmer är Arnold Schwarzenegger känd för ? Det finns tre svar som är rätt<answer>
       <answer id="1" correct="true">Total Recall (1990)</answer>
       <answer id="2" correct="true">The Running Man (1987)</answer>
       <answer id="3" correct="true">Conan barbaren (1982)</answer>
-      <answer id="4" correct="true">Twins (1988)</answer>
+      <answer id="4" correct="false">X-Men: Days of Future Past (2014)</answer>
     </answer>
     <image>Images\\arnold.jpg</image>
     <useranswer></useranswer>
