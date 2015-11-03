@@ -20,7 +20,10 @@
         <!-- Navigation -->
         <div class="nav">
             <ul class="clear">
-                <li><a class="home" href = "index.html">Home</a></li>
+                <li><a class="home" href = "index.html">Start</a></li>
+                <li><a class="home" href = "index.html">Licensieringstest</a></li>
+                <li><a class="home" href = "index.html">Kunskapsupdatering</a></li>
+                <li><a class="home" href = "index.html">Provresultat (endast för provledare)</a></li>
             </ul> 
         </div>
         <!-- Questions -->
