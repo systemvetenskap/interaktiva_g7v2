@@ -20,12 +20,16 @@ namespace WebApplication1
     {
         XmlDocument right = new XmlDocument();
         XmlDocument wrong = new XmlDocument();
+        XmlDocument xmldoc = new XmlDocument();
+        XmlDocument xmldoc2 = new XmlDocument();
+        int prod = 0;
+        int eco = 0;
+        int eth = 0;
         //NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
             //Skapar två nya xmldokument
-            XmlDocument xmldoc = new XmlDocument();
-            XmlDocument xmldoc2 = new XmlDocument();
+            
 
             right.LoadXml("<test></test>");
             wrong.LoadXml("<test></test>");
@@ -87,14 +91,21 @@ namespace WebApplication1
                 radiob2.GroupName = "gr" + i.ToString();
                 radiob3.GroupName = "gr" + i.ToString();
                 radiob4.GroupName = "gr" + i.ToString();
-                    //Sätter ett unikt namn till varje radiobutton
-                radiob1.ID = "raid" + i;
-                    //Skapar ny label för varje fråga
+                //Sätter ett unikt namn till varje radiobutton
+
+
+
+                //Skapar ny label för varje fråga
                 Label lblQuestion = new Label();
 
                     //Om frågan bara har ett svarsalternativ som är rätt
                 if(attributeMulti == "false")
                 {
+
+                    radiob1.ID = i.ToString() + "r1";
+                    radiob2.ID = i.ToString() + "r2";
+                    radiob3.ID = i.ToString() + "r3";
+                    radiob4.ID = i.ToString() + "r4";
                     lblQuestion.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
 
                     radiob1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
@@ -130,6 +141,7 @@ namespace WebApplication1
                     radiob4.Attributes.Add("category", cat);
                     radiob4.Attributes.Add("correct", at);
                     //Lägger in radiobuttons i cellerna
+                    cell1.Controls.Add(lblQuestion);
                     cell2.Controls.Add(radiob1);
                     cell3.Controls.Add(radiob2);
                     cell4.Controls.Add(radiob3);
@@ -138,6 +150,10 @@ namespace WebApplication1
                     //Om det är en fråga med många svarsalternativ
                 if(attributeMulti == "true")
                 {
+                    checkbox1.ID = i.ToString() + "c1";
+                    checkbox2.ID = i.ToString() + "c2";
+                    checkbox3.ID = i.ToString() + "c3";
+                    checkbox4.ID = i.ToString() + "c4";
                     lblQuestion.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
 
                     checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
@@ -177,6 +193,7 @@ namespace WebApplication1
                     checkbox4.Attributes.Add("category", cat);
                     checkbox4.Attributes.Add("correct", at);
                     //Lägger in checkboxar i cellerna
+                    cell1.Controls.Add(lblQuestion);
                     cell2.Controls.Add(checkbox1);
                     cell3.Controls.Add(checkbox2);
                     cell4.Controls.Add(checkbox3);
@@ -184,7 +201,7 @@ namespace WebApplication1
                 }           
                     //Lägger in label i cellen
                 cell1.Attributes.Add("class", "questionCell");
-                cell1.Controls.Add(lblQuestion);      
+                 
                     //Lägger in cellen på raden
                 row1.Controls.Add(cell1);
                 row2.Controls.Add(cell2);
@@ -263,29 +280,44 @@ namespace WebApplication1
                         {
                             RadioButton rad = (RadioButton)cl;
                             string cor = rad.Attributes["correct"];
+                            string cat = rad.Attributes["category"];
                             if (rad.Checked == true)
                             {
                                 if(cor == "true")
                                 {
-                                    string s = rad.ID;
-                                    string x = rad.Text;
-                                    XmlNode nd = right.SelectSingleNode("/test");
-                                    XmlElement el = right.CreateElement("test");
-                                    el.InnerText = x;
-                                    nd.AppendChild(el);
+                                    if(cat == "products")
+                                    {
+                                        prod++;
+                                        //string s = rad.ID;
+                                        //string x = rad.Text;
+                                        //XmlNode nd = right.SelectSingleNode("/test");
+                                        //XmlElement el = right.CreateElement("test");
+                                        //el.InnerText = prod.ToString();
+                                        //nd.AppendChild(el);
 
-                                    right.Save("C:\\Users\\Henrik\\Desktop\\correctanswer.xml");
+                                        //right.Save("C:\\Users\\Henrik\\Desktop\\count.xml");
+                                    }
+                                    else if(cat == "ethics")
+                                    {
+                                        eth++;
+                                    }
+                                    else if(cat == "economy")
+                                    {
+                                        eco++;
+
+                                    }
+                       
                                 }
                                 else if(cor == "false")
                                 {
-                                    string s = rad.ID;
-                                    string x = rad.Text;
-                                    XmlNode nd = wrong.SelectSingleNode("/test");
-                                    XmlElement el = wrong.CreateElement("test");
-                                    el.InnerText = x;
-                                    nd.AppendChild(el);
+                                    //string s = rad.ID;
+                                    //string x = rad.Text;
+                                    //XmlNode nd = wrong.SelectSingleNode("/test");
+                                    //XmlElement el = wrong.CreateElement("test");
+                                    //el.InnerText = x;
+                                    //nd.AppendChild(el);
 
-                                    wrong.Save("C:\\Users\\Henrik\\Desktop\\wronganswer.xml");
+                                    //wrong.Save("C:\\Users\\Henrik\\Desktop\\wronganswer.xml");
                                 }
                         
                             }
@@ -295,30 +327,37 @@ namespace WebApplication1
                         {
                             CheckBox chk = (CheckBox)cl;
                             string cor = chk.Attributes["correct"];
+                            string cat = chk.Attributes["category"];
                             if (chk.Checked == true)
                             {
                                 if(cor == "true")
                                 {
-                                    string s = chk.ID;
-                                    string x = chk.Text;
-                                    XmlNode nd = right.SelectSingleNode("/test");
-                                    XmlElement el = right.CreateElement(s);
-                                    el.InnerText = x;
-                                    nd.AppendChild(el);
+                                    if (cat == "products")
+                                    {
+                                        prod++;
+                           
+                                    }
+                                    else if (cat == "ethics")
+                                    {
+                                        eth++;
+                                    }
+                                    else if (cat == "economy")
+                                    {
+                                        eco++;
 
-                                    right.Save("C:\\Users\\Henrik\\Desktop\\correctanswer.xml");
+                                    }
 
                                 }
                                 else if(cor == "false")
                                 {
-                                    string s = chk.ID;
-                                    string x = chk.Text;
-                                    XmlNode nd = wrong.SelectSingleNode("/test");
-                                    XmlElement el = wrong.CreateElement(s);
-                                    el.InnerText = x;
-                                    nd.AppendChild(el);
+                                    //string s = chk.ID;
+                                    //string x = chk.Text;
+                                    //XmlNode nd = wrong.SelectSingleNode("/test");
+                                    //XmlElement el = wrong.CreateElement(s);
+                                    //el.InnerText = x;
+                                    //nd.AppendChild(el);
 
-                                    wrong.Save("C:\\Users\\Henrik\\Desktop\\correctanswer.xml");
+                                    //wrong.Save("C:\\Users\\Henrik\\Desktop\\correctanswer.xml");
                                 }
                         
                             }
@@ -329,6 +368,77 @@ namespace WebApplication1
                     }
                 }
             }
+            double prodcat = 8;
+            double ecocat = 8;
+            double ethcat = 9;
+            double total = prod;
+            total += eco;
+            total += eth;
+            if(total > 1)
+            {
+               if(prod/prodcat >= 0.60)
+                {
+                    XmlNode nd = wrong.SelectSingleNode("/test");
+                    XmlElement el = wrong.CreateElement("test");
+                    el.InnerText = "du är godkänd i kategori products!";
+                    nd.AppendChild(el);
+
+                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                }
+               else if(prod / prodcat < 0.60)
+                {
+                    XmlNode nd = wrong.SelectSingleNode("/test");
+                    XmlElement el = wrong.CreateElement("test");
+                    el.InnerText = "du är inte godkänd i kategori products!";
+                    nd.AppendChild(el);
+
+                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                }
+               if(eco/ecocat >= 0.60)
+                {
+                    XmlNode nd = wrong.SelectSingleNode("/test");
+                    XmlElement el = wrong.CreateElement("test");
+                    el.InnerText = "du är godkänd i kategori economy!";
+                    nd.AppendChild(el);
+
+                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                }
+                else if (eco / ecocat < 0.60)
+                {
+                    XmlNode nd = wrong.SelectSingleNode("/test");
+                    XmlElement el = wrong.CreateElement("test");
+                    el.InnerText = "du är inte godkänd i kategori economy!";
+                    nd.AppendChild(el);
+
+                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                }
+                if (eth/ethcat >= 0.60)
+                {
+                    XmlNode nd = wrong.SelectSingleNode("/test");
+                    XmlElement el = wrong.CreateElement("test");
+                    el.InnerText = "du är godkänd i kategori ethics!";
+                    nd.AppendChild(el);
+
+                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                }
+                else if (eth/ethcat < 0.60)
+                {
+                    XmlNode nd = wrong.SelectSingleNode("/test");
+                    XmlElement el = wrong.CreateElement("test");
+                    el.InnerText = "du är inte godkänd i kategori ethics!";
+                    nd.AppendChild(el);
+
+                    wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
+                }
+
+
+            }
+        }
+        protected void loadQuest()
+        {
+
+
         }
     }
+
 }
