@@ -100,23 +100,36 @@ namespace WebApplication1
                     radiob1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                     XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
                     string at = n.Attributes["correct"].Value;
+                    n = xmldoc2.SelectSingleNode("/categories/question[@id='"+i+"']");
+                    string cat = n.Attributes["category"].Value;
+                    lblQuestion.Text += " (" + cat + ")";
                     radiob1.Attributes.Add("correct", at);
+                    radiob1.Attributes.Add("category", cat);
 
                     radiob2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='2']");
                     at = n.Attributes["correct"].Value;
+                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    cat = n.Attributes["category"].Value;                   
+                    radiob2.Attributes.Add("category", cat);
                     radiob2.Attributes.Add("correct", at);
 
                     radiob3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='3']");
                     at = n.Attributes["correct"].Value;
+                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    cat = n.Attributes["category"].Value;
+                    radiob3.Attributes.Add("category", cat);
                     radiob3.Attributes.Add("correct", at);
 
                     radiob4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='4']");
                     at = n.Attributes["correct"].Value;
+                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    cat = n.Attributes["category"].Value;
+                    radiob4.Attributes.Add("category", cat);
                     radiob4.Attributes.Add("correct", at);
-                        //Lägger in radiobuttons i cellerna
+                    //Lägger in radiobuttons i cellerna
                     cell2.Controls.Add(radiob1);
                     cell3.Controls.Add(radiob2);
                     cell4.Controls.Add(radiob3);
@@ -130,23 +143,40 @@ namespace WebApplication1
                     checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                     XmlNode usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
                     string at = usernode.Attributes["correct"].Value;
-                    cell1.Attributes.Add("correct", at);
+                    usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    string cat = usernode.Attributes["category"].Value;
+                    lblQuestion.Text += " (" + cat + ")";
+                    checkbox1.Attributes.Add("category", cat);
+                    checkbox1.Attributes.Add("correct", at);
 
                     checkbox2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
                     usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='2']");
                     at = usernode.Attributes["correct"].Value;
-                    cell2.Attributes.Add("correct", at);
+                    usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    cat = usernode.Attributes["category"].Value;
+                   
+                    checkbox2.Attributes.Add("category", cat);
+                    checkbox2.Attributes.Add("correct", at);
+              
 
                     checkbox3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
                     usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='3']");
                     at = usernode.Attributes["correct"].Value;
-                    cell3.Attributes.Add("correct", at);
+                    usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    cat = usernode.Attributes["category"].Value;
+               
+                    checkbox3.Attributes.Add("category", cat);
+                    checkbox3.Attributes.Add("correct", at);
 
                     checkbox4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
                     usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='4']");
                     at = usernode.Attributes["correct"].Value;
-                    cell4.Attributes.Add("correct", at);
-                        //Lägger in checkboxar i cellerna
+                    usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    cat = usernode.Attributes["category"].Value;
+                 
+                    checkbox4.Attributes.Add("category", cat);
+                    checkbox4.Attributes.Add("correct", at);
+                    //Lägger in checkboxar i cellerna
                     cell2.Controls.Add(checkbox1);
                     cell3.Controls.Add(checkbox2);
                     cell4.Controls.Add(checkbox3);
