@@ -69,15 +69,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\arnold.jpg" />
     <Content Include="Images\background.jpg" />
     <Content Include="Images\bat.jpg" />
     <Content Include="Images\calvin.png" />
     <Content Include="Images\dollarsign.jpg" />
     <Content Include="Images\globe.png" />
     <Content Include="Images\header1.png" />
+    <Content Include="Images\ladygaga.png" />
     <Content Include="Images\nyser.jpg" />
     <Content Include="JavaScript.js" />
     <Content Include="packages.config" />
+    <Content Include="XmlUpdateTest.xml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -90,7 +93,7 @@
     <Content Include="stilmall.css" />
     <Content Include="usertest.xml" />
     <Content Include="Web.config" />
-    <Content Include="XmlQuestions.xml" />
+    <Content Include="XmlLicenseTest.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
