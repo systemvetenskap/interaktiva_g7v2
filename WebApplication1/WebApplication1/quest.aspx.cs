@@ -34,7 +34,7 @@ namespace WebApplication1
             right.LoadXml("<test></test>");
             wrong.LoadXml("<test></test>");
             //Laddar in vårat xmldokument i xmldoc
-            xmldoc.Load(Server.MapPath("XmlQuestions.xml"));
+            xmldoc.Load(Server.MapPath("XmlLicenseTest.xml"));
 
             //Laddar endast in taggar i xmldoc2 som är identiska med XmlQuestions.xml
             xmldoc2.LoadXml("<categories></categories>");
