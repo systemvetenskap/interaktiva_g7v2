@@ -78,8 +78,11 @@
     <Content Include="Images\header1.png" />
     <Content Include="Images\ladygaga.png" />
     <Content Include="Images\nyser.jpg" />
+    <Content Include="index.aspx" />
     <Content Include="JavaScript.js" />
     <Content Include="packages.config" />
+    <Content Include="TestResults.aspx" />
+    <Content Include="UpdateTest.aspx" />
     <Content Include="XmlUpdateTest.xml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -89,20 +92,41 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="quest.aspx" />
+    <Content Include="LicenseTest.aspx" />
     <Content Include="stilmall.css" />
     <Content Include="usertest.xml" />
     <Content Include="Web.config" />
     <Content Include="XmlLicenseTest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="quest.aspx.cs">
-      <DependentUpon>quest.aspx</DependentUpon>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="quest.aspx.designer.cs">
-      <DependentUpon>quest.aspx</DependentUpon>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LicenseTest.aspx.cs">
+      <DependentUpon>LicenseTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LicenseTest.aspx.designer.cs">
+      <DependentUpon>LicenseTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestResults.aspx.cs">
+      <DependentUpon>TestResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestResults.aspx.designer.cs">
+      <DependentUpon>TestResults.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateTest.aspx.cs">
+      <DependentUpon>UpdateTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateTest.aspx.designer.cs">
+      <DependentUpon>UpdateTest.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

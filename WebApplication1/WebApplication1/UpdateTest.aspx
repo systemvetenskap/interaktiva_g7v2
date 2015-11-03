@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="quest.aspx.cs" Inherits="WebApplication1.quest" %>
-
-<!DOCTYPE html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UpdateTest.aspx.cs" Inherits="WebApplication1.UpdateTest" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -20,10 +18,10 @@
         <!-- Navigation -->
         <div class="nav">
             <ul class="clear">
-                <li><a class="home" href = "index.html">Start</a></li>
-                <li><a class="home" href = "index.html">Licensieringstest</a></li>
-                <li><a class="home" href = "index.html">Kunskapsupdatering</a></li>
-                <li><a class="home" href = "index.html">Provresultat (endast för provledare)</a></li>
+                <li><a class="home" href = "index.aspx">Start</a></li>
+                <li><a class="home" href = "LicenseTest.aspx">Licensieringstest</a></li>
+                <li><a class="home" href = "UpdateTest.aspx">Kunskapsupdatering</a></li>
+                <li><a class="home" href = "TestResults.aspx">Provresultat (endast för provledare)</a></li>
             </ul> 
         </div>
         <!-- Questions -->
@@ -31,11 +29,11 @@
         <asp:Label ID="LabelTimer" runat="server" Text="Tid kvar:"></asp:Label>
         <span id="timer"></span>
             </div>
-        <div class="questionbox">
+<%--        <div class="questionbox">
 
         &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
             <asp:Button class="btnsub" ID="btn1" text="Lämna in" runat="server" OnClick="btn1_Click" />      
-        </div>
+        </div>--%>
         <!-- Footer -->
         <div class="footer">
         </div>
