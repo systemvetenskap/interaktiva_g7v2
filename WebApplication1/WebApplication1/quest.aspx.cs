@@ -85,7 +85,7 @@ namespace WebApplication1
                     count++;
 
                 }
-                correctAnswers();
+                //correctAnswers();
 
             }
 
@@ -225,6 +225,7 @@ namespace WebApplication1
                     }
                 }
             }
+            correctAnswers();
             double prodcat = 8;
             double ecocat = 8;
             double ethcat = 9;
@@ -446,13 +447,13 @@ namespace WebApplication1
             row1.Attributes.Add("class", "question");
             table1.Controls.Add(row1);
             //row2.Attributes.Add("class", "answers answer1");
-            row2.Attributes.Add("class", "green");
+            row2.Attributes.Add("class", "answers");
             table1.Controls.Add(row2);
-            row3.Attributes.Add("class", "answers answer2");
+            row3.Attributes.Add("class", "answers");
             table1.Controls.Add(row3);
-            row4.Attributes.Add("class", "answers answer3");
+            row4.Attributes.Add("class", "answers");
             table1.Controls.Add(row4);
-            row5.Attributes.Add("class", "answers answer4");
+            row5.Attributes.Add("class", "answers");
             table1.Controls.Add(row5);
             row6.Attributes.Add("class", "empty");
             table1.Controls.Add(row6);
@@ -471,7 +472,55 @@ namespace WebApplication1
         }
         protected void correctAnswers()
         {
+            foreach (TableRow rw in table1.Rows)
+            {
+                foreach (TableCell cell in rw.Cells)
+                {
+                    foreach (Control cl in cell.Controls)
+                    {
+                        if (cl is RadioButton)
+                        {
+                            RadioButton rad = (RadioButton)cl;                           
+                            string cor = rad.Attributes["correct"];
+                            
+                            if (rad.Checked == true)
+                            {
+                                
+                                if (cor == "true")
+                                {
+                                    rw.Attributes.Remove("class");
+                                    rw.Attributes.Add("class", "green");
 
+                                }
+                                else if(cor == "false")
+                                {
+                                    rw.Attributes.Remove("class");
+                                    rw.Attributes.Add("class", "red");
+                                }
+                            }
+                            else if(rad.Checked == false)
+                            {
+                                if(cor == "true")
+                                {
+                                    rw.Attributes.Remove("class");
+                                    rw.Attributes.Add("class", "green");
+
+                                }
+
+                            }
+
+                         }
+
+                    
+                    }
+
+                }
+
+            }
+                
+                
+                     
+     
         }
     }
 
