@@ -29,10 +29,10 @@
         <div class="loginbox">
             <h3>Ange användarnamn och lösenord för att logga in</h3>
             <asp:Label ID="lblUsername" runat="server" Text="Användarnamn"></asp:Label><br>
-            <input id="username" type="text" /><br />
+            <input id="usernamefield" type="text" /><br />
             <br>
             <asp:Label ID="lblPassword" runat="server" Text="Lösenord"></asp:Label><br>
-            <input id="password" type="text" /><br />
+            <input id="passwordfield" type="password" /><br />
             <br>
             <asp:Button class="btnLogIn" ID="btn1" text="Logga in" runat="server"/>      
         </div>
