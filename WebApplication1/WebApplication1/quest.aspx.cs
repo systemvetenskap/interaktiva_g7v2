@@ -26,20 +26,20 @@ namespace WebApplication1
             //Skapar två nya xmldokument
             XmlDocument xmldoc = new XmlDocument();
             XmlDocument xmldoc2 = new XmlDocument();
+
             right.LoadXml("<test></test>");
             wrong.LoadXml("<test></test>");
             //Laddar in vårat xmldokument i xmldoc
             xmldoc.Load(Server.MapPath("XmlQuestions.xml"));
-            //xmldoc2.Load(Server.MapPath("usertest.xml"));
 
             //Laddar endast in taggar i xmldoc2 som är identiska med XmlQuestions.xml
             xmldoc2.LoadXml("<categories></categories>");
 
             //Skapar ny array och stoppar in 25 st variabler av typen int
-            int[] m = RandomNumbers(1, 25, 4);
+            int[] arrayQuestions = RandomNumbers(1, 25, 4);
 
             //Hämtar frågor från orginaldokumentet och stoppar in detta i det nya
-            foreach (int i in m)
+            foreach (int i in arrayQuestions)
             {
                 XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']"), true);
                 XmlNode parent = xmldoc2.SelectSingleNode("categories");
@@ -50,145 +50,140 @@ namespace WebApplication1
             XmlNodeList lst  = xmldoc2.SelectNodes("categories/question");
             //Loopar igenom xml listan 1st
             int count = 1;
-            foreach (XmlNode nd in lst)
+            foreach (XmlNode node in lst)
             {      
-                string s = nd.Attributes["id"].Value;
-                string b = nd.Attributes["multi"].Value;
-                string img = nd.Attributes["image"].Value;
+                string attributeID = node.Attributes["id"].Value;
+                string attributeMulti = node.Attributes["multi"].Value;
+                string img = node.Attributes["image"].Value;
            
-                    int i = Convert.ToInt16(s);
+                    int i = Convert.ToInt16(attributeID);
                     //Skapar nya rader                  
-                TableRow rw = new TableRow();
-                TableRow rw2 = new TableRow();
-                TableRow rw3 = new TableRow();
-                TableRow rw4 = new TableRow();
-                TableRow rw5 = new TableRow();
-                TableRow rw6 = new TableRow();
+                TableRow row1 = new TableRow();
+                TableRow row2 = new TableRow();
+                TableRow row3 = new TableRow();
+                TableRow row4 = new TableRow();
+                TableRow row5 = new TableRow();
+                TableRow row6 = new TableRow();
                     //Skapar nya celler i raderna ovan
-                TableCell cl = new TableCell();
-                TableCell cl2 = new TableCell();
-                TableCell cl3 = new TableCell();
-                TableCell cl4 = new TableCell();
-                TableCell cl5 = new TableCell();
-                TableCell cl6 = new TableCell();
+                TableCell cell1 = new TableCell();
+                TableCell cell2 = new TableCell();
+                TableCell cell3 = new TableCell();
+                TableCell cell4 = new TableCell();
+                TableCell cell5 = new TableCell();
+                TableCell cell6 = new TableCell();
                 TableCell imgcell = new TableCell();
                     //Skapar nya radiobuttons
-                RadioButton rai = new RadioButton();
-                RadioButton rai2 = new RadioButton();
-                RadioButton rai3 = new RadioButton();
-                RadioButton rai4 = new RadioButton();
-
-                CheckBox c = new CheckBox();
-                CheckBox c2 = new CheckBox();
-                CheckBox c3 = new CheckBox();
-                CheckBox c4 = new CheckBox();
-                //Ger ett gruppnamn till radiobuttons 
-                rai.GroupName = "gr" + i.ToString();
-                rai2.GroupName = "gr" + i.ToString();
-                rai3.GroupName = "gr" + i.ToString();
-                rai4.GroupName = "gr" + i.ToString();
+                RadioButton radiob1 = new RadioButton();
+                RadioButton radiob2 = new RadioButton();
+                RadioButton radiob3 = new RadioButton();
+                RadioButton radiob4 = new RadioButton();
+                    //Skapar nya checkboxes
+                CheckBox checkbox1 = new CheckBox();
+                CheckBox checkbox2 = new CheckBox();
+                CheckBox checkbox3 = new CheckBox();
+                CheckBox checkbox4 = new CheckBox();
+                    //Ger ett gruppnamn till radiobuttons 
+                radiob1.GroupName = "gr" + i.ToString();
+                radiob2.GroupName = "gr" + i.ToString();
+                radiob3.GroupName = "gr" + i.ToString();
+                radiob4.GroupName = "gr" + i.ToString();
                     //Sätter ett unikt namn till varje radiobutton
-                rai.ID = "raid" + i;
+                radiob1.ID = "raid" + i;
                     //Skapar ny label för varje fråga
-                Label lbl = new Label();
+                Label lblQuestion = new Label();
 
-
-                if(b == "false")
+                    //Om frågan bara har ett svarsalternativ som är rätt
+                if(attributeMulti == "false")
                 {
-                    lbl.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
-                    rai.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    lblQuestion.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
+
+                    radiob1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                     XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
                     string at = n.Attributes["correct"].Value;
-                    rai.Attributes.Add("correct", at);
+                    radiob1.Attributes.Add("correct", at);
 
-                    rai2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    radiob2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='2']");
                     at = n.Attributes["correct"].Value;
-                    rai2.Attributes.Add("correct", at);
+                    radiob2.Attributes.Add("correct", at);
 
-                    rai3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    radiob3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='3']");
                     at = n.Attributes["correct"].Value;
-                    rai3.Attributes.Add("correct", at);
+                    radiob3.Attributes.Add("correct", at);
 
-                    rai4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+                    radiob4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='4']");
                     at = n.Attributes["correct"].Value;
-                    rai4.Attributes.Add("correct", at);
-
-                    cl2.Controls.Add(rai);
-                    cl3.Controls.Add(rai2);
-                    cl4.Controls.Add(rai3);
-                    cl5.Controls.Add(rai4);
+                    radiob4.Attributes.Add("correct", at);
+                        //Lägger in radiobuttons i cellerna
+                    cell2.Controls.Add(radiob1);
+                    cell3.Controls.Add(radiob2);
+                    cell4.Controls.Add(radiob3);
+                    cell5.Controls.Add(radiob4);
                 }
-                if(b == "true")
+                    //Om det är en fråga med många svarsalternativ
+                if(attributeMulti == "true")
                 {
-                    lbl.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
-                    c.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
-                    XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
-                    string at = n.Attributes["correct"].Value;
-                    c.Attributes.Add("correct", at);
+                    lblQuestion.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
 
-                    c2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
-                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='2']");
-                    at = n.Attributes["correct"].Value;
-                    c2.Attributes.Add("correct", at);
+                    checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                    XmlNode usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
+                    string at = usernode.Attributes["correct"].Value;
+                    cell1.Attributes.Add("correct", at);
 
-                    c3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
-                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='3']");
-                    at = n.Attributes["correct"].Value;
-                    c3.Attributes.Add("correct", at);
+                    checkbox2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
+                    usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='2']");
+                    at = usernode.Attributes["correct"].Value;
+                    cell2.Attributes.Add("correct", at);
 
-                    c4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
-                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='4']");
-                    at = n.Attributes["correct"].Value;
-                    c4.Attributes.Add("correct", at);
+                    checkbox3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
+                    usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='3']");
+                    at = usernode.Attributes["correct"].Value;
+                    cell3.Attributes.Add("correct", at);
 
-                    cl2.Controls.Add(c);
-                    cl3.Controls.Add(c2);
-                    cl4.Controls.Add(c3);
-                    cl5.Controls.Add(c4);
-
-                }
-  
-           
-                //Lägger in label i cellen
-                cl.Attributes.Add("class", "questionCell");
-                cl.Controls.Add(lbl);
-              
-                    //Lägger in radiobutton i cellerna
-       
+                    checkbox4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
+                    usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='4']");
+                    at = usernode.Attributes["correct"].Value;
+                    cell4.Attributes.Add("correct", at);
+                        //Lägger in checkboxar i cellerna
+                    cell2.Controls.Add(checkbox1);
+                    cell3.Controls.Add(checkbox2);
+                    cell4.Controls.Add(checkbox3);
+                    cell5.Controls.Add(checkbox4);
+                }           
+                    //Lägger in label i cellen
+                cell1.Attributes.Add("class", "questionCell");
+                cell1.Controls.Add(lblQuestion);      
                     //Lägger in cellen på raden
-                rw.Controls.Add(cl);
-                rw2.Controls.Add(cl2);
-                rw3.Controls.Add(cl3);
-                rw4.Controls.Add(cl4);
-                rw5.Controls.Add(cl5);
-                rw6.Controls.Add(cl6);
-                //Lägger in raderna i tabellen som heter table1
-
-                rw.Attributes.Add("class", "question");
-                table1.Controls.Add(rw);
-                rw2.Attributes.Add("class", "answers answer1");
-                table1.Controls.Add(rw2);
-                rw3.Attributes.Add("class", "answers answer2");
-                table1.Controls.Add(rw3);
-                rw4.Attributes.Add("class", "answers answer3");
-                table1.Controls.Add(rw4);
-                rw5.Attributes.Add("class", "answers answer4");
-                table1.Controls.Add(rw5);
-                rw6.Attributes.Add("class", "empty");
-                table1.Controls.Add(rw6);
+                row1.Controls.Add(cell1);
+                row2.Controls.Add(cell2);
+                row3.Controls.Add(cell3);
+                row4.Controls.Add(cell4);
+                row5.Controls.Add(cell5);
+                row6.Controls.Add(cell6);
+                    //Lägger till attribut till de olika radobjekten
+                row1.Attributes.Add("class", "question");
+                table1.Controls.Add(row1);
+                row2.Attributes.Add("class", "answers answer1");
+                table1.Controls.Add(row2);
+                row3.Attributes.Add("class", "answers answer2");
+                table1.Controls.Add(row3);
+                row4.Attributes.Add("class", "answers answer3");
+                table1.Controls.Add(row4);
+                row5.Attributes.Add("class", "answers answer4");
+                table1.Controls.Add(row5);
+                row6.Attributes.Add("class", "empty");
+                table1.Controls.Add(row6);
                 count++;
+                    //Om attributet image är satt till true
                 if (img == "true")
                 {
                     Image bild = new Image();
                     string imagelink = xmldoc2.SelectSingleNode("categories/question[@id='" + i + "']/image").InnerText;
                     bild.ImageUrl = imagelink;
-
-                    rw.Controls.Add(imgcell);
+                    row1.Controls.Add(imgcell);
                     imgcell.Controls.Add(bild);
-
                 }
             }
         }
@@ -196,7 +191,7 @@ namespace WebApplication1
         {
 
         }
-        public static int[] RandomNumbers(int min, int max, int derangement)//Metod för att slumpa fram frågorna
+        public static int[] RandomNumbers(int min, int max, int derangement)
         {
             if (min > max)
             {

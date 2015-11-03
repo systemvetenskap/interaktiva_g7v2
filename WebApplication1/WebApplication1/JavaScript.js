@@ -1,8 +1,8 @@
 ﻿var minutes = 30;
 var seconds = 00;
-var counter = setInterval(timer, 1000) //körs varje sekund
+var counter = setInterval(counter, 1000) //körs varje sekund
 
-function timer()
+function countdown()
 {
     seconds=seconds-1
     if (seconds <= 0)
