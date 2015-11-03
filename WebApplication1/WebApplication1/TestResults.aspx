@@ -21,7 +21,7 @@
                 <li><a class="home" href = "index.aspx">Start</a></li>
                 <li><a class="home" href = "LicenseTest.aspx">Licensieringstest</a></li>
                 <li><a class="home" href = "UpdateTest.aspx">Kunskapsupdatering</a></li>
-                <li><a class="home" href = "TestResults.aspx">Provresultat</a></li>
+                <li><a style="background-color:#eb9b00" class="home" href = "TestResults.aspx">Provresultat</a></li>
             </ul> 
         </div>
         <!-- Questions -->
