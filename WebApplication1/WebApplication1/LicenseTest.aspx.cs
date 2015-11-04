@@ -28,8 +28,11 @@ namespace WebApplication1
         RadioButton radiob1, radiob2, radiob3, radiob4;
         CheckBox checkbox1, checkbox2, checkbox3, checkbox4;
         public int timerVar = 1;
-        public string points;
+        public string tpoints;
         public string grade;
+        public string pPoints;
+        public string ecPoints;
+        public string ethPoints;
         int prod = 0;
         int eco = 0;
         int eth = 0;
@@ -39,7 +42,10 @@ namespace WebApplication1
             
             if(!IsPostBack)
             {
-                
+
+            timerVar = 1;
+            tpoints = "na";
+            grade = "na";
             right.LoadXml("<test></test>");
             wrong.LoadXml("<test></test>");
             //Laddar in vårat xmldokument i xmldoc
@@ -77,6 +83,8 @@ namespace WebApplication1
             }
             else if(IsPostBack)
             {
+                
+                timerVar = 2;
                 xmldoc2.Load(Server.MapPath("usertest.xml"));
                 XmlNodeList lst = xmldoc2.SelectNodes("categories/question");
                 //Loopar igenom xml listan 1st
@@ -91,9 +99,28 @@ namespace WebApplication1
                     count++;
 
                 }
-                timerVar = 2;
-                double p = (double)ViewState["points"];
-                points = p.ToString();
+               
+               
+                    if(ViewState["points"] != null)
+                    {
+                        string s = (string)ViewState["points"];
+                         tpoints = s;
+
+                    }
+                    //if (ViewState["grade"] != null)
+                    //{
+                    //    string a = (string)ViewState["grade"];
+                    //    grade = a;
+
+                    //}
+
+
+
+                //string s = (string)ViewState["grade"];
+                //grade = s;
+
+                //
+                //
 
             }
 
@@ -101,7 +128,8 @@ namespace WebApplication1
         }
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            ViewState.Add("points", points);
+            ViewState.Add("points", tpoints);
+            ViewState.Add("grade", grade);
 
         }
         protected void btnSubmint_Click(object sender, EventArgs e)
@@ -346,20 +374,10 @@ namespace WebApplication1
                 imgcell.RowSpan = 4;
                 row2.Controls.Add(imgcell);
                     imgcell.Controls.Add(bild);
+                
+                
                 }
-            //foreach (Control t in qDiv.Controls)
-            //{
-            //    if (t is Table)
-            //    {
-            //        Table tab = (Table)t;
-                 
-            //        if (tab.ID != "1")
-            //        {
-            //            tab.Visible = false;
-            //        }
-            //    }
-
-            //}
+    
 
 
         }
@@ -402,12 +420,14 @@ namespace WebApplication1
                                     {
                                         rw.Attributes.Remove("class");
                                         rw.Attributes.Add("class", "green");
+                                        
                        
                                     }
                                     else if(cor == "false")
                                     {
                                         rw.Attributes.Remove("class");
                                         rw.Attributes.Add("class", "red");
+                                        
                                     }
                             }
                             else if(rad.Checked == false)
@@ -571,9 +591,18 @@ namespace WebApplication1
             double total = prod;
             total += eco;
             total += eth;
-            if (total > 1)
+            tpoints = total.ToString();
+
+            if (total/25 >= 0.70)
             {
-                points = total.ToString();
+                grade = total.ToString();
+            }
+            else
+            {
+                grade = total.ToString();
+            }
+
+               
 
                 if (prod / prodcat >= 0.60)
                 {
@@ -631,7 +660,7 @@ namespace WebApplication1
                 }
 
 
-            }
+            
         }
     }
 
