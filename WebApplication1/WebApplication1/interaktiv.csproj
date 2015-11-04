@@ -72,6 +72,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\arnold.png" />
     <Content Include="Images\background.jpg" />
     <Content Include="Images\calvin.png" />
     <Content Include="Images\checkgreen.png" />
@@ -79,7 +80,10 @@
     <Content Include="Images\dollarsign.jpg" />
     <Content Include="Images\globe.png" />
     <Content Include="Images\header1.png" />
+    <Content Include="Images\karta.png" />
+    <Content Include="Images\ladygaga.png" />
     <Content Include="Images\sicksmiley.png" />
+    <Content Include="Images\tyrion.png" />
     <Content Include="index.aspx" />
     <Content Include="JavaScript.js" />
     <Content Include="packages.config" />

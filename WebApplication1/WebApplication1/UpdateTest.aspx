@@ -1,10 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UpdateTest.aspx.cs" Inherits="WebApplication1.UpdateTest" %>
 
+<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Home</title>
     <link href="stilmall.css" type="text/css" rel="stylesheet" /> 
-    <script src="javascript.js"></script> 
+    <%--<script src="javascript.js"></script> --%>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -24,21 +27,64 @@
                 <li><a class="home" href = "TestResults.aspx">Provresultat</a></li>
             </ul> 
         </div>
+    
         <!-- Questions -->
         <div id="timerbox">
-        <asp:Label ID="LabelTimer" runat="server" Text="Tid kvar:"></asp:Label>
+        <asp:Label id="LabelTimer" runat="server" value="Tid kvar:"></asp:Label>
         <span id="timer"></span>
             </div>
-<%--        <div class="questionbox">
+        <div class="questionbox" id="qDiv" runat="server">
 
         &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
             <asp:Button class="btnsub" ID="btn1" text="Lämna in" runat="server" OnClick="btn1_Click" />      
-        </div>--%>
+        </div>
         <!-- Footer -->
         <div class="footer">
         </div>
     </div> 
     
     </form>
+        <script>
+         var minutes = 30;
+         var seconds = 00;
+         var run = <%=this.timerVar%>;
+        
+       
+
+        if (run < 2)
+        {
+     
+         var counter = setInterval(timer, 1000) //körs varje sekund
+
+
+        }
+        else{
+            result();
+        }
+     function timer() {
+
+
+            seconds = seconds - 1
+            if (seconds <= 0) {
+                minutes -= 1;
+                seconds += 59;
+            }
+            if (minutes <= 1) {
+                minutes == 1;
+                seconds = 0;
+                clearInterval(counter);
+                alert("Tiden är slut");
+                //Kod här när tiden är slut
+                return;
+            }
+            document.getElementById("timer").innerHTML = minutes + " minuter " + seconds + " sekunder";
+     }
+     function result() {
+         var tpoints = <%=this.tpoints%>;
+         var gr = <%=this.grade%>;
+         document.getElementById("LabelTimer").innerHTML = "Poäng:"+tpoints+" Betyg: "+gr+" "+"<br><br>"+"Grönmarkerade fält = rätt svar"+"<br>"+" Rödmarkerade fält = fel svar";
+     }
+     
+    </script>
 </body>
 </html>

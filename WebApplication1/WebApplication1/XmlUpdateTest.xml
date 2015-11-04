@@ -1,35 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <categories>
   <!--//Kategori produkter-->
-  <question id="1" category="products" multi ="false" image="false">
-    Vart bor Henrik ?
+  <question id="1" category="products" multi ="false" image="true">
+    Var bor Henrik ?
     <answer>
       <answer id="1" correct="true">Motala</answer>
       <answer id="2" correct="true">Lund</answer>
       <answer id="3" correct="false">Linköping</answer>
       <answer id="4" correct="false">Uppsala</answer>
     </answer>
+    <image>Images\\karta.png</image>
     <useranswer></useranswer>
   </question>
 
-  <question id="2" category="products" multi ="false" image ="false">
-    Vart bor Stefan ?
+  <question id="2" category="products" multi ="false" image ="true">
+    Var bor Stefan ?
     <answer>
       <answer id="1" correct="true">Linköping</answer>
       <answer id="2" correct="false">Lund</answer>
       <answer id="3" correct="false">Uppsala</answer>
       <answer id="4" correct="false">Malmö</answer>
     </answer>
+    <image>Images\\karta.png</image>
     <useranswer></useranswer>
   </question>
 
   <question id="3" category="products" multi ="false" image ="false">
-    Vart bor Michael ?<answer>
+    Var bor Michael ?<answer>
       <answer id="1" correct="false">Malmö</answer>
       <answer id="2" correct="true">Lund</answer>
       <answer id="3" correct="false">Uppsala</answer>
       <answer id="4" correct="false">Linköping</answer>
     </answer>
+    <image>Images\\karta.png</image>
     <useranswer></useranswer>
   </question>
 
@@ -109,7 +112,7 @@
   <!--//Slut kategori ekonomi
   //Kategori etik-->
   <question id="11" category="ethics" multi ="false" image ="false">
-    vad är Niklas Zennström känd för ?<answer>
+    Vad är Niklas Zennström känd för ?<answer>
       <answer id="1" correct="false">Grym fotbollsspelare</answer>
       <answer id="2" correct="false">Han uppfann Facebook</answer>
       <answer id="3" correct="true">Han uppfann Skype</answer>
@@ -118,13 +121,14 @@
     <useranswer></useranswer>
   </question>
 
-  <question id="12" category="ethics" multi ="false" image ="false">
+  <question id="12" category="ethics" multi ="false" image ="true">
     I vilken serie finns karaktären Tyrion Lannister ?<answer>
       <answer id="1" correct="true">Game Of Thrones</answer>
       <answer id="2" correct="false">Armerican Horror Story</answer>
       <answer id="3" correct="false">The Walking Dead</answer>
       <answer id="4" correct="false">Dexter</answer>
     </answer>
+    <image>Images\\tyrion.png</image>
     <useranswer></useranswer>
   </question>
 
@@ -156,7 +160,7 @@
       <answer id="3" correct="true">Conan barbaren (1982)</answer>
       <answer id="4" correct="false">X-Men: Days of Future Past (2014)</answer>
     </answer>
-    <image>Images\\arnold.jpg</image>
+    <image>Images\\arnold.png</image>
     <useranswer></useranswer>
   </question>
 
