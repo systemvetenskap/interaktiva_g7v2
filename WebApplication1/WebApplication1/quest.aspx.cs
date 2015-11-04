@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
-//using Npgsql;
+using Npgsql;
 using System.Data;
 using System.IO;
 using System.Xml.Serialization;
@@ -20,7 +20,7 @@ namespace WebApplication1
     {
         XmlDocument right = new XmlDocument();
         XmlDocument wrong = new XmlDocument();
-        //NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
+       // NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
             //Skapar två nya xmldokument
@@ -301,4 +301,6 @@ namespace WebApplication1
             }
         }
     }
+
+
 }

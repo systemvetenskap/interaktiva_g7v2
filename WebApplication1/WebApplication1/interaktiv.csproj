@@ -48,6 +48,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Security">
+      <HintPath>..\..\..\..\..\AppData\Roaming\Skype\My Skype Received Files\Mono.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql">
       <HintPath>..\..\..\..\..\AppData\Roaming\Skype\My Skype Received Files\Npgsql.dll</HintPath>
     </Reference>
@@ -77,6 +80,7 @@
     <Content Include="Images\header1.png" />
     <Content Include="Images\nyser.jpg" />
     <Content Include="JavaScript.js" />
+    <Content Include="mytests.aspx" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -93,6 +97,13 @@
     <Content Include="XmlQuestions.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="mytests.aspx.cs">
+      <DependentUpon>mytests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mytests.aspx.designer.cs">
+      <DependentUpon>mytests.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="quest.aspx.cs">
       <DependentUpon>quest.aspx</DependentUpon>
