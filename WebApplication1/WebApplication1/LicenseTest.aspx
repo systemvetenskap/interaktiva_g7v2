@@ -7,44 +7,7 @@
     <title>Home</title>
     <link href="stilmall.css" type="text/css" rel="stylesheet" /> 
     <%--<script src="javascript.js"></script> --%>
-    <script>
-        <%--var run = <%=this.timerVar%>;--%>
-        var run = 1;
-        var points = <%=this.points%>;
-        var grade = <%=this.grade%>;
-        if (run == 1)
-        {
-            function timer() {
 
-
-                seconds = seconds - 1
-                if (seconds <= 0) {
-                    minutes -= 1;
-                    seconds += 59;
-                }
-                if (minutes <= 1) {
-                    minutes == 1;
-                    seconds = 0;
-                    clearInterval(counter);
-                    alert("Tiden är slut");
-                    //Kod här när tiden är slut
-                    return;
-                }
-                document.getElementById("timer").innerHTML = minutes + " minuter " + seconds + " sekunder";
-            }
-
-        }
-        else{
-            document.getElementById("timer").innerHTML = "Antal rätt: " + points + " Betyg:" + grade;
-
-        }
-        var minutes = 30;
-        var seconds = 00;
-        var counter = setInterval(timer, 1000) //körs varje sekund
-        timer();
-
-
-    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -64,10 +27,11 @@
                 <li><a class="home" href = "TestResults.aspx">Provresultat</a></li>
             </ul> 
         </div>
+    
         <!-- Questions -->
         <div id="timerbox">
-        <asp:Label ID="LabelTimer" runat="server" Text="Tid kvar:"></asp:Label>
-        <span id="timer" runat="server"></span>
+        <asp:Label id="LabelTimer" runat="server" value="Tid kvar:"></asp:Label>
+        <span id="timer"></span>
             </div>
         <div class="questionbox" id="qDiv" runat="server">
 
@@ -80,5 +44,47 @@
     </div> 
     
     </form>
+        <script>
+         var minutes = 30;
+         var seconds = 00;
+         var run = <%=this.timerVar%>;
+        
+       
+
+        if (run < 2)
+        {
+     
+         var counter = setInterval(timer, 1000) //körs varje sekund
+
+
+        }
+        else{
+            result();
+        }
+     function timer() {
+
+
+            seconds = seconds - 1
+            if (seconds <= 0) {
+                minutes -= 1;
+                seconds += 59;
+            }
+            if (minutes <= 1) {
+                minutes == 1;
+                seconds = 0;
+                clearInterval(counter);
+                alert("Tiden är slut");
+                //Kod här när tiden är slut
+                return;
+            }
+            document.getElementById("timer").innerHTML = minutes + " minuter " + seconds + " sekunder";
+     }
+     function result() {
+         var tpoints = <%=this.tpoints%>;
+         var gr = <%=this.grade%>;
+         document.getElementById("LabelTimer").innerHTML = "Poäng:"+tpoints+" Betyg: "+gr+" ";
+     }
+     
+    </script>
 </body>
 </html>
