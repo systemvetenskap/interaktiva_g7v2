@@ -31,6 +31,15 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.Label lblUsername;
         
         /// <summary>
+        /// textboxusername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textboxusername;
+        
+        /// <summary>
         /// lblPassword control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,24 @@ namespace WebApplication1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPassword;
+        
+        /// <summary>
+        /// textboxpassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textboxpassword;
+        
+        /// <summary>
+        /// LabelStatusLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelStatusLogin;
         
         /// <summary>
         /// btn1 control.

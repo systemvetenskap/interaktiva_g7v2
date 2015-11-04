@@ -26,15 +26,22 @@
         </div>
         <!-- Questions -->
 
-        <div class="loginbox">
+        <div class="loginbox" id="loginbox">
             <h3>Ange användarnamn och lösenord för att logga in</h3>
-            <asp:Label ID="lblUsername" runat="server" Text="Användarnamn"></asp:Label><br>
-            <input id="usernamefield" type="text" /><br />
+            <asp:Label id="lblUsername" runat="server" Text="Användarnamn"></asp:Label><br>
+            <asp:TextBox ID="textboxusername" runat="server"/>
+            <br />
             <br>
-            <asp:Label ID="lblPassword" runat="server" Text="Lösenord"></asp:Label><br>
-            <input id="passwordfield" type="password" /><br />
+            <asp:Label id="lblPassword" runat="server" Text="Lösenord"></asp:Label>
+            <br />
+            <asp:TextBox ID="textboxpassword" runat="server"/>
+            <br />
             <br>
-            <asp:Button class="btnLogIn" ID="btn1" text="Logga in" runat="server"/>      
+
+            <asp:Label id="LabelStatusLogin" runat="server" Text="Label"></asp:Label>
+            <br />
+            <br>
+            <asp:Button class="btnLogIn" ID="btn1" text="Logga in" runat="server" OnClick="btn1_Click"/>      
         </div>
         <!-- Footer -->
         <div class="footer">
