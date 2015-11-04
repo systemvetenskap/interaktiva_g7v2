@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <categories>
   <!--//Kategori produkter-->
-  <question id="1" category="products" multi ="false" image="false">
+  <question id="1" category="products" multi ="false" image="true">
     Var bor Henrik ?
     <answer>
       <answer id="1" correct="true">Motala</answer>
@@ -9,10 +9,11 @@
       <answer id="3" correct="false">Linköping</answer>
       <answer id="4" correct="false">Uppsala</answer>
     </answer>
+    <image>Images\\karta.png</image>
     <useranswer></useranswer>
   </question>
 
-  <question id="2" category="products" multi ="false" image ="false">
+  <question id="2" category="products" multi ="false" image ="true">
     Var bor Stefan ?
     <answer>
       <answer id="1" correct="true">Linköping</answer>
@@ -20,6 +21,7 @@
       <answer id="3" correct="false">Uppsala</answer>
       <answer id="4" correct="false">Malmö</answer>
     </answer>
+    <image>Images\\karta.png</image>
     <useranswer></useranswer>
   </question>
 
@@ -30,6 +32,7 @@
       <answer id="3" correct="false">Uppsala</answer>
       <answer id="4" correct="false">Linköping</answer>
     </answer>
+    <image>Images\\karta.png</image>
     <useranswer></useranswer>
   </question>
 
