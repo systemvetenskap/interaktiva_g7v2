@@ -82,7 +82,7 @@
      function result() {
          var tpoints = <%=this.tpoints%>;
          var gr = <%=this.grade%>;
-         document.getElementById("LabelTimer").innerHTML = "Poäng:"+tpoints+" Betyg: "+gr+" ";
+         document.getElementById("LabelTimer").innerHTML = "Poäng:"+tpoints+" Betyg: "+gr+" "+"<br><br>"+"Grönmarkerade fält = rätt svar"+"<br>"+" Rödmarkerade fält = fel svar";
      }
      
     </script>
