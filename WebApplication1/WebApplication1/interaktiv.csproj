@@ -48,8 +48,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Security">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Mono.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql">
-      <HintPath>..\..\..\..\..\AppData\Roaming\Skype\My Skype Received Files\Npgsql.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -69,17 +72,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\arnold.jpg" />
     <Content Include="Images\background.jpg" />
-    <Content Include="Images\bat.jpg" />
     <Content Include="Images\calvin.png" />
     <Content Include="Images\checkgreen.png" />
     <Content Include="Images\checkred.png" />
     <Content Include="Images\dollarsign.jpg" />
     <Content Include="Images\globe.png" />
     <Content Include="Images\header1.png" />
-    <Content Include="Images\ladygaga.png" />
-    <Content Include="Images\nyser.jpg" />
+    <Content Include="Images\sicksmiley.png" />
     <Content Include="index.aspx" />
     <Content Include="JavaScript.js" />
     <Content Include="packages.config" />
@@ -98,7 +98,9 @@
     <Content Include="stilmall.css" />
     <Content Include="usertest.xml" />
     <Content Include="Web.config" />
-    <Content Include="XmlLicenseTest.xml" />
+    <Content Include="XmlLicenseTest.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="index.aspx.cs">
