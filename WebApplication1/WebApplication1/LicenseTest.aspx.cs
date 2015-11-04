@@ -224,7 +224,7 @@ namespace WebApplication1
                     radiob1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                     XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
                     string at = n.Attributes["correct"].Value;
-                n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                     string cat = n.Attributes["category"].Value;
                     lblQuestion.Text += " (" + cat + ")";
                     radiob1.Attributes.Add("correct", at);
@@ -255,7 +255,7 @@ namespace WebApplication1
                     radiob4.Attributes.Add("correct", at);
                     //Lägger in radiobuttons i cellerna
                     cell1.Controls.Add(lblQuestion);
-                cell1.ColumnSpan = 2;
+                    cell1.ColumnSpan = 2;
                     cell2.Controls.Add(radiob1);
                     cell3.Controls.Add(radiob2);
                     cell4.Controls.Add(radiob3);
@@ -268,7 +268,16 @@ namespace WebApplication1
                     checkbox2.ID = i.ToString() + "c2";
                     checkbox3.ID = i.ToString() + "c3";
                     checkbox4.ID = i.ToString() + "c4";
-                    lblQuestion.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
+                    checkbox1.Attributes.Add("name", "check" + count);
+                    checkbox1.Attributes.Add("value", "1");
+                    checkbox2.Attributes.Add("name", "check" + count);
+                    checkbox2.Attributes.Add("value", "2");
+                    checkbox3.Attributes.Add("name", "check" + count);
+                    checkbox3.Attributes.Add("value", "3");
+                    checkbox4.Attributes.Add("name", "check" + count);
+                    checkbox4.Attributes.Add("value", "4");
+
+                lblQuestion.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
 
                     checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                     XmlNode usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
@@ -308,7 +317,8 @@ namespace WebApplication1
                     checkbox4.Attributes.Add("correct", at);
                     //Lägger in checkboxar i cellerna
                     cell1.Controls.Add(lblQuestion);
-                cell1.ColumnSpan = 2;
+                    cell1.ColumnSpan = 2;
+                    
                     cell2.Controls.Add(checkbox1);
                     cell3.Controls.Add(checkbox2);
                     cell4.Controls.Add(checkbox3);
