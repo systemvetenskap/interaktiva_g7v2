@@ -107,12 +107,12 @@ namespace WebApplication1
                          tpoints = s;
 
                     }
-                    if (ViewState["grade"] != null)
-                    {
-                        string a = (string)ViewState["grade"];
-                        grade = a;
+                    //if (ViewState["grade"] != null)
+                    //{
+                    //    string a = (string)ViewState["grade"];
+                    //    grade = a;
 
-                    }
+                    //}
 
 
 
