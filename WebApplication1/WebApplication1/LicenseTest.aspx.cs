@@ -447,6 +447,28 @@ namespace WebApplication1
                             CheckBox chk = (CheckBox)cl;
                             string cor = chk.Attributes["correct"];
 
+                            if (chk.Checked==true)
+                            {
+                                if (cor=="true")
+                                {
+                                    rw.Attributes.Remove("class");
+                                    rw.Attributes.Add("class", "green");
+                                }
+                                else if (cor=="false")
+                                {
+                                    rw.Attributes.Remove("class");
+                                    rw.Attributes.Add("class", "red");
+                                }
+                            }
+                            else if (chk.Checked==false)
+                            {
+                                if (cor=="true")
+                                {
+                                    rw.Attributes.Remove("class");
+                                    rw.Attributes.Add("class", "green");
+                                }
+                            }
+
                         }
 
 
