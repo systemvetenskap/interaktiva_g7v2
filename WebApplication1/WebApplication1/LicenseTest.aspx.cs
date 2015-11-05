@@ -221,6 +221,9 @@ namespace WebApplication1
                     radiob3.ID = i.ToString() + "r3";
                     radiob4.ID = i.ToString() + "r4";
                     lblQuestion.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
+                    XmlNode n1 = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    string cat1 = n1.Attributes["multi"].Value;
+                    lblQuestion.Attributes.Add("multi", cat1);
 
                     radiob1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                     XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
@@ -352,28 +355,7 @@ namespace WebApplication1
                 row6.Attributes.Add("class", "empty");
                 table1.Controls.Add(row6);
                 count++;
-
-            //table.Controls.Add(row1);
-            ////row2.Attributes.Add("class", "answers answer1");
-            //row2.Attributes.Add("class", "answers");
-            //table.Controls.Add(row2);
-            //row3.Attributes.Add("class", "answers");
-            //table.Controls.Add(row3);
-            //row4.Attributes.Add("class", "answers");
-            //table.Controls.Add(row4);
-            //row5.Attributes.Add("class", "answers");
-            //table.Controls.Add(row5);
-            //row6.Attributes.Add("class", "empty");
-            //table.Controls.Add(row6);
-            //table.Attributes.Add("class", "tbl");
-            ////table.Attributes.Add("id", "table1");
-            //table.Attributes.Add("runat", "server");
-            //table.ID = count.ToString();           
-            //qDiv.Controls.Add(table);
-            //Button btn = new Button();
-            //btn.Text = "Nästa";
-            //btn.Click += new EventHandler(next_quest);
-            //qDiv.Controls.Add(btn);       
+      
 
                     //Om attributet image är satt till true
                 if (img == "true")
@@ -480,12 +462,26 @@ namespace WebApplication1
         }
         protected void calcPoints()
         {
+            int checkcount = 0;
+            string multi = "";
             foreach (TableRow rw in table1.Rows)
             {
                 foreach (TableCell cell in rw.Cells)
                 {
                     foreach (Control cl in cell.Controls)
                     {
+                        if(cl is Label)
+                        {
+                            Label lab = (Label)cl;
+                            multi = lab.Attributes["multi"];
+                            if (multi == "true")
+                            {
+                                checkcount = countCorrect();
+                            }
+                           
+                        }
+                      
+                  
                         if (cl is RadioButton)
                         {
                             RadioButton rad = (RadioButton)cl;
@@ -539,6 +535,7 @@ namespace WebApplication1
                             CheckBox chk = (CheckBox)cl;
                             string cor = chk.Attributes["correct"];
                             string cat = chk.Attributes["category"];
+                            string chkID = chk.Attributes["value"];
                             chk.Enabled = false;
                             if (chk.Checked == true)
                             {
@@ -546,6 +543,7 @@ namespace WebApplication1
                                 {
                                     if (cat == "products")
                                     {
+
                                         prod++;
 
                                     }
@@ -599,10 +597,12 @@ namespace WebApplication1
                 gr = 2;
                 gradestring = "Icke Godkänd";
             }
+   
+            string savexml = xmldoc2.OuterXml;
             string tn = "Licenseringstest";
             int ln = 1;
             DateTime date = DateTime.Today;
-            string sql = "insert into license_test(name, user_id, grade, points, date) values(:tname, :user, :grd, :pts, :dt)";
+            string sql = "insert into license_test(name, user_id, grade, points, date, testxml) values(:tname, :user, :grd, :pts, :dt, :addxml)";
             conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.Add(new NpgsqlParameter("tname", tn));
@@ -610,11 +610,12 @@ namespace WebApplication1
             cmd.Parameters.Add(new NpgsqlParameter("grd", gradestring));
             cmd.Parameters.Add(new NpgsqlParameter("pts", total));
             cmd.Parameters.Add(new NpgsqlParameter("dt", date));
+            cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
             cmd.ExecuteNonQuery();
             conn.Close();
 
-
-
+            
+            
            
 
                
@@ -676,6 +677,22 @@ namespace WebApplication1
 
 
             
+        }
+        protected int countCorrect(int i)
+        {
+            int count = 0;
+            XmlNodeList lst = xmldoc2.SelectNodes("/categories/question[@id='" + i + "']");
+            foreach(XmlNode node in lst)
+            {
+                string attributeID = node.Attributes["correct"].Value;
+                if(attributeID == "correct")
+                {
+                    count++;
+                }
+            }
+       
+          
+            return count;
         }
     }
 
