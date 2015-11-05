@@ -126,7 +126,8 @@ div.footer{
 }
 div.questionbox table.tbl  tr.green{
     
-    background-color: rgba(0,255,0,0.3);
+    background-color: rgba(0,255,0,0.3);*/
+    /*//background-color: #00FF00;*/
     height: 30px;
     font-size: 14px;
  
@@ -134,6 +135,7 @@ div.questionbox table.tbl  tr.green{
 div.questionbox table.tbl  tr.red{
     
     background-color: rgba(255,0,0,0.3);
+    /*//background-color: red;*/
     height: 30px;
     font-size: 14px;
 }

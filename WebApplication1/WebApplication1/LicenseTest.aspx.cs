@@ -85,6 +85,7 @@ namespace WebApplication1
             {
                 
                 timerVar = 2;
+                btn1.Visible = false;
                 xmldoc2.Load(Server.MapPath("usertest.xml"));
                 XmlNodeList lst = xmldoc2.SelectNodes("categories/question");
                 //Loopar igenom xml listan 1st
@@ -392,21 +393,7 @@ namespace WebApplication1
         }
         protected void next_quest(object sender, EventArgs e)
         {
-            foreach(Control t in qDiv.Controls)
-        {
-                if(t is Table)
-            {
-                    Table tab = (Table)t;
-                    if (tab.ID == "1")
-            {
-                        tab.Visible = false;
-            }
-                    else if (tab.ID == "2") 
-                    {
-                        tab.Visible = true;
-                    }
-                }
-        }
+
 
         }
         protected void feedbackAnswers()
@@ -610,6 +597,8 @@ namespace WebApplication1
             {
                 grade = total.ToString();
             }
+            string sql = "insert into license_test(name, user_id, grade points, date) values(@tname, @user, @grd, @pts, @dt)";
+            NpgsqlCommand cmd = new NpgsqlCommand();
 
                
 

@@ -49,10 +49,10 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Security">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Mono.Security.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\dll\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="Npgsql">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Npgsql.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\dll\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
