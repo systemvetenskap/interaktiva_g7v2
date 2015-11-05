@@ -224,6 +224,8 @@ namespace WebApplication1
                     XmlNode n1 = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                     string cat1 = n1.Attributes["multi"].Value;
                     lblQuestion.Attributes.Add("multi", cat1);
+                string cat2 = n1.Attributes["id"].Value;
+                lblQuestion.Attributes.Add("id", cat2);
 
                     radiob1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                     XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
@@ -282,8 +284,13 @@ namespace WebApplication1
                     checkbox4.Attributes.Add("value", "4");
 
                 lblQuestion.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
+                XmlNode n1 = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                string cat1 = n1.Attributes["multi"].Value;
+                lblQuestion.Attributes.Add("multi", cat1);
+                string cat2 = n1.Attributes["id"].Value;
+                lblQuestion.Attributes.Add("id", cat2);
 
-                    checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
+                checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                     XmlNode usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
                     string at = usernode.Attributes["correct"].Value;
                     usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
@@ -463,6 +470,7 @@ namespace WebApplication1
         protected void calcPoints()
         {
             int checkcount = 0;
+            int acount = 0;
             string multi = "";
             foreach (TableRow rw in table1.Rows)
             {
@@ -474,9 +482,11 @@ namespace WebApplication1
                         {
                             Label lab = (Label)cl;
                             multi = lab.Attributes["multi"];
+                          
                             if (multi == "true")
                             {
-                                checkcount = countCorrect();
+                                int id = int.Parse(lab.Attributes["id"]);
+                                checkcount = countCorrect(id);
                             }
                            
                         }
@@ -533,6 +543,7 @@ namespace WebApplication1
                         else if (cl is CheckBox)
                         {
                             CheckBox chk = (CheckBox)cl;
+                            
                             string cor = chk.Attributes["correct"];
                             string cat = chk.Attributes["category"];
                             string chkID = chk.Attributes["value"];
@@ -541,17 +552,18 @@ namespace WebApplication1
                             {
                                 if (cor == "true")
                                 {
-                                    if (cat == "products")
+                                    acount++;
+                                    if (cat == "products"&& acount == checkcount)
                                     {
 
                                         prod++;
 
                                     }
-                                    else if (cat == "ethics")
+                                    else if (cat == "ethics" && acount == checkcount)
                                     {
                                         eth++;
                                     }
-                                    else if (cat == "economy")
+                                    else if (cat == "economy" && acount == checkcount)
                                     {
                                         eco++;
 
@@ -603,16 +615,24 @@ namespace WebApplication1
             int ln = 1;
             DateTime date = DateTime.Today;
             string sql = "insert into license_test(name, user_id, grade, points, date, testxml) values(:tname, :user, :grd, :pts, :dt, :addxml)";
-            conn.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-            cmd.Parameters.Add(new NpgsqlParameter("tname", tn));
-            cmd.Parameters.Add(new NpgsqlParameter("user", ln));
-            cmd.Parameters.Add(new NpgsqlParameter("grd", gradestring));
-            cmd.Parameters.Add(new NpgsqlParameter("pts", total));
-            cmd.Parameters.Add(new NpgsqlParameter("dt", date));
-            cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
-            cmd.ExecuteNonQuery();
-            conn.Close();
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.Add(new NpgsqlParameter("tname", tn));
+                cmd.Parameters.Add(new NpgsqlParameter("user", ln));
+                cmd.Parameters.Add(new NpgsqlParameter("grd", gradestring));
+                cmd.Parameters.Add(new NpgsqlParameter("pts", total));
+                cmd.Parameters.Add(new NpgsqlParameter("dt", date));
+                cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch
+            {
+
+            }
+      
 
             
             
@@ -680,8 +700,8 @@ namespace WebApplication1
         }
         protected int countCorrect(int i)
         {
-            int count = 0;
-            XmlNodeList lst = xmldoc2.SelectNodes("/categories/question[@id='" + i + "']");
+            int count= 0;
+            XmlNodeList lst = xmldoc2.SelectNodes("/categories/question[@id='1']/answer/");
             foreach(XmlNode node in lst)
             {
                 string attributeID = node.Attributes["correct"].Value;
