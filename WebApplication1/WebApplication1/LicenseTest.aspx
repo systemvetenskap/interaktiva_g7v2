@@ -81,8 +81,17 @@
      }
      function result() {
          var tpoints = <%=this.tpoints%>;
-         var gr = <%=this.grade%>;
-         document.getElementById("LabelTimer").innerHTML = "Poäng:"+tpoints+" Betyg: "+gr+" "+"<br><br>"+"<span style='color: green;'>Grönmarkerade fält = rätt svar</span>"+"<br>"+"<span style='color: red;'>Rödmarkerade fält = fel svar</span>";
+         var gr = <%=this.gr%>;
+       
+        if (gr < 2)
+         {
+            var grade = "Godkänd";
+
+        }
+        else{
+            var grade ="Icke godkänd";
+        }
+         document.getElementById("LabelTimer").innerHTML = "Poäng:"+tpoints+" Betyg: "+grade+"<br><br>"+"<span style='color: green;'>Grönmarkerade fält = rätt svar</span>"+"<br>"+"<span style='color: red;'>Rödmarkerade fält = fel svar</span>";
      }
      
     </script>

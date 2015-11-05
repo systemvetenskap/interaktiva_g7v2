@@ -29,7 +29,7 @@ namespace WebApplication1
         CheckBox checkbox1, checkbox2, checkbox3, checkbox4;
         public int timerVar = 1;
         public string tpoints;
-        public string grade;
+        public int gr;
         public string pPoints;
         public string ecPoints;
         public string ethPoints;
@@ -45,7 +45,7 @@ namespace WebApplication1
 
             timerVar = 1;
             tpoints = "na";
-            grade = "na";
+            gr = 0;
             right.LoadXml("<test></test>");
             wrong.LoadXml("<test></test>");
             //Laddar in vårat xmldokument i xmldoc
@@ -108,12 +108,12 @@ namespace WebApplication1
                          tpoints = s;
 
                     }
-                    //if (ViewState["grade"] != null)
-                    //{
-                    //    string a = (string)ViewState["grade"];
-                    //    grade = a;
+                if (ViewState["grade"] != null)
+                {
+                    int a = (int)ViewState["grade"];
+                    gr = a;
 
-                    //}
+                }
 
 
 
@@ -130,7 +130,7 @@ namespace WebApplication1
         protected void Page_PreRender(object sender, EventArgs e)
         {
             ViewState.Add("points", tpoints);
-            ViewState.Add("grade", grade);
+            ViewState.Add("grade", gr);
 
         }
         protected void btnSubmint_Click(object sender, EventArgs e)
@@ -588,17 +588,34 @@ namespace WebApplication1
             total += eco;
             total += eth;
             tpoints = total.ToString();
-
+            string gradestring = "";
             if (total/25 >= 0.70)
             {
-                grade = total.ToString();
+                gr = 1;
+                gradestring = "Godkänd";
             }
             else
             {
-                grade = total.ToString();
+                gr = 2;
+                gradestring = "Icke Godkänd";
             }
-            string sql = "insert into license_test(name, user_id, grade points, date) values(@tname, @user, @grd, @pts, @dt)";
-            NpgsqlCommand cmd = new NpgsqlCommand();
+            string tn = "Licenseringstest";
+            int ln = 1;
+            DateTime date = DateTime.Today;
+            string sql = "insert into license_test(name, user_id, grade, points, date) values(:tname, :user, :grd, :pts, :dt)";
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.Add(new NpgsqlParameter("tname", tn));
+            cmd.Parameters.Add(new NpgsqlParameter("user", ln));
+            cmd.Parameters.Add(new NpgsqlParameter("grd", gradestring));
+            cmd.Parameters.Add(new NpgsqlParameter("pts", total));
+            cmd.Parameters.Add(new NpgsqlParameter("dt", date));
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
+
+
+           
 
                
 
