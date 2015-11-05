@@ -27,7 +27,29 @@ namespace WebApplication1
             GridViewMyTests.DataSource = null;
             try
             {
-                string sql = "select * from users";
+                string sql = @" SELECT t.name, t.grade, t.points, t.date, u.first_name, u.last_name, u.licensed, l.firstname, l.lastname
+                                FROM users u
+
+                                FULL JOIN license_test t
+                                ON u.userid = t.user_id 
+
+                                FULL JOIN leader l
+                                ON l.leader_id = u.leader_id 
+
+                                WHERE t.date = (SELECT t.date
+                                                 FROM license_test t
+                                                 WHERE u.userid = t.user_id           
+                                                 ORDER BY t.date DESC
+                                                 LIMIT 1)
+                               OR u.userid NOT IN (SELECT u.userid
+                                                   FROM users u
+                                                   FULL JOIN license_test t
+                                                   ON u.userid = t.user_id 
+                                                   WHERE t.date = (SELECT t.date
+                                                   FROM license_test t
+                                                   WHERE u.userid = t.user_id           
+                                                   ORDER BY t.date DESC
+                                                   LIMIT 1));";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
 
                 conn.Open();
@@ -35,9 +57,6 @@ namespace WebApplication1
                 da.Fill(dt);
                 GridViewMyTests.DataSource = dt;
                 GridViewMyTests.DataBind();
-                //GridViewMyTests.Columns[1].HeaderText = "userid";
-                //GridViewMyTests.Columns[2].HeaderText = "first_name";
-                //GridViewMyTests.Columns[3].HeaderText = "last_name";
             }
             catch (Exception e)
             {

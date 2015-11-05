@@ -24,8 +24,20 @@
             </ul> 
         </div>
             <!-- Navigation -->
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-            <asp:GridView ID="GridViewMyTests" runat="server"></asp:GridView>
+            <asp:GridView ID="GridViewMyTests" runat="server" AutoGenerateColumns="false">
+                <Columns>
+                    <asp:BoundField DataField="first_name" HeaderText="Namn" />
+                    <asp:BoundField DataField="last_name" HeaderText="Efternamn" />
+                    <asp:BoundField DataField="licensed" HeaderText="Licens" />
+                    <asp:BoundField DataField="name" HeaderText="Test namn" />
+                    <asp:BoundField DataField="grade" HeaderText="Betyg" />
+                    <asp:BoundField DataField="points" HeaderText="Poäng" />
+                    <asp:BoundField DataField="date" HeaderText="Datum" />
+                    <asp:BoundField DataField="firstname" HeaderText="Ledarens namn" />
+                    <asp:BoundField DataField="lastname" HeaderText="Ledarens efternamn" />
+                </Columns>
+                
+            </asp:GridView>
 
         <!-- Footer -->
         <div class="footer">
