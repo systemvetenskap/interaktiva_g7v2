@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Home</title>
-    <link href="stilmall.css" type="text/css" rel="stylesheet" /> 
+    <link href="/stilmall.css" type="text/css" rel="stylesheet" /> 
     <%--<script src="javascript.js"></script> --%>
 
 </head>
@@ -22,9 +22,8 @@
         <div class="nav">
             <ul class="clear">
                 <li><a class="home" href = "index.aspx">Start</a></li>
-                <li><a style="background-color:#eb9b00" class="home" href = "LicenseTest.aspx">Licensieringstest</a></li>
-                <li><a class="home" href = "UpdateTest.aspx">Kunskapsupdatering</a></li>
-                <li><a class="home" href = "TestResults.aspx">Provresultat</a></li>
+                <li><a class="home" href = "Employe/LicenseTest.aspx">Licensieringstest</a></li>
+                <li><a class="home" href = "Employe/UpdateTest.aspx">Kunskapsupdatering</a></li>
             </ul> 
         </div>
     

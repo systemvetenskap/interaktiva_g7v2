@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestResults.aspx.cs" Inherits="WebApplication1.TestResults" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="WebApplication1.index" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -19,17 +19,15 @@
         <div class="nav">
             <ul class="clear">
                 <li><a class="home" href = "index.aspx">Start</a></li>
-                <li><a class="home" href = "LicenseTest.aspx">Licensieringstest</a></li>
-                <li><a class="home" href = "UpdateTest.aspx">Kunskapsupdatering</a></li>
-                <li><a style="background-color:#eb9b00" class="home" href = "TestResults.aspx">Provresultat</a></li>
             </ul> 
         </div>
         <!-- Questions -->
-<%--        <div class="questionbox">
 
-        &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
-            <asp:Button class="btnsub" ID="btn1" text="Lämna in" runat="server" OnClick="btn1_Click" />      
-        </div>--%>
+        <div class="loginbox" id="loginbox">
+            <h3>Ange användarnamn och lösenord för att logga in</h3>
+            <asp:Login ID="Login1" runat="server"></asp:Login>
+            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="Login1" />
+        </div>
         <!-- Footer -->
         <div class="footer">
         </div>

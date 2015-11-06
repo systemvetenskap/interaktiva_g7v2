@@ -21,20 +21,20 @@ namespace WebApplication1
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            LabelStatusLogin.Visible = false;
+            //LabelStatusLogin.Visible = false;
         }
         protected void btn1_Click(object sender, EventArgs e)
         {
-            string username = textboxusername.Text;
-            string password = textboxpassword.Text;
+            //string username = textboxusername.Text;
+            //string password = textboxpassword.Text;
 
             try
             {
                 conn.Open();
                 NpgsqlCommand command = new NpgsqlCommand(@"select first_name, last_name, licensed, username, password, auth 
                                                             from USERS where username = @username and password = @password;", conn);
-                command.Parameters.AddWithValue("@username", username);
-                command.Parameters.AddWithValue("@password", password);
+                //command.Parameters.AddWithValue("@username", username);
+                //command.Parameters.AddWithValue("@password", password);
 
                 NpgsqlDataReader read;
                 read = command.ExecuteReader();
@@ -45,16 +45,16 @@ namespace WebApplication1
                 auth = read[5].ToString();
 
                 conn.Close();
-                LabelStatusLogin.Visible = true;
-                LabelStatusLogin.ForeColor = System.Drawing.Color.Green;
-                LabelStatusLogin.Text = "Du är nu inloggad som " +fname+" "+lname;
+                //LabelStatusLogin.Visible = true;
+                //LabelStatusLogin.ForeColor = System.Drawing.Color.Green;
+                //LabelStatusLogin.Text = "Du är nu inloggad som " +fname+" "+lname;
                 return;
             }
             catch (InvalidOperationException)
             {
-                LabelStatusLogin.Visible = true;
-                LabelStatusLogin.ForeColor = System.Drawing.Color.Red;
-                LabelStatusLogin.Text = "Felaktigt användarnamn eller lösenord";
+                //LabelStatusLogin.Visible = true;
+                //LabelStatusLogin.ForeColor = System.Drawing.Color.Red;
+                //LabelStatusLogin.Text = "Felaktigt användarnamn eller lösenord";
                 return;
             }
             finally

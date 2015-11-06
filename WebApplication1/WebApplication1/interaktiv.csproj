@@ -84,11 +84,11 @@
     <Content Include="Images\ladygaga.png" />
     <Content Include="Images\sicksmiley.png" />
     <Content Include="Images\tyrion.png" />
-    <Content Include="index.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="JavaScript.js" />
     <Content Include="packages.config" />
-    <Content Include="TestResults.aspx" />
-    <Content Include="UpdateTest.aspx" />
+    <Content Include="Testleader\TestResults.aspx" />
+    <Content Include="Employe\UpdateTest.aspx" />
     <Content Include="XmlUpdateTest.xml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -98,7 +98,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LicenseTest.aspx" />
+    <Content Include="Employe\LicenseTest.aspx" />
     <Content Include="stilmall.css" />
     <Content Include="usertest.xml" />
     <Content Include="Web.config" />
@@ -107,36 +107,37 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="index.aspx.designer.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LicenseTest.aspx.cs">
+    <Compile Include="Employe\LicenseTest.aspx.cs">
       <DependentUpon>LicenseTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LicenseTest.aspx.designer.cs">
+    <Compile Include="Employe\LicenseTest.aspx.designer.cs">
       <DependentUpon>LicenseTest.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TestResults.aspx.cs">
+    <Compile Include="Testleader\TestResults.aspx.cs">
       <DependentUpon>TestResults.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TestResults.aspx.designer.cs">
+    <Compile Include="Testleader\TestResults.aspx.designer.cs">
       <DependentUpon>TestResults.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UpdateTest.aspx.cs">
+    <Compile Include="Employe\UpdateTest.aspx.cs">
       <DependentUpon>UpdateTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UpdateTest.aspx.designer.cs">
+    <Compile Include="Employe\UpdateTest.aspx.designer.cs">
       <DependentUpon>UpdateTest.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
