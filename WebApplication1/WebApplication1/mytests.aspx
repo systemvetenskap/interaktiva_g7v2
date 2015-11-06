@@ -24,9 +24,11 @@
             </ul> 
         </div>
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
             
             <!-- Navigation -->
             <asp:DropDownList ID="DropDownListGrade" runat="server">
+                <asp:ListItem Value="Inga betyg">Inga betyg</asp:ListItem>
                 <asp:ListItem Value="Alla">Alla</asp:ListItem>
                 <asp:ListItem Value="Godkänd">Godkänd</asp:ListItem>
                 <asp:ListItem Value="Icke godkänd">Icke godkänd</asp:ListItem>
@@ -36,6 +38,9 @@
                 <asp:ListItem Value="Alla">Alla</asp:ListItem>
                 <asp:ListItem Value="Licensed">Licensed</asp:ListItem>
                 <asp:ListItem Value="Icke licensed">Icke licensed</asp:ListItem>
+            </asp:DropDownList>
+
+             <asp:DropDownList ID="DropDownListLeader" runat="server" DataTextField="Desc" DataValueField="leader_id">
             </asp:DropDownList>
 
            
