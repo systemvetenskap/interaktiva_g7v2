@@ -23,7 +23,17 @@
                 <li><a class="home" href = "index.html">Home</a></li>
             </ul> 
         </div>
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            
             <!-- Navigation -->
+            <asp:DropDownList ID="DropDownListGrade" runat="server">
+                <asp:ListItem Value="Alla">Alla</asp:ListItem>
+                <asp:ListItem Value="Godkänd">Godkänd</asp:ListItem>
+                <asp:ListItem Value="Icke godkänd">Icke godkänd</asp:ListItem>
+            </asp:DropDownList>
+
+            <asp:Button ID="ButtonSearchTest" Text="Search" OnServerClick="ListShows" Width="93px"  runat="server" />
+
             <asp:GridView ID="GridViewMyTests" runat="server" AutoGenerateColumns="false">
                 <Columns>
                     <asp:BoundField DataField="first_name" HeaderText="Namn" />

@@ -17,56 +17,47 @@ namespace WebApplication1
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            ListShows();
+            ButtonSearchTest.Click += new EventHandler(this.ListShows_Click);
+            DropDownListGrade.SelectedValue = "Godkänd";
+            //ListShows_Click(ButtonSearchTest.Click(EventArgs.Empty);
+
         }
 
-        public void ListShows()
+        void ListShows_Click(Object sender, EventArgs e)
         {
+            string dropdownGrade = "AND t.grade =  '" + DropDownListGrade.SelectedValue + "'";
+            Label1.Text = dropdownGrade;
+
+            if (DropDownListGrade.SelectedValue == "Alla")
+            {
+                dropdownGrade = "";
+            }
+                Label1.Text = dropdownGrade;
+
             NpgsqlDataAdapter da;
             DataTable dt = new DataTable();
             GridViewMyTests.DataSource = null;
-            try
-            {
-                string sql = @" SELECT t.name, t.grade, t.points, t.date, u.first_name, u.last_name, u.licensed, l.firstname, l.lastname
+
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand(@" SELECT t.name, t.grade, t.points, t.date, u.first_name, u.last_name, u.licensed, l.firstname, l.lastname
                                 FROM users u
 
                                 FULL JOIN license_test t
                                 ON u.userid = t.user_id 
 
                                 FULL JOIN leader l
-                                ON l.leader_id = u.leader_id 
+                                ON l.leader_id = u.leader_id   WHERE t.date = (SELECT t.date FROM license_test t WHERE u.userid = t.user_id  ORDER BY t.date DESC LIMIT 1) OR u.userid NOT IN (SELECT u.userid FROM users u FULL JOIN license_test t ON u.userid = t.user_id WHERE t.date = (SELECT t.date FROM license_test t WHERE u.userid = t.user_id  ORDER BY t.date DESC LIMIT 1));", conn);
 
-                                WHERE t.date = (SELECT t.date
-                                                 FROM license_test t
-                                                 WHERE u.userid = t.user_id           
-                                                 ORDER BY t.date DESC
-                                                 LIMIT 1)
-                               OR u.userid NOT IN (SELECT u.userid
-                                                   FROM users u
-                                                   FULL JOIN license_test t
-                                                   ON u.userid = t.user_id 
-                                                   WHERE t.date = (SELECT t.date
-                                                   FROM license_test t
-                                                   WHERE u.userid = t.user_id           
-                                                   ORDER BY t.date DESC
-                                                   LIMIT 1));";
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-
-                conn.Open();
-                da = new NpgsqlDataAdapter(sql, conn);
-                da.Fill(dt);
-                GridViewMyTests.DataSource = dt;
-                GridViewMyTests.DataBind();
-            }
-            catch (Exception e)
-            {
-
-                Response.Write(e.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
+                
+            da = new NpgsqlDataAdapter(cmd);
+            da.Fill(dt);
+            GridViewMyTests.DataSource = dt;
+            GridViewMyTests.DataBind();
+            
+            conn.Close();
+            
         }
+
+        
     }
 }
