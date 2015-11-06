@@ -18,7 +18,7 @@
         <!-- Navigation -->
         <div class="nav">
             <ul class="clear">
-                <li><a class="home" href = "index.aspx">Start</a></li>
+
             </ul> 
         </div>
         <!-- Questions -->

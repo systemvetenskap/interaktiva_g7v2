@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UpdateTest.aspx.cs" Inherits="WebApplication1.UpdateTest" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Employee.aspx.cs" Inherits="WebApplication1.quest" %>
 
 <!DOCTYPE html>
 
@@ -21,13 +21,20 @@
         <!-- Navigation -->
         <div class="nav">
             <ul class="clear">
-                <li><a class="home" href = "index.aspx">Start</a></li>
-                <li><a class="home" href = "Employe/LicenseTest.aspx">Licensieringstest</a></li>
-                <li><a class="home" href = "Employe/UpdateTest.aspx">Kunskapsupdatering</a></li>
+                <li><a class="home" href = "/Employee/Employee.aspx">Mina prov</a></li>
+                <li><a class="home" href = "Testleader/TestResults.aspx">Provresultat</a></li>
             </ul> 
         </div>
     
         <!-- Questions -->
+            <div id="mytests" class="mytests">
+                <asp:Label ID="LabelLicensetest" runat="server" Text="Licensieringstest: "></asp:Label>
+                <br /> <br />
+                <asp:Label ID="LabelUpdatetest" runat="server" Text="Årlig Kunskapsupdatering: "></asp:Label><br/><br />
+                <asp:Button ID="btnLicenseTest" runat="server" Text="Starta Licensieringstestet" />
+                &nbsp;<asp:Button ID="btnUpdateTest" runat="server" Text="Starta Kunskapsupdatering" />
+                </div>
+
         <div id="timerbox">
         <asp:Label id="LabelTimer" runat="server" value="Tid kvar:"></asp:Label>
         <span id="timer"></span>
@@ -80,8 +87,17 @@
      }
      function result() {
          var tpoints = <%=this.tpoints%>;
-         var gr = <%=this.grade%>;
-         document.getElementById("LabelTimer").innerHTML = "Poäng:"+tpoints+" Betyg: "+gr+" "+"<br><br>"+"Grönmarkerade fält = rätt svar"+"<br>"+" Rödmarkerade fält = fel svar";
+         var gr = <%=this.gr%>;
+       
+        if (gr < 2)
+         {
+            var grade = "Godkänd";
+
+        }
+        else{
+            var grade ="Icke godkänd";
+        }
+         document.getElementById("LabelTimer").innerHTML = "Poäng:"+tpoints+" Betyg: "+grade+"<br><br>"+"<span style='color: green;'>Grönmarkerade fält = rätt svar</span>"+"<br>"+"<span style='color: red;'>Rödmarkerade fält = fel svar</span>";
      }
      
     </script>

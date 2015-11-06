@@ -87,8 +87,7 @@
     <Content Include="Login.aspx" />
     <Content Include="JavaScript.js" />
     <Content Include="packages.config" />
-    <Content Include="Testleader\TestResults.aspx" />
-    <Content Include="Employe\UpdateTest.aspx" />
+    <Content Include="TestLeader\TestLeader.aspx" />
     <Content Include="XmlUpdateTest.xml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -98,7 +97,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Employe\LicenseTest.aspx" />
+    <Content Include="Employee\Employee.aspx" />
     <Content Include="stilmall.css" />
     <Content Include="usertest.xml" />
     <Content Include="Web.config" />
@@ -115,26 +114,19 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Employe\LicenseTest.aspx.cs">
-      <DependentUpon>LicenseTest.aspx</DependentUpon>
+    <Compile Include="Employee\Employee.aspx.cs">
+      <DependentUpon>Employee.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Employe\LicenseTest.aspx.designer.cs">
-      <DependentUpon>LicenseTest.aspx</DependentUpon>
+    <Compile Include="Employee\Employee.aspx.designer.cs">
+      <DependentUpon>Employee.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Testleader\TestResults.aspx.cs">
-      <DependentUpon>TestResults.aspx</DependentUpon>
+    <Compile Include="TestLeader\TestLeader.aspx.cs">
+      <DependentUpon>TestLeader.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Testleader\TestResults.aspx.designer.cs">
-      <DependentUpon>TestResults.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Employe\UpdateTest.aspx.cs">
-      <DependentUpon>UpdateTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Employe\UpdateTest.aspx.designer.cs">
-      <DependentUpon>UpdateTest.aspx</DependentUpon>
+    <Compile Include="TestLeader\TestLeader.aspx.designer.cs">
+      <DependentUpon>TestLeader.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

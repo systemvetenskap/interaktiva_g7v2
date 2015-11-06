@@ -70,6 +70,13 @@ div.questionbox{
     margin: 5% 3% 5% 3%;
     background-color:white;
 }
+
+div.mytests{
+    width:400px;
+    margin: 50px auto;
+    padding: 10px 10px 10px 10px
+}
+
 table.tbl {
      border-spacing: 1px;
 }
