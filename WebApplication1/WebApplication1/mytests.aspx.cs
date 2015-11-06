@@ -18,37 +18,69 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         {
             ButtonSearchTest.Click += new EventHandler(this.ListShows_Click);
-            DropDownListGrade.SelectedValue = "Godkänd";
+            //DropDownListGrade.SelectedValue = "Godkänd";
             //ListShows_Click(ButtonSearchTest.Click(EventArgs.Empty);
 
         }
 
         void ListShows_Click(Object sender, EventArgs e)
         {
-            string dropdownGrade = "AND t.grade =  '" + DropDownListGrade.SelectedValue + "'";
-            Label1.Text = dropdownGrade;
+            //string dropdownGrade = "AND t.grade =  '" + DropDownListGrade.SelectedValue + "'";
+            string dropdownGrade = null,
+                   dropdownLicens = "";
+            
 
-            if (DropDownListGrade.SelectedValue == "Alla")
+            if (DropDownListGrade.SelectedValue == "Godkänd")
             {
-                dropdownGrade = "";
+                dropdownGrade = "Godkänd";
             }
-                Label1.Text = dropdownGrade;
+
+            else if (DropDownListGrade.SelectedValue == "Icke godkänd")
+            {
+                dropdownGrade = "Icke Godkänd";
+            }
+
+            else if (DropDownListGrade.SelectedValue == "Alla")
+            {
+                dropdownGrade = "NotNull";
+            }
+
+            if (DropDownListLicensed.SelectedValue == "Alla")
+            {
+                dropdownLicens = "Licensed AND licensed = 'Icke licensed'";
+            }
+
+            else if (DropDownListLicensed.SelectedValue == "Licensed")
+            {
+                dropdownLicens = "Licensed";
+            }
+
+            else if (DropDownListLicensed.SelectedValue == "Icke licensed")
+            {
+                dropdownLicens = "Icke licensed";
+            }
+
+
 
             NpgsqlDataAdapter da;
             DataTable dt = new DataTable();
             GridViewMyTests.DataSource = null;
 
             conn.Open();
-            NpgsqlCommand cmd = new NpgsqlCommand(@" SELECT t.name, t.grade, t.points, t.date, u.first_name, u.last_name, u.licensed, l.firstname, l.lastname
-                                FROM users u
+            NpgsqlCommand cmd = new NpgsqlCommand(@"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname
+                                                    from license_test t
+                                                    inner join
+                                                    (
+                                                    select max(date) maxdate, user_id from license_test
+                                                    group by user_id) t2 on t.user_id = t2.user_id and t.date = t2.maxdate
+                                                    right join users u on t.user_id = u.userid
+                                                    inner join leader l on u.leader_id = l.leader_id 
+                                                    WHERE grade = @grade
+                                                    AND licensed = @licensed"
+                                                    , conn);
+            cmd.Parameters.AddWithValue("@grade", dropdownGrade);
+            cmd.Parameters.AddWithValue("@licensed", dropdownLicens);
 
-                                FULL JOIN license_test t
-                                ON u.userid = t.user_id 
-
-                                FULL JOIN leader l
-                                ON l.leader_id = u.leader_id   WHERE t.date = (SELECT t.date FROM license_test t WHERE u.userid = t.user_id  ORDER BY t.date DESC LIMIT 1) OR u.userid NOT IN (SELECT u.userid FROM users u FULL JOIN license_test t ON u.userid = t.user_id WHERE t.date = (SELECT t.date FROM license_test t WHERE u.userid = t.user_id  ORDER BY t.date DESC LIMIT 1));", conn);
-
-                
             da = new NpgsqlDataAdapter(cmd);
             da.Fill(dt);
             GridViewMyTests.DataSource = dt;

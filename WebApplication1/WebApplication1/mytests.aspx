@@ -32,6 +32,14 @@
                 <asp:ListItem Value="Icke godkänd">Icke godkänd</asp:ListItem>
             </asp:DropDownList>
 
+            <asp:DropDownList ID="DropDownListLicensed" runat="server">
+                <asp:ListItem Value="Alla">Alla</asp:ListItem>
+                <asp:ListItem Value="Licensed">Licensed</asp:ListItem>
+                <asp:ListItem Value="Icke licensed">Icke licensed</asp:ListItem>
+            </asp:DropDownList>
+
+           
+
             <asp:Button ID="ButtonSearchTest" Text="Search" OnServerClick="ListShows" Width="93px"  runat="server" />
 
             <asp:GridView ID="GridViewMyTests" runat="server" AutoGenerateColumns="false">
@@ -42,7 +50,7 @@
                     <asp:BoundField DataField="name" HeaderText="Test namn" />
                     <asp:BoundField DataField="grade" HeaderText="Betyg" />
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
-                    <asp:BoundField DataField="date" HeaderText="Datum" />
+                    <asp:BoundField DataField="maxdate" HeaderText="Datum" />
                     <asp:BoundField DataField="firstname" HeaderText="Ledarens namn" />
                     <asp:BoundField DataField="lastname" HeaderText="Ledarens efternamn" />
                 </Columns>

@@ -40,6 +40,15 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.DropDownList DropDownListGrade;
         
         /// <summary>
+        /// DropDownListLicensed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListLicensed;
+        
+        /// <summary>
         /// ButtonSearchTest control.
         /// </summary>
         /// <remarks>
