@@ -25,7 +25,8 @@
 
         <div class="loginbox" id="loginbox">
             <h3>Ange användarnamn och lösenord för att logga in</h3>
-            <asp:Login ID="Login1" runat="server"></asp:Login>
+            <asp:Login ID="Login1" runat="server" RememberMeText="Kom ihåg mig" TitleText="">
+            </asp:Login>
             <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="Login1" />
         </div>
         <!-- Footer -->
