@@ -488,6 +488,7 @@ namespace WebApplication1
                                 int id = int.Parse(lab.Attributes["id"]);
                                 checkcount = countCorrect(id);
                             }
+                      
                            
                         }
                       
@@ -701,19 +702,30 @@ namespace WebApplication1
         protected int countCorrect(int i)
         {
             int count= 0;
-            XmlNodeList lst = xmldoc2.SelectNodes("/categories/question[@id='1']/answer/");
-            foreach(XmlNode node in lst)
+            xmldoc2.Load(Server.MapPath("usertest.xml"));
+
+            
+
+            for (int z = 1; z < 5; z++)
             {
+                XmlNode node = xmldoc2.SelectSingleNode("/categories/question[@id='"+i+"']/answer/answer[@id = '" + z + "']");
                 string attributeID = node.Attributes["correct"].Value;
-                if(attributeID == "correct")
+                if(attributeID == "true")
                 {
                     count++;
                 }
             }
+
+
+
+            return count;
+     
        
           
-            return count;
+            
         }
+
+
     }
 
 }
