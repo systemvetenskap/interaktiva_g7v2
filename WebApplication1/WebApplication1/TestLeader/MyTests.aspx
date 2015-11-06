@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Employee.aspx.cs" Inherits="WebApplication1.quest" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MyTests.aspx.cs" Inherits="WebApplication1.TestResults" %>
 
 <!DOCTYPE html>
 
@@ -21,8 +21,9 @@
         <!-- Navigation -->
         <div class="nav">
             <ul class="clear">
-                <li><a class="home" href = "/Employee/Employee.aspx">Mina prov</a></li>
-                <li><a class="home" href = "Testleader/TestResults.aspx">Provresultat</a></li>
+                <li><a class="home" href = "/TestLeader/MyTests.aspx">Mina prov</a></li>
+                <li><a class="home" href = "/TestLeader/TestResults.aspx">Provresultat</a></li>
+
             </ul> 
         </div>
     

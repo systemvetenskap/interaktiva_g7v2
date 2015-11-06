@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1 {
+namespace WebApplication1.TestLeader {
     
     
-    public partial class TestResults {
+    public partial class TestLeaderMyTests {
         
         /// <summary>
         /// form1 control.
