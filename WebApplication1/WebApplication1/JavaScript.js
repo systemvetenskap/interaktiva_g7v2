@@ -19,7 +19,7 @@
 //            //Kod här när tiden är slut
 //            return;
 //        }
-//        document.getElementById("timer").innerHTML = minutes + " minuter " + seconds + " sekunder";
+//        document.getElementById("timer").innerHTML = minutes + " minuter " + seconds + " sekunder";§
 //    }
 
 
