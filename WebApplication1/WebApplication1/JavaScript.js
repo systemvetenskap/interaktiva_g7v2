@@ -3,7 +3,7 @@
 //{
 //    function timer() {
 //        var minutes = 30;
-//        var seconds = 00;
+//        var seconds = 00;ss
 //        var counter = setInterval(timer, 1000) //körs varje sekund
 
 //        seconds = seconds - 1
