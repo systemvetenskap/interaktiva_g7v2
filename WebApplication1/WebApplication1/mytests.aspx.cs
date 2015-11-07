@@ -30,11 +30,18 @@ namespace WebApplication1
 
         private void ListLeaders()
         {
-            conn.Open();
             DataTable dt = new DataTable();
-
+            DataTable ts = new DataTable();
+            dt.Columns.Add("name");
+            dt.Columns.Add("leaderid");
             NpgsqlCommand cmd = new NpgsqlCommand(@"SELECT firstname, lastname, leader_id FROM leader", conn);
 
+
+
+
+
+
+            conn.Close();
 
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
 
@@ -47,13 +54,20 @@ namespace WebApplication1
             //DropDownListLeader.DataSource = ds.Tables[0];
             //DropDownListLeader.DataBind();
             //conn.Close();
-            da.Fill(dt);
-
+            da.Fill(ts);
+            foreach (DataRow r in ts.Rows)
+            {
+                string name = r[0].ToString() + " " + r[1].ToString();
+                string leaderid = r[2].ToString();
+                DataRow row = dt.NewRow();
+                row[0] = name;
+                row[1] = leaderid;
+                dt.Rows.Add(row);
+            }
             DropDownListLeader.DataSource = dt;
+            DropDownListLeader.DataTextField = "name";
 
-            DropDownListLeader.DataTextField = "firstname";
-
-            DropDownListLeader.DataValueField = "leader_id";
+            DropDownListLeader.DataValueField = "leaderid";
 
             DropDownListLeader.DataBind();
             conn.Close();
