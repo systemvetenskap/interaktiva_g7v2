@@ -49,10 +49,10 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Security">
-      <HintPath>..\..\..\..\..\Desktop\dll\Mono.Security.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="Npgsql">
-      <HintPath>..\..\..\..\..\Desktop\dll\Npgsql.dll</HintPath>
+      <HintPath>..\..\..\cirkus7\cirkus\bin\Debug\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -72,6 +72,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Employee\mytestsite.aspx" />
     <Content Include="Images\arnold.png" />
     <Content Include="Images\background.jpg" />
     <Content Include="Images\calvin.png" />
@@ -87,7 +88,6 @@
     <Content Include="Login.aspx" />
     <Content Include="JavaScript.js" />
     <Content Include="packages.config" />
-    <Content Include="TestLeader\MyTests.aspx" />
     <Content Include="TestLeader\TestResults.aspx" />
     <Content Include="XmlUpdateTest.xml" />
     <None Include="Web.Debug.config">
@@ -98,7 +98,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Employee\MyTests.aspx" />
     <Content Include="stilmall.css" />
     <Content Include="usertest.xml" />
     <Content Include="Web.config" />
@@ -107,6 +106,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Employee\mytestsite.aspx.cs">
+      <DependentUpon>mytestsite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\mytestsite.aspx.designer.cs">
+      <DependentUpon>mytestsite.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -115,20 +121,6 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Employee\MyTests.aspx.cs">
-      <DependentUpon>MyTests.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Employee\MyTests.aspx.designer.cs">
-      <DependentUpon>MyTests.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TestLeader\MyTests.aspx.cs">
-      <DependentUpon>MyTests.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestLeader\MyTests.aspx.designer.cs">
-      <DependentUpon>MyTests.aspx</DependentUpon>
-    </Compile>
     <Compile Include="TestLeader\TestResults.aspx.cs">
       <DependentUpon>TestResults.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
