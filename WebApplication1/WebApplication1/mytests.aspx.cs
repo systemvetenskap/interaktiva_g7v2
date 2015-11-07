@@ -17,18 +17,16 @@ namespace WebApplication1
         NpgsqlDataAdapter da;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            ListLeaders();
+            if(!IsPostBack)
+            {
+                ListLeaders();
+            }
             ButtonSearchTest.Click += new EventHandler(this.ListShows_Click);
             //DropDownListGrade.SelectedValue = "Godkänd";
             //ListShows_Click(ButtonSearchTest.Click(EventArgs.Empty);
 
         }
-
-        private void a()
-        {
-            Label1.Text = DropDownListLeader.SelectedValue;
-        }
+        
 
         private void ListLeaders()
         {
@@ -40,13 +38,23 @@ namespace WebApplication1
 
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
 
-            DataSet ds = new DataSet();
-            da.Fill(ds);
+            //DataSet ds = new DataSet();
+            //da.Fill(ds);
 
-            DropDownListLeader.DataTextField = ds.Tables[0].Columns["firstname"].ToString();
-            DropDownListLeader.DataValueField = ds.Tables[0].Columns["leader_id"].ToString();
+            //DropDownListLeader.DataTextField = ds.Tables[0].Columns["firstname"].ToString();
+            //DropDownListLeader.DataValueField = ds.Tables[0].Columns["leader_id"].ToString();
 
-            DropDownListLeader.DataSource = ds.Tables[0];
+            //DropDownListLeader.DataSource = ds.Tables[0];
+            //DropDownListLeader.DataBind();
+            //conn.Close();
+            da.Fill(dt);
+
+            DropDownListLeader.DataSource = dt;
+
+            DropDownListLeader.DataTextField = "firstname";
+
+            DropDownListLeader.DataValueField = "leader_id";
+
             DropDownListLeader.DataBind();
             conn.Close();
 
