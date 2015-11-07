@@ -36,6 +36,7 @@ namespace WebApplication1
         int prod = 0;
         int eco = 0;
         int eth = 0;
+        int integer = 0;
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
