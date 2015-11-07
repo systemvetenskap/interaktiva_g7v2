@@ -70,7 +70,18 @@ namespace WebApplication1
 
         void ListShows_Click(Object sender, EventArgs e)
         {
-            
+
+            string sql = @"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname
+                                                       from license_test t
+                                                       inner join
+                                                       (
+                                                       select max(date) maxdate, user_id from license_test
+                                                       group by user_id) t2 on t.user_id = t2.user_id and t.date = t2.maxdate
+                                                       right join users u on t.user_id = u.userid
+                                                       inner join leader l on u.leader_id = l.leader_id 
+                                                       WHERE (grade = @grade OR grade = @grade2)
+                                                       AND (licensed = @licensed OR licensed = @licensed2)";
+
             Label1.Text = DropDownListLeader.SelectedValue;
 
             if (DropDownListGrade.SelectedValue != "Inga betyg")
@@ -83,7 +94,7 @@ namespace WebApplication1
                        dropdownLicens2 = "Icke licensed",
                        dropdownLeader = DropDownListLeader.SelectedValue;
 
-
+     
                 if (DropDownListGrade.SelectedValue == "Godkänd")
                 {
                     dropdownGrade = "Godkänd";
@@ -110,25 +121,19 @@ namespace WebApplication1
                     dropdownLicens2 = "Icke licensed";
                 }
 
-                
+                if (DropDownListLeader.SelectedIndex > 0)
+                {
+                    string id = DropDownListLeader.SelectedValue;
+                    string addSql = "and l.leader_id ='" + id + "'";
+                    sql += addSql;
+
+                }
 
                 DataTable dt = new DataTable();
                 GridViewMyTests.DataSource = null;
 
                 conn.Open();
-                NpgsqlCommand cmd = new NpgsqlCommand(@"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname
-                                                       from license_test t
-                                                       inner join
-                                                       (
-                                                       select max(date) maxdate, user_id from license_test
-                                                       group by user_id) t2 on t.user_id = t2.user_id and t.date = t2.maxdate
-                                                       right join users u on t.user_id = u.userid
-                                                       inner join leader l on u.leader_id = l.leader_id 
-                                                       WHERE (grade = @grade OR grade = @grade2)
-                                                       AND (licensed = @licensed OR licensed = @licensed2)
-                                                       and (l.leader_id = 1 OR l.leader_id  NotNull)
-                                                       )
-                                                       ", conn);
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@grade", dropdownGrade);
                 cmd.Parameters.AddWithValue("@grade2", dropdownGrade2);
                 cmd.Parameters.AddWithValue("@licensed", dropdownLicens);
@@ -142,11 +147,22 @@ namespace WebApplication1
                 GridViewMyTests.DataBind();
 
                 conn.Close();
+                conn.Close();
             }
 
 
             else
             {
+                string sql2 = @"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname
+                                                       from license_test t
+                                                       inner join
+                                                       (
+                                                       select max(date) maxdate, user_id from license_test
+                                                       group by user_id) t2 on t.user_id = t2.user_id and t.date = t2.maxdate
+                                                       right join users u on t.user_id = u.userid
+                                                       inner join leader l on u.leader_id = l.leader_id 
+                                                       Where (licensed = @licensed OR licensed = @licensed2)
+                                                       ";
                 //string dropdownGrade = "AND t.grade =  '" + DropDownListGrade.SelectedValue + "'";
                 string
                        dropdownLicens = "Licensed",
@@ -165,23 +181,19 @@ namespace WebApplication1
                 }
 
 
+                if (DropDownListLeader.SelectedIndex > 0)
+                {
+                    string id = DropDownListLeader.SelectedValue;
+                    string addSql = "and l.leader_id ='" + id + "'";
+                    sql2 += addSql;
 
+                }
                 NpgsqlDataAdapter da;
                 DataTable dt = new DataTable();
                 GridViewMyTests.DataSource = null;
 
                 conn.Open();
-                NpgsqlCommand cmd = new NpgsqlCommand(@"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname
-                                                       from license_test t
-                                                       inner join
-                                                       (
-                                                       select max(date) maxdate, user_id from license_test
-                                                       group by user_id) t2 on t.user_id = t2.user_id and t.date = t2.maxdate
-                                                       right join users u on t.user_id = u.userid
-                                                       inner join leader l on u.leader_id = l.leader_id 
-                                                       Where (licensed = @licensed OR licensed = @licensed2)
-                                                       "
-                                                        , conn);
+                NpgsqlCommand cmd = new NpgsqlCommand(sql2 , conn);
 
                 cmd.Parameters.AddWithValue("@licensed", dropdownLicens);
                 cmd.Parameters.AddWithValue("@licensed2", dropdownLicens2);
