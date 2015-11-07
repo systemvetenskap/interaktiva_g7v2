@@ -32,34 +32,27 @@ namespace WebApplication1
         {
             DataTable dt = new DataTable();
             DataTable ts = new DataTable();
+
+            
+
             dt.Columns.Add("name");
             dt.Columns.Add("leaderid");
+            DataRow row = dt.NewRow();
+            row[0] = "Alla";
+            row[1] = DBNull.Value;
+            dt.Rows.Add(row);
+
             NpgsqlCommand cmd = new NpgsqlCommand(@"SELECT firstname, lastname, leader_id FROM leader", conn);
-
-
-
-
-
-
+            
             conn.Close();
 
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
-
-            //DataSet ds = new DataSet();
-            //da.Fill(ds);
-
-            //DropDownListLeader.DataTextField = ds.Tables[0].Columns["firstname"].ToString();
-            //DropDownListLeader.DataValueField = ds.Tables[0].Columns["leader_id"].ToString();
-
-            //DropDownListLeader.DataSource = ds.Tables[0];
-            //DropDownListLeader.DataBind();
-            //conn.Close();
             da.Fill(ts);
             foreach (DataRow r in ts.Rows)
             {
                 string name = r[0].ToString() + " " + r[1].ToString();
                 string leaderid = r[2].ToString();
-                DataRow row = dt.NewRow();
+                row = dt.NewRow();
                 row[0] = name;
                 row[1] = leaderid;
                 dt.Rows.Add(row);
@@ -77,7 +70,9 @@ namespace WebApplication1
 
         void ListShows_Click(Object sender, EventArgs e)
         {
+            
             Label1.Text = DropDownListLeader.SelectedValue;
+
             if (DropDownListGrade.SelectedValue != "Inga betyg")
             {
 
@@ -85,7 +80,8 @@ namespace WebApplication1
                 string dropdownGrade = "Godkänd",
                        dropdownGrade2 = "Icke Godkänd",
                        dropdownLicens = "Licensed",
-                       dropdownLicens2 = "Icke licensed";
+                       dropdownLicens2 = "Icke licensed",
+                       dropdownLeader = DropDownListLeader.SelectedValue;
 
 
                 if (DropDownListGrade.SelectedValue == "Godkänd")
@@ -114,6 +110,7 @@ namespace WebApplication1
                     dropdownLicens2 = "Icke licensed";
                 }
 
+                
 
                 DataTable dt = new DataTable();
                 GridViewMyTests.DataSource = null;
@@ -129,11 +126,15 @@ namespace WebApplication1
                                                        inner join leader l on u.leader_id = l.leader_id 
                                                        WHERE (grade = @grade OR grade = @grade2)
                                                        AND (licensed = @licensed OR licensed = @licensed2)
+                                                       and (l.leader_id = 1 OR l.leader_id  NotNull)
+                                                       )
                                                        ", conn);
                 cmd.Parameters.AddWithValue("@grade", dropdownGrade);
                 cmd.Parameters.AddWithValue("@grade2", dropdownGrade2);
                 cmd.Parameters.AddWithValue("@licensed", dropdownLicens);
                 cmd.Parameters.AddWithValue("@licensed2", dropdownLicens2);
+                //cmd.Parameters.AddWithValue("@leader", dropdownLicens2);
+                //cmd.Parameters.AddWithValue("@leader2", dropdownLicens2);
 
                 da = new NpgsqlDataAdapter(cmd);
                 da.Fill(dt);

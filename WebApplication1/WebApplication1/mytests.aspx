@@ -41,6 +41,7 @@
             </asp:DropDownList>
 
              <asp:DropDownList ID="DropDownListLeader" runat="server" DataTextField="Desc" DataValueField="leader_id">
+                 <asp:ListItem Value="Alla">Alla</asp:ListItem>
             </asp:DropDownList>
 
            
