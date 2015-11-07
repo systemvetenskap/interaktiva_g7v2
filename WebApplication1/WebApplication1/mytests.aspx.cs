@@ -14,7 +14,7 @@ namespace WebApplication1
     public partial class mytests : System.Web.UI.Page
     {
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
-        NpgsqlDataAdapter da;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -130,6 +130,7 @@ namespace WebApplication1
                 }
 
                 DataTable dt = new DataTable();
+                DataTable dt2 = new DataTable();
                 GridViewMyTests.DataSource = null;
 
                 conn.Open();
@@ -138,15 +139,45 @@ namespace WebApplication1
                 cmd.Parameters.AddWithValue("@grade2", dropdownGrade2);
                 cmd.Parameters.AddWithValue("@licensed", dropdownLicens);
                 cmd.Parameters.AddWithValue("@licensed2", dropdownLicens2);
-                //cmd.Parameters.AddWithValue("@leader", dropdownLicens2);
-                //cmd.Parameters.AddWithValue("@leader2", dropdownLicens2);
+                
 
-                da = new NpgsqlDataAdapter(cmd);
-                da.Fill(dt);
+                
+
+                dt.Columns.Add("fullname");
+                dt.Columns.Add("licensed");
+                dt.Columns.Add("name");
+                dt.Columns.Add("grade");
+                dt.Columns.Add("points");
+                dt.Columns.Add("maxdate");
+                dt.Columns.Add("leader");
+
+                DataRow row = dt.NewRow();
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                da.Fill(dt2);
+                foreach (DataRow r in dt2.Rows)
+                {
+                    string fullname = r[0].ToString() + " " + r[1].ToString();
+                    string licens = r[2].ToString();
+                    string testname = r[3].ToString();
+                    string grade = r[4].ToString();
+                    string points = r[5].ToString();
+                    string date = r[6].ToString();
+                    string leader = r[7].ToString() +" " + r[8].ToString();
+                    row = dt.NewRow();
+                    row[0] = fullname;
+                    row[1] = licens;
+                    row[2] = testname;
+                    row[3] = grade;
+                    row[4] = points;
+                    row[5] = date;
+                    row[6] = leader;
+
+                    dt.Rows.Add(row);
+                }
+                
                 GridViewMyTests.DataSource = dt;
                 GridViewMyTests.DataBind();
 
-                conn.Close();
                 conn.Close();
             }
 
@@ -162,6 +193,7 @@ namespace WebApplication1
                                                        right join users u on t.user_id = u.userid
                                                        inner join leader l on u.leader_id = l.leader_id 
                                                        Where (licensed = @licensed OR licensed = @licensed2)
+                                                       AND grade isNull
                                                        ";
                 //string dropdownGrade = "AND t.grade =  '" + DropDownListGrade.SelectedValue + "'";
                 string
@@ -188,8 +220,9 @@ namespace WebApplication1
                     sql2 += addSql;
 
                 }
-                NpgsqlDataAdapter da;
+               // NpgsqlDataAdapter da;
                 DataTable dt = new DataTable();
+                DataTable dt2 = new DataTable();
                 GridViewMyTests.DataSource = null;
 
                 conn.Open();
@@ -198,8 +231,45 @@ namespace WebApplication1
                 cmd.Parameters.AddWithValue("@licensed", dropdownLicens);
                 cmd.Parameters.AddWithValue("@licensed2", dropdownLicens2);
 
-                da = new NpgsqlDataAdapter(cmd);
-                da.Fill(dt);
+                //da = new NpgsqlDataAdapter(cmd);
+                //da.Fill(dt);
+                //GridViewMyTests.DataSource = dt;
+                //GridViewMyTests.DataBind();
+
+                //conn.Close();
+
+                dt.Columns.Add("fullname");
+                dt.Columns.Add("licensed");
+                dt.Columns.Add("name");
+                dt.Columns.Add("grade");
+                dt.Columns.Add("points");
+                dt.Columns.Add("maxdate");
+                dt.Columns.Add("leader");
+
+                DataRow row = dt.NewRow();
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                da.Fill(dt2);
+                foreach (DataRow r in dt2.Rows)
+                {
+                    string fullname = r[0].ToString() + " " + r[1].ToString();
+                    string licens = r[2].ToString();
+                    string testname = r[3].ToString();
+                    string grade = r[4].ToString();
+                    string points = r[5].ToString();
+                    string date = r[6].ToString();
+                    string leader = r[7].ToString() + " " + r[8].ToString();
+                    row = dt.NewRow();
+                    row[0] = fullname;
+                    row[1] = licens;
+                    row[2] = testname;
+                    row[3] = grade;
+                    row[4] = points;
+                    row[5] = date;
+                    row[6] = leader;
+
+                    dt.Rows.Add(row);
+                }
+
                 GridViewMyTests.DataSource = dt;
                 GridViewMyTests.DataBind();
 

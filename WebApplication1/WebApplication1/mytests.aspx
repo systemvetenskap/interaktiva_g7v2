@@ -48,17 +48,15 @@
 
             <asp:Button ID="ButtonSearchTest" Text="Search" OnServerClick="ListShows" Width="93px"  runat="server" />
 
-            <asp:GridView ID="GridViewMyTests" runat="server" AutoGenerateColumns="false">
+            <asp:GridView ID="GridViewMyTests" runat="server" AutoGenerateColumns="False">
                 <Columns>
-                    <asp:BoundField DataField="first_name" HeaderText="Namn" />
-                    <asp:BoundField DataField="last_name" HeaderText="Efternamn" />
+                    <asp:BoundField DataField="fullname" HeaderText="Namn" />
                     <asp:BoundField DataField="licensed" HeaderText="Licens" />
                     <asp:BoundField DataField="name" HeaderText="Test namn" />
                     <asp:BoundField DataField="grade" HeaderText="Betyg" />
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
-                    <asp:BoundField DataField="maxdate" HeaderText="Datum" />
-                    <asp:BoundField DataField="firstname" HeaderText="Ledarens namn" />
-                    <asp:BoundField DataField="lastname" HeaderText="Ledarens efternamn" />
+                    <asp:BoundField DataField="maxdate" HeaderText="Datum" HtmlEncode="false" DataFormatString="{0:m}" />
+                    <asp:BoundField DataField="leader" HeaderText="Ledare" />
                 </Columns>
                 
             </asp:GridView>
