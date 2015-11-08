@@ -32,6 +32,19 @@
                 <asp:Button ID="btnLicenseTest" runat="server" Text="Starta Licensieringstestet" OnClick="btnLicenseTest_Click"  href = "dotest.aspx" />
                 &nbsp;<asp:Button ID="btnUpdateTest" runat="server" Text="Starta Kunskapsupdatering" OnClick="btnUpdateTest_Click"  href = "dotest.aspx" />
                 </div>
+        <div class="tests">
+             <asp:GridView ID="GridViewTests" runat="server" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="date" HeaderText="Datum" HtmlEncode="false" DataFormatString="{0:m}" />
+                    <asp:BoundField DataField="grade" HeaderText="Betyg" />
+                    <asp:BoundField DataField="points" HeaderText="Poäng" />
+                    <asp:BoundField DataField="leader" HeaderText="Ledare" />
+                </Columns>
+                
+            </asp:GridView>
+
+
+        </div>
     
     </div>
     </form>
