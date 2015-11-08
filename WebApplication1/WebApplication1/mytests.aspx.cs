@@ -21,6 +21,9 @@ namespace WebApplication1
                             inner join leader on users.leader_id = leader.leader_id
                             where users.userid = 1";
             conn.Open();
+
+            sql += "order by date desc";
+
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
             da.Fill(dt);

@@ -18,8 +18,8 @@
         <!-- Navigation -->
         <div class="nav">
             <ul class="clear">
-                <li><a class="home" href = "mytests.aspx">Mina prov</a></li>
-                <li><a class="home" href = "/TestLeader/TestResults.aspx">Provresultat</a></li>
+                <li><a class="mytestsmenu" href = "mytests.aspx">Mina prov</a></li>
+                <li><a href = "testres.aspx">Provresultat</a></li>
 
             </ul> 
         </div>
@@ -29,11 +29,12 @@
                 <asp:Label ID="LabelLicensetest" runat="server" Text="Licensieringstest: "></asp:Label>
                 <br /> <br />
                 <asp:Label ID="LabelUpdatetest" runat="server" Text="Årlig Kunskapsupdatering: "></asp:Label><br/><br />
-                <asp:Button ID="btnLicenseTest" runat="server" Text="Starta Licensieringstestet" OnClick="btnLicenseTest_Click"  href = "dotest.aspx" />
-                &nbsp;<asp:Button ID="btnUpdateTest" runat="server" Text="Starta Kunskapsupdatering" OnClick="btnUpdateTest_Click"  href = "dotest.aspx" />
+                <asp:Button ID="btnLicenseTest" runat="server" Text="Starta Licensieringstestet" OnClick="btnLicenseTest_Click"  href = "dotest.aspx" Font-Size="Large" />
+                <asp:Button ID="btnUpdateTest" runat="server" Text="Starta Kunskapsupdatering" OnClick="btnUpdateTest_Click"  href = "dotest.aspx" Font-Size="Large" />
                 </div>
+
         <div class="tests">
-             <asp:GridView ID="GridViewTests" runat="server" AutoGenerateColumns="False">
+             <asp:GridView ID="GridViewTests" class="GridViewTests GridView" runat="server" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="date" HeaderText="Datum" HtmlEncode="false" DataFormatString="{0:m}" />
                     <asp:BoundField DataField="grade" HeaderText="Betyg" />
