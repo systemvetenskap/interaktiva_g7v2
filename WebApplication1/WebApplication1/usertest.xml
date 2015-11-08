@@ -15,21 +15,35 @@
     <answer><answer id="1" correct="false">32</answer><answer id="2" correct="false">25</answer><answer id="3" correct="false">29</answer><answer id="4" correct="true">30</answer></answer><useranswer /></question>
   <question id="9" category="economy" multi="false" image="false">
     Hur gammal är Michael ?<answer><answer id="1" correct="true">31</answer><answer id="2" correct="false">23</answer><answer id="3" correct="false">27</answer><answer id="4" correct="false">29</answer></answer><useranswer /></question>
-  <question id="2" category="products" multi="false" image="true">
-    Var bor Stefan ?
-    <answer><answer id="1" correct="true">Linköping</answer><answer id="2" correct="false">Lund</answer><answer id="3" correct="false">Uppsala</answer><answer id="4" correct="false">Malmö</answer></answer><image>Images\\karta.png</image><useranswer /></question>
+  <question id="7" category="economy" multi="false" image="false">
+    Hur gammal är Henrik ?<answer><answer id="1" correct="true">25</answer><answer id="2" correct="false">24</answer><answer id="3" correct="false">27</answer><answer id="4" correct="false">32</answer></answer><useranswer /></question>
   <question id="11" category="ethics" multi="false" image="false">
     Vad är Niklas Zennström känd för ?<answer><answer id="1" correct="false">Grym fotbollsspelare</answer><answer id="2" correct="false">Han uppfann Facebook</answer><answer id="3" correct="true">Han uppfann Skype</answer><answer id="4" correct="false">Aktieägare i JE Banken</answer></answer><useranswer /></question>
-  <question id="3" category="products" multi="false" image="false">
-    Var bor Michael ?<answer><answer id="1" correct="false">Malmö</answer><answer id="2" correct="true">Lund</answer><answer id="3" correct="false">Uppsala</answer><answer id="4" correct="false">Linköping</answer></answer><image>Images\\karta.png</image><useranswer /></question>
-  <question id="5" category="products" multi="false" image="false">
-    Vad har Stefan sysselsatt sig med innan studierna ?<answer><answer id="1" correct="true">Varit fotbollsproffs</answer><answer id="2" correct="false">Jobbat på bageri</answer><answer id="3" correct="false">Varit proffsboxare</answer><answer id="4" correct="false">Rullat tummarna</answer></answer><useranswer /></question>
-  <question id="10" category="economy" multi="false" image="false">
-    Hur många är vi i gruppen ?<answer><answer id="1" correct="false">2</answer><answer id="2" correct="true">3</answer><answer id="3" correct="false">4</answer><answer id="4" correct="false">5</answer></answer><useranswer /></question>
-  <question id="4" category="products" multi="true" image="false">
-    Vad har Henrik sysselsatt sig med innan studierna ? Det finns två svar som är rätt<answer><answer id="1" correct="true">Jobbat i musikstudio</answer><answer id="2" correct="true">Semi rockstjärna (enligt honom själv)</answer><answer id="3" correct="false">Kört budbil</answer><answer id="4" correct="false">Rullat tummarna</answer></answer><useranswer /></question>
   <question id="14" category="ethics" multi="true" image="true">
     Vad är Lady Gaga känd för ? Det finns tre svar som är rätt<answer><answer id="1" correct="true">Serien American Horror Story</answer><answer id="2" correct="true">Sin musik</answer><answer id="3" correct="false">Sin välgörenhet</answer><answer id="4" correct="true">Sin klädsel</answer></answer><image>Images\\ladygaga.png</image><useranswer /></question>
   <question id="6" category="economy" multi="true" image="false">
     Vad har Michael sysselsatt sig med innan studierna ? Det finns två svar som är rätt<answer><answer id="1" correct="true">Jobbat som elektriker</answer><answer id="2" correct="true">Jobbat i Norge</answer><answer id="3" correct="false">Varit proffsboxare</answer><answer id="4" correct="false">Rullat tummarna</answer></answer><useranswer /></question>
+  <question id="15" category="ethics" multi="true" image="true">
+    Vilka filmer är Arnold Schwarzenegger känd för ? Det finns tre svar som är rätt<answer><answer id="1" correct="true">Total Recall (1990)</answer><answer id="2" correct="true">The Running Man (1987)</answer><answer id="3" correct="true">Conan barbaren (1982)</answer><answer id="4" correct="false">X-Men: Days of Future Past (2014)</answer></answer><image>Images\\arnold.png</image><useranswer /></question>
+  <question id="12" category="ethics" multi="false" image="true">
+    I vilken serie finns karaktären Tyrion Lannister ?<answer><answer id="1" correct="true">Game Of Thrones</answer><answer id="2" correct="false">Armerican Horror Story</answer><answer id="3" correct="false">The Walking Dead</answer><answer id="4" correct="false">Dexter</answer></answer><image>Images\\tyrion.png</image><useranswer /></question>
+  <question id="5" category="products" multi="false" image="false">
+    Vad har Stefan sysselsatt sig med innan studierna ?<answer><answer id="1" correct="true">Varit fotbollsproffs</answer><answer id="2" correct="false">Jobbat på bageri</answer><answer id="3" correct="false">Varit proffsboxare</answer><answer id="4" correct="false">Rullat tummarna</answer></answer><useranswer /></question>
+  <question id="4" category="products" multi="true" image="false">
+    Vad har Henrik sysselsatt sig med innan studierna ? Det finns två svar som är rätt<answer><answer id="1" correct="true">Jobbat i musikstudio</answer><answer id="2" correct="true">Semi rockstjärna (enligt honom själv)</answer><answer id="3" correct="false">Kört budbil</answer><answer id="4" correct="false">Rullat tummarna</answer></answer><useranswer /></question>
+  <question id="3" category="products" multi="false" image="false">
+    Var bor Michael ?<answer><answer id="1" correct="false">Malmö</answer><answer id="2" correct="true">Lund</answer><answer id="3" correct="false">Uppsala</answer><answer id="4" correct="false">Linköping</answer></answer><image>Images\\karta.png</image><useranswer /></question>
+  <question id="1" category="products" multi="false" image="true">
+    Var bor Henrik ?
+    <answer><answer id="1" correct="true">Motala</answer><answer id="2" correct="true">Lund</answer><answer id="3" correct="false">Linköping</answer><answer id="4" correct="false">Uppsala</answer></answer><image>Images\\karta.png</image><useranswer /></question>
+  <question id="2" category="products" multi="false" image="true">
+    Var bor Stefan ?
+    <answer><answer id="1" correct="true">Linköping</answer><answer id="2" correct="false">Lund</answer><answer id="3" correct="false">Uppsala</answer><answer id="4" correct="false">Malmö</answer></answer><image>Images\\karta.png</image><useranswer /></question>
+  <question id="13" category="ethics" multi="false" image="false">
+    Vad är Johan Petter Johansson känd för ?<answer><answer id="1" correct="false">Han upfann tändstickan</answer><answer id="2" correct="true">Han upfann skiftnyckeln</answer><answer id="3" correct="false">Han upfann dalahästen</answer><answer id="4" correct="false">Han upfann domkraften</answer></answer><useranswer /></question>
+  <question id="8" category="economy" multi="false" image="false">
+    Hur gammal är Stefan ?
+    <answer><answer id="1" correct="false">32</answer><answer id="2" correct="false">25</answer><answer id="3" correct="false">29</answer><answer id="4" correct="true">30</answer></answer><useranswer /></question>
+  <question id="10" category="economy" multi="false" image="false">
+    Hur många är vi i gruppen ?<answer><answer id="1" correct="false">2</answer><answer id="2" correct="true">3</answer><answer id="3" correct="false">4</answer><answer id="4" correct="false">5</answer></answer><useranswer /></question>
 </categories>
