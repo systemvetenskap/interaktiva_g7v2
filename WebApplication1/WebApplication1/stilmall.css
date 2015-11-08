@@ -144,20 +144,20 @@ div.loginbox
     padding: 20px 50px 20px 90px;
 }
 
-.GridViewTests
+.GridView
 {
     margin:10px auto;
     padding-bottom:50px;
     border:1px solid;
     width:95%;      
 }
-.GridViewTests td
+.GridView td
 {
     padding: 5px 35px 5px 35px;
     border:none;
     border-bottom:1px solid grey;   
 }
-.GridViewTests th
+.GridView th
 {
     background-color:#253648;
     color:white;
