@@ -19,6 +19,19 @@ namespace WebApplication1
 
         public string fname, lname, auth;
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
+
+        protected void btnemp_Click(object sender, EventArgs e)
+        {
+            Application["role"] = "member";
+            Response.Redirect("mytests.aspx");
+        }
+
+        protected void btnlead_Click(object sender, EventArgs e)
+        {
+            Application["role"] = "leader";
+            Response.Redirect("testres.aspx");
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //LabelStatusLogin.Visible = false;

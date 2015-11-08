@@ -154,15 +154,15 @@ namespace WebApplication1
                 DataRow row = dt.NewRow();
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
                 da.Fill(dt2);
-                string format = "yyyy-MM-dd";
+               
                 foreach (DataRow r in dt2.Rows)
                 {
                     string fullname = r[0].ToString() + " " + r[1].ToString();
                     string licens = r[2].ToString();
                     string testname = r[3].ToString();
                     string grade = r[4].ToString();
-                    string points = r[5].ToString();                 
-                    DateTime date = Convert.ToDateTime(r[6]);
+                    string points = r[5].ToString();
+                    string date = r[6].ToString();
                     string leader = r[7].ToString() +" " + r[8].ToString();
                     row = dt.NewRow();
                     row[0] = fullname;
@@ -170,7 +170,7 @@ namespace WebApplication1
                     row[2] = testname;
                     row[3] = grade;
                     row[4] = points;
-                    row[5] = date.ToString(format);
+                    row[5] = date;                              
                     row[6] = leader;
 
                     dt.Rows.Add(row);
@@ -246,18 +246,20 @@ namespace WebApplication1
                 dt.Columns.Add("points");
                 dt.Columns.Add("maxdate");
                 dt.Columns.Add("leader");
-                string format = "yyyy-MM-dd";
+             
                 DataRow row = dt.NewRow();
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
                 da.Fill(dt2);
+                
                 foreach (DataRow r in dt2.Rows)
                 {
+               
                     string fullname = r[0].ToString() + " " + r[1].ToString();
                     string licens = r[2].ToString();
                     string testname = r[3].ToString();
                     string grade = r[4].ToString();
                     string points = r[5].ToString();
-                    DateTime date = Convert.ToDateTime(r[6]);
+                    string date = r[6].ToString();                  
                     string leader = r[7].ToString() + " " + r[8].ToString();
                     row = dt.NewRow();
                     row[0] = fullname;
@@ -265,7 +267,7 @@ namespace WebApplication1
                     row[2] = testname;
                     row[3] = grade;
                     row[4] = points;
-                    row[5] = date.ToString(format);
+                    row[5] = date;
                     row[6] = leader;
 
                     dt.Rows.Add(row);
