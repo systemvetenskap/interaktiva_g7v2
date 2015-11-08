@@ -31,30 +31,42 @@ namespace WebApplication1.Employee
         public string pPoints;
         public string ecPoints;
         public string ethPoints;
+       
         int prod = 0;
         int eco = 0;
         int eth = 0;
-        int test = 0;
+      
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
+            
 
             if (!IsPostBack)
             {
-                
+                string type = Application["type"].ToString();
+                int x = 0;
                 timerVar = 1;
                 tpoints = "na";
                 gr = 0;
                 right.LoadXml("<test></test>");
                 wrong.LoadXml("<test></test>");
                 //Laddar in vårat xmldokument i xmldoc
-                xmldoc.Load(Server.MapPath("/XmlLicenseTest.xml"));
+                if(type == "a")
+                {
+                    xmldoc.Load(Server.MapPath("/XmlLicenseTest.xml"));
+                    x = 25;
+                }
+                else
+                {
+                    xmldoc.Load(Server.MapPath("/XmlUpdateTest.xml"));
+                    x = 15;
+                }
 
                 //Laddar endast in taggar i xmldoc2 som är identiska med XmlQuestions.xml
                 xmldoc2.LoadXml("<categories></categories>");
 
-                //Skapar ny array och stoppar in 25 st variabler av typen int
-                int[] arrayQuestions = RandomNumbers(1, 25, 4);
+                //Skapar ny array och stoppar in variabler av typen int(minsta värde, högsta värde)
+                int[] arrayQuestions = RandomNumbers(1, x, 4);
 
                 //Hämtar frågor från orginaldokumentet och stoppar in detta i det nya
                 foreach (int i in arrayQuestions)
@@ -174,7 +186,7 @@ namespace WebApplication1.Employee
         }
         protected void loadQuest(string i, string attributeMulti, string img, int count)
         {
-            table = new Table();
+           
             //Skapar nya rader                  
             row1 = new TableRow();
             row2 = new TableRow();
@@ -190,32 +202,31 @@ namespace WebApplication1.Employee
             cell5 = new TableCell();
             cell6 = new TableCell();
             imgcell = new TableCell();
-            //Skapar nya radiobuttons
-            radiob1 = new RadioButton();
-            radiob2 = new RadioButton();
-            radiob3 = new RadioButton();
-            radiob4 = new RadioButton();
-            //Skapar nya checkboxes
-            checkbox1 = new CheckBox();
-            checkbox2 = new CheckBox();
-            checkbox3 = new CheckBox();
-            checkbox4 = new CheckBox();
-            //Ger ett gruppnamn till radiobuttons 
-            radiob1.GroupName = "gr" + i.ToString();
-            radiob2.GroupName = "gr" + i.ToString();
-            radiob3.GroupName = "gr" + i.ToString();
-            radiob4.GroupName = "gr" + i.ToString();
-            //Sätter ett unikt namn till varje radiobutton
+           
+
+            
+  
 
 
 
-            //Skapar ny label för varje fråga
+
+            //Skapar ny label
             Label lblQuestion = new Label();
 
             //Om frågan bara har ett svarsalternativ som är rätt
             if (attributeMulti == "false")
             {
-
+                //Skapar nya radiobuttons
+                radiob1 = new RadioButton();
+                radiob2 = new RadioButton();
+                radiob3 = new RadioButton();
+                radiob4 = new RadioButton();
+                //Ger ett gruppnamn till radiobuttons 
+                radiob1.GroupName = "gr" + i.ToString();
+                radiob2.GroupName = "gr" + i.ToString();
+                radiob3.GroupName = "gr" + i.ToString();
+                radiob4.GroupName = "gr" + i.ToString();
+                //Sätter ett unikt namn till varje radiobutton
                 radiob1.ID = i.ToString() + "r1";
                 radiob2.ID = i.ToString() + "r2";
                 radiob3.ID = i.ToString() + "r3";
@@ -270,6 +281,12 @@ namespace WebApplication1.Employee
             //Om det är en fråga med många svarsalternativ
             if (attributeMulti == "true")
             {
+                //Skapar nya checkboxes
+                checkbox1 = new CheckBox();
+                checkbox2 = new CheckBox();
+                checkbox3 = new CheckBox();
+                checkbox4 = new CheckBox();
+
                 checkbox1.ID = i.ToString() + "c1";
                 checkbox2.ID = i.ToString() + "c2";
                 checkbox3.ID = i.ToString() + "c3";
@@ -380,11 +397,7 @@ namespace WebApplication1.Employee
 
 
         }
-        protected void next_quest(object sender, EventArgs e)
-        {
 
-
-        }
         protected void feedbackAnswers()
         {
             foreach (TableRow rw in table1.Rows)
@@ -591,7 +604,39 @@ namespace WebApplication1.Employee
                     }
                 }
             }
+            saveResult();
 
+
+
+
+        }
+        protected int countCorrect(int i)
+        {
+            int count = 0;
+            xmldoc2.Load(Server.MapPath("usertest.xml"));
+
+
+
+            for (int z = 1; z < 5; z++)
+            {
+                XmlNode node = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + z + "']");
+                string attributeID = node.Attributes["correct"].Value;
+                if (attributeID == "true")
+                {
+                    count++;
+                }
+            }
+
+
+
+            return count;
+
+
+
+
+        }
+        protected void saveResult()
+        {
             double prodcat = 8;
             double ecocat = 8;
             double ethcat = 9;
@@ -633,12 +678,6 @@ namespace WebApplication1.Employee
             {
 
             }
-
-
-
-
-
-
 
 
             if (prod / prodcat >= 0.60)
@@ -695,33 +734,6 @@ namespace WebApplication1.Employee
 
                 //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
             }
-
-
-
-        }
-        protected int countCorrect(int i)
-        {
-            int count = 0;
-            xmldoc2.Load(Server.MapPath("usertest.xml"));
-
-
-
-            for (int z = 1; z < 5; z++)
-            {
-                XmlNode node = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + z + "']");
-                string attributeID = node.Attributes["correct"].Value;
-                if (attributeID == "true")
-                {
-                    count++;
-                }
-            }
-
-
-
-            return count;
-
-
-
 
         }
 

@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="mytestsite.aspx.cs" Inherits="WebApplication1.TestResults" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dotest.aspx.cs" Inherits="WebApplication1.Employee.mytestsite" %>
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
 <head runat="server">
     <title>Home</title>
     <link href="/stilmall.css" type="text/css" rel="stylesheet" /> 
@@ -21,20 +21,14 @@
         <!-- Navigation -->
         <div class="nav">
             <ul class="clear">
-                <li><a class="home" href = "/TestLeader/MyTests.aspx">Mina prov</a></li>
-                <li><a class="home" href = "/TestLeader/TestResults.aspx">Provresultat</a></li>
+               <%-- <li><a class="home" href = "MyTests.aspx">Mina prov</a></li>
+                <li><a class="home" href = "/TestLeader/TestResults.aspx">Provresultat</a></li>--%>
 
             </ul> 
         </div>
     
         <!-- Questions -->
-            <div id="mytests" class="mytests">
-                <asp:Label ID="LabelLicensetest" runat="server" Text="Licensieringstest: "></asp:Label>
-                <br /> <br />
-                <asp:Label ID="LabelUpdatetest" runat="server" Text="Årlig Kunskapsupdatering: "></asp:Label><br/><br />
-                <asp:Button ID="btnLicenseTest" runat="server" Text="Starta Licensieringstestet" />
-                &nbsp;<asp:Button ID="btnUpdateTest" runat="server" Text="Starta Kunskapsupdatering" />
-                </div>
+    
 
         <div id="timerbox" runat ="server">
         <asp:Label id="LabelTimer" runat="server" value="Tid kvar:"></asp:Label>
