@@ -20,13 +20,20 @@ namespace WebApplication1
             if(!IsPostBack)
             {
                 ListLeaders();
+                DropDownListGrade.SelectedValue = "Icke godkänd";
+                ShowList2();
             }
+            
+            
             ButtonSearchTest.Click += new EventHandler(this.ListShows_Click);
-            //DropDownListGrade.SelectedValue = "Godkänd";
-            //ListShows_Click(ButtonSearchTest.Click(EventArgs.Empty);
 
         }
         
+        void ListShows_Click(Object sender, EventArgs e)
+        {
+            ShowList2();
+        }
+
 
         private void ListLeaders()
         {
@@ -34,7 +41,6 @@ namespace WebApplication1
             DataTable ts = new DataTable();
 
             
-
             dt.Columns.Add("name");
             dt.Columns.Add("leaderid");
             DataRow row = dt.NewRow();
@@ -59,7 +65,6 @@ namespace WebApplication1
             }
             DropDownListLeader.DataSource = dt;
             DropDownListLeader.DataTextField = "name";
-
             DropDownListLeader.DataValueField = "leaderid";
 
             DropDownListLeader.DataBind();
@@ -68,11 +73,8 @@ namespace WebApplication1
         }
     
 
-        void ListShows_Click(Object sender, EventArgs e)
+        private void ShowList2()
         {
-
-
-            
 
             string sql = @"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname
                                                        from license_test t
@@ -81,167 +83,64 @@ namespace WebApplication1
                                                        select max(date) maxdate, user_id from license_test
                                                        group by user_id) t2 on t.user_id = t2.user_id and t.date = t2.maxdate
                                                        right join users u on t.user_id = u.userid
-                                                       inner join leader l on u.leader_id = l.leader_id 
-                                                       WHERE (grade = @grade OR grade = @grade2)
-                                                       AND (licensed = @licensed OR licensed = @licensed2)";
+                                                       inner join leader l on u.leader_id = l.leader_id ";
 
-            Label1.Text = DropDownListLeader.SelectedValue;
-
-            if (DropDownListGrade.SelectedValue != "Inga betyg")
-            {
-
-                //string dropdownGrade = "AND t.grade =  '" + DropDownListGrade.SelectedValue + "'";
-                string dropdownGrade = "Godkänd",
-                       dropdownGrade2 = "Icke Godkänd",
-                       dropdownLicens = "Licensed",
-                       dropdownLicens2 = "Icke licensed",
-                       dropdownLeader = DropDownListLeader.SelectedValue;
-
-     
-                if (DropDownListGrade.SelectedValue == "Godkänd")
-                {
-                    dropdownGrade = "Godkänd";
-                    dropdownGrade2 = "Godkänd";
-                }
-
-                else if (DropDownListGrade.SelectedValue == "Icke godkänd")
-                {
-                    dropdownGrade = "Icke Godkänd";
-                    dropdownGrade2 = "Icke Godkänd";
-                }
-
-
-
+            ///// LICENS
                 if (DropDownListLicensed.SelectedValue == "Licensed")
                 {
-                    dropdownLicens = "Licensed";
-                    dropdownLicens2 = "Licensed";
+                string addSql = "WHERE  licensed = 'Licensed' ";
+                sql += addSql;
                 }
 
                 else if (DropDownListLicensed.SelectedValue == "Icke licensed")
                 {
-                    dropdownLicens = "Icke licensed";
-                    dropdownLicens2 = "Icke licensed";
+                string addSql1 = "WHERE  licensed = 'Icke licensed' ";
+                sql += addSql1;
                 }
 
-                if (DropDownListLeader.SelectedIndex > 0)
+            else if (DropDownListLicensed.SelectedValue == "Alla")
                 {
-                    string id = DropDownListLeader.SelectedValue;
-                    string addSql = "and l.leader_id ='" + id + "'";
-                    sql += addSql;
-
+                string addSql2 = "WHERE  (licensed = 'Icke licensed' OR licensed = 'Licensed') ";
+                sql += addSql2;
                 }
 
-                DataTable dt = new DataTable();
-                DataTable dt2 = new DataTable();
-                GridViewMyTests.DataSource = null;
-
-                conn.Open();
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@grade", dropdownGrade);
-                cmd.Parameters.AddWithValue("@grade2", dropdownGrade2);
-                cmd.Parameters.AddWithValue("@licensed", dropdownLicens);
-                cmd.Parameters.AddWithValue("@licensed2", dropdownLicens2);
-                
-
-                
-
-                dt.Columns.Add("fullname");
-                dt.Columns.Add("licensed");
-                dt.Columns.Add("name");
-                dt.Columns.Add("grade");
-                dt.Columns.Add("points");
-                dt.Columns.Add("maxdate");
-                dt.Columns.Add("leader");
-
-                DataRow row = dt.NewRow();
-                NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
-                da.Fill(dt2);
-               
-                foreach (DataRow r in dt2.Rows)
+            //GRADE
+            if (DropDownListGrade.SelectedValue == "Godkänd")
                 {
-                    string fullname = r[0].ToString() + " " + r[1].ToString();
-                    string licens = r[2].ToString();
-                    string testname = r[3].ToString();
-                    string grade = r[4].ToString();
-                    string points = r[5].ToString();
-                    string date = r[6].ToString();
-                    DateTime datetime = Convert.ToDateTime(date);
-                    string leader = r[7].ToString() +" " + r[8].ToString();
-                    row = dt.NewRow();
-                    row[0] = fullname;
-                    row[1] = licens;
-                    row[2] = testname;
-                    row[3] = grade;
-                    row[4] = points;
-                    row[5] = datetime.ToString("yyyy-MM-dd");                              
-                    row[6] = leader;
-
-                    dt.Rows.Add(row);
+                string addSql3 = "AND grade = 'Godkänd' ";
+                sql += addSql3;
                 }
                 
-                GridViewMyTests.DataSource = dt;
-                GridViewMyTests.DataBind();
-
-                conn.Close();
+            else if (DropDownListGrade.SelectedValue == "Icke godkänd")
+            {
+                string addSql4 = "AND grade = 'Icke Godkänd' ";
+                sql += addSql4;
             }
 
 
-            else
-            {
-                string sql2 = @"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname
-                                                       from license_test t
-                                                       inner join
-                                                       (
-                                                       select max(date) maxdate, user_id from license_test
-                                                       group by user_id) t2 on t.user_id = t2.user_id and t.date = t2.maxdate
-                                                       right join users u on t.user_id = u.userid
-                                                       inner join leader l on u.leader_id = l.leader_id 
-                                                       Where (licensed = @licensed OR licensed = @licensed2)
-                                                       AND grade isNull
-                                                       ";
-                //string dropdownGrade = "AND t.grade =  '" + DropDownListGrade.SelectedValue + "'";
-                string
-                       dropdownLicens = "Licensed",
-                       dropdownLicens2 = "Icke licensed";
-
-                if (DropDownListLicensed.SelectedValue == "Licensed")
+            else if (DropDownListGrade.SelectedValue == "Inga betyg")
                 {
-                    dropdownLicens = "Licensed";
-                    dropdownLicens2 = "Licensed";
+                string addSql5 = "AND grade isNull ";
+                sql += addSql5;
                 }
 
-                else if (DropDownListLicensed.SelectedValue == "Icke licensed")
+            //LEADERS
+            if (DropDownListLeader.SelectedIndex > 0)
                 {
-                    dropdownLicens = "Icke licensed";
-                    dropdownLicens2 = "Icke licensed";
+                string addSql6 = "and l.leader_id = @leader_id ";
+                sql += addSql6;
                 }
 
 
-                if (DropDownListLeader.SelectedIndex > 0)
-                {
-                    string id = DropDownListLeader.SelectedValue;
-                    string addSql = "and l.leader_id ='" + id + "'";
-                    sql2 += addSql;
 
-                }
-               // NpgsqlDataAdapter da;
                 DataTable dt = new DataTable();
                 DataTable dt2 = new DataTable();
                 GridViewMyTests.DataSource = null;
 
                 conn.Open();
-                NpgsqlCommand cmd = new NpgsqlCommand(sql2 , conn);
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@leader_id", DropDownListLeader.SelectedValue);
 
-                cmd.Parameters.AddWithValue("@licensed", dropdownLicens);
-                cmd.Parameters.AddWithValue("@licensed2", dropdownLicens2);
-
-                //da = new NpgsqlDataAdapter(cmd);
-                //da.Fill(dt);
-                //GridViewMyTests.DataSource = dt;
-                //GridViewMyTests.DataBind();
-
-                //conn.Close();
 
                 dt.Columns.Add("fullname");
                 dt.Columns.Add("licensed");
@@ -254,10 +153,8 @@ namespace WebApplication1
                 DataRow row = dt.NewRow();
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
                 da.Fill(dt2);
-                
                 foreach (DataRow r in dt2.Rows)
                 {
-               
                     string fullname = r[0].ToString() + " " + r[1].ToString();
                     string licens = r[2].ToString();
                     string testname = r[3].ToString();
@@ -282,8 +179,5 @@ namespace WebApplication1
 
                 conn.Close();
             }
-        }
-
-        
     }
 }
