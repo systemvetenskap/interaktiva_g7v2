@@ -17,7 +17,7 @@ namespace WebApplication1
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack) 
+            if(!IsPostBack)
             {
                 ListLeaders();
                 DropDownListGrade.SelectedValue = "Icke godkänd";
@@ -26,9 +26,9 @@ namespace WebApplication1
             
             
             ButtonSearchTest.Click += new EventHandler(this.ListShows_Click);
-            
-        }
 
+        }
+        
         void ListShows_Click(Object sender, EventArgs e)
         {
             ShowList2();
@@ -72,9 +72,10 @@ namespace WebApplication1
 
         }
     
-        
+
         private void ShowList2()
         {
+
             string sql = @"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname
                                                        from license_test t
                                                        inner join
@@ -85,31 +86,31 @@ namespace WebApplication1
                                                        inner join leader l on u.leader_id = l.leader_id ";
 
             ///// LICENS
-            if (DropDownListLicensed.SelectedValue == "Licensed")
-            {
+                if (DropDownListLicensed.SelectedValue == "Licensed")
+                {
                 string addSql = "WHERE  licensed = 'Licensed' ";
                 sql += addSql;
-            }
+                }
 
-            else if (DropDownListLicensed.SelectedValue == "Icke licensed")
-            {
+                else if (DropDownListLicensed.SelectedValue == "Icke licensed")
+                {
                 string addSql1 = "WHERE  licensed = 'Icke licensed' ";
                 sql += addSql1;
-            }
+                }
 
             else if (DropDownListLicensed.SelectedValue == "Alla")
-            {
+                {
                 string addSql2 = "WHERE  (licensed = 'Icke licensed' OR licensed = 'Licensed') ";
                 sql += addSql2;
-            }
+                }
 
             //GRADE
             if (DropDownListGrade.SelectedValue == "Godkänd")
-            {
+                {
                 string addSql3 = "AND grade = 'Godkänd' ";
                 sql += addSql3;
-            }
-
+                }
+                
             else if (DropDownListGrade.SelectedValue == "Icke godkänd")
             {
                 string addSql4 = "AND grade = 'Icke Godkänd' ";
@@ -118,65 +119,65 @@ namespace WebApplication1
 
 
             else if (DropDownListGrade.SelectedValue == "Inga betyg")
-            {
+                {
                 string addSql5 = "AND grade isNull ";
                 sql += addSql5;
-            }
+                }
 
             //LEADERS
             if (DropDownListLeader.SelectedIndex > 0)
-            {
+                {
                 string addSql6 = "and l.leader_id = @leader_id ";
                 sql += addSql6;
-            }
+                }
 
 
 
-            DataTable dt = new DataTable();
-            DataTable dt2 = new DataTable();
-            GridViewMyTests.DataSource = null;
+                DataTable dt = new DataTable();
+                DataTable dt2 = new DataTable();
+                GridViewMyTests.DataSource = null;
 
-            conn.Open();
+                conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@leader_id", DropDownListLeader.SelectedValue);
 
 
-            dt.Columns.Add("fullname");
-            dt.Columns.Add("licensed");
-            dt.Columns.Add("name");
-            dt.Columns.Add("grade");
-            dt.Columns.Add("points");
-            dt.Columns.Add("maxdate");
-            dt.Columns.Add("leader");
+                dt.Columns.Add("fullname");
+                dt.Columns.Add("licensed");
+                dt.Columns.Add("name");
+                dt.Columns.Add("grade");
+                dt.Columns.Add("points");
+                dt.Columns.Add("maxdate");
+                dt.Columns.Add("leader");
+             
+                DataRow row = dt.NewRow();
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                da.Fill(dt2);
+                foreach (DataRow r in dt2.Rows)
+                {
+                    string fullname = r[0].ToString() + " " + r[1].ToString();
+                    string licens = r[2].ToString();
+                    string testname = r[3].ToString();
+                    string grade = r[4].ToString();
+                    string points = r[5].ToString();
+                    string date = r[6].ToString();                  
+                    string leader = r[7].ToString() + " " + r[8].ToString();
+                    row = dt.NewRow();
+                    row[0] = fullname;
+                    row[1] = licens;
+                    row[2] = testname;
+                    row[3] = grade;
+                    row[4] = points;
+                    row[5] = date;
+                    row[6] = leader;
 
-            DataRow row = dt.NewRow();
-            NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
-            da.Fill(dt2);
-            foreach (DataRow r in dt2.Rows)
-            {
-                string fullname = r[0].ToString() + " " + r[1].ToString();
-                string licens = r[2].ToString();
-                string testname = r[3].ToString();
-                string grade = r[4].ToString();
-                string points = r[5].ToString();
-                string date = r[6].ToString();
-                string leader = r[7].ToString() + " " + r[8].ToString();
-                row = dt.NewRow();
-                row[0] = fullname;
-                row[1] = licens;
-                row[2] = testname;
-                row[3] = grade;
-                row[4] = points;
-                row[5] = date;
-                row[6] = leader;
+                    dt.Rows.Add(row);
+                }
 
-                dt.Rows.Add(row);
+                GridViewMyTests.DataSource = dt;
+                GridViewMyTests.DataBind();
+
+                conn.Close();
             }
-
-            GridViewMyTests.DataSource = dt;
-            GridViewMyTests.DataBind();
-
-            conn.Close();
-        }
     }
 }

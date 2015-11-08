@@ -6,17 +6,17 @@
 <head runat="server">
     <title>Home</title>
     <link href="/stilmall.css" type="text/css" rel="stylesheet" /> 
-    <%--<script src="javascript.js"></script> --%>
+  
 
 </head>
 <body>
     <form id="form1" runat="server">
-        
+     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"> </asp:ScriptManager>   
       
        
          <!-- Container -->
         <div class="container"> 
-        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"> </asp:ScriptManager>
+        
        
         <!-- Header -->
         <div class="header">          
@@ -49,7 +49,7 @@
     </div> 
     
     </form>
-        <script>
+        <script type="text/javascript">
          var minutes = 30;
          var seconds = 00;
          var run = <%=this.timerVar%>;
@@ -61,7 +61,7 @@
      
          var counter = setInterval(timer, 1000) //körs varje sekund
 
-
+            
         }
         else{
             result();
@@ -80,14 +80,21 @@
                 clearInterval(counter);
                 alert("Tiden är slut");
                 //Kod här när tiden är slut
-                
+                window.location.replace("mytests.aspx");
                 return;
             }
             document.getElementById("timer").innerHTML = minutes + " minuter " + seconds + " sekunder";
      }
      function result() {
          var tpoints = <%=this.tpoints%>;
+         var prod = <%=this.pPoints%>;
+         var eth = <%=this.ethPoints%>;
+         var eco = <%=this.ecPoints%>;
          var gr = <%=this.gr%>;
+
+    
+        
+      
        
         if (gr < 2)
          {
@@ -97,7 +104,7 @@
         else{
             var grade ="Icke godkänd";
         }
-         document.getElementById("LabelTimer").innerHTML = "Poäng:"+tpoints+" Betyg: "+grade+"<br><br>"+"<span style='color: green;'>Grönmarkerade fält = rätt svar</span>"+"<br>"+"<span style='color: red;'>Rödmarkerade fält = fel svar</span>";
+        document.getElementById("LabelTimer").innerHTML = "Poäng: "+tpoints+" Betyg: "+grade+"<br><br>"+"<span style='color: green;'>Grönmarkerade fält = rätt svar</span>"+"<br>"+"<span style='color: red;'>Rödmarkerade fält = fel svar</span>"+"<br><br>"+"<span>Products: "+prod+"%</span>"+"<br>"+"<span>Economy: "+eco+"%</span>"+"<br>"+"<span>Ethics: "+eth+"%</span>";
      }
      
     </script>
