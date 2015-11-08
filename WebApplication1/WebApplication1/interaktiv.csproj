@@ -90,6 +90,7 @@
     <Content Include="mytests.aspx" />
     <Content Include="packages.config" />
     <Content Include="TestLeader\TestResults.aspx" />
+    <Content Include="testres.aspx" />
     <Content Include="XmlUpdateTest.xml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -135,6 +136,13 @@
     </Compile>
     <Compile Include="TestLeader\TestResults.aspx.designer.cs">
       <DependentUpon>TestResults.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testres.aspx.cs">
+      <DependentUpon>testres.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testres.aspx.designer.cs">
+      <DependentUpon>testres.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
