@@ -26,6 +26,7 @@ namespace WebApplication1.Employee
         TableCell cell1, cell2, cell3, cell4, cell5, cell6, imgcell;
         RadioButton radiob1, radiob2, radiob3, radiob4;
         CheckBox checkbox1, checkbox2, checkbox3, checkbox4;
+        string[] correct;
         public int timerVar = 1;
         public string tpoints, p, ec, et;
         public int gr;
@@ -33,7 +34,9 @@ namespace WebApplication1.Employee
         double prod = 0;
         double eco = 0;
         double eth = 0;
-      
+        int[] count;
+        List<answ> list = new List<answ>();
+
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,7 +45,7 @@ namespace WebApplication1.Employee
             if (!IsPostBack)
             {
                 //string type = Application["type"].ToString();
-                string type = "b";
+                string type = "a";
                 int x = 0;
                 timerVar = 1;
                 tpoints = "na";
@@ -285,11 +288,13 @@ namespace WebApplication1.Employee
             //Om det är en fråga med många svarsalternativ
             if (attributeMulti == "true")
             {
+                
                 //Skapar nya checkboxes
                 checkbox1 = new CheckBox();
                 checkbox2 = new CheckBox();
                 checkbox3 = new CheckBox();
                 checkbox4 = new CheckBox();
+                answ ch = new answ();
 
                 checkbox1.ID = i.ToString() + "c1";
                 checkbox2.ID = i.ToString() + "c2";
@@ -304,12 +309,15 @@ namespace WebApplication1.Employee
                 checkbox4.Attributes.Add("name", "check" + count);
                 checkbox4.Attributes.Add("value", "4");
 
+                ch.setId(Convert.ToInt16(i));
+
                 lblQuestion.Text = count + ": " + (xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText);
                 XmlNode n1 = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 string cat1 = n1.Attributes["multi"].Value;
                 lblQuestion.Attributes.Add("multi", cat1);
                 string cat2 = n1.Attributes["id"].Value;
                 lblQuestion.Attributes.Add("id", cat2);
+                
 
                 checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
                 XmlNode usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
@@ -319,15 +327,24 @@ namespace WebApplication1.Employee
                 lblQuestion.Text += " (" + cat + ")";
                 checkbox1.Attributes.Add("category", cat);
                 checkbox1.Attributes.Add("correct", at);
+                checkbox1.Attributes.Add("group", i);
+                if (at == "true")
+                {
+                    ch.setCount();
+                }
 
                 checkbox2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
                 usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='2']");
                 at = usernode.Attributes["correct"].Value;
                 usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 cat = usernode.Attributes["category"].Value;
-
+                if (at == "true")
+                {
+                    ch.setCount();
+                }
                 checkbox2.Attributes.Add("category", cat);
                 checkbox2.Attributes.Add("correct", at);
+                checkbox2.Attributes.Add("group", i);
 
 
                 checkbox3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
@@ -335,18 +352,26 @@ namespace WebApplication1.Employee
                 at = usernode.Attributes["correct"].Value;
                 usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 cat = usernode.Attributes["category"].Value;
-
+                if (at == "true")
+                {
+                    ch.setCount();
+                }
                 checkbox3.Attributes.Add("category", cat);
                 checkbox3.Attributes.Add("correct", at);
+                checkbox3.Attributes.Add("group", i);
 
                 checkbox4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
                 usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='4']");
                 at = usernode.Attributes["correct"].Value;
                 usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 cat = usernode.Attributes["category"].Value;
-
+                if (at == "true")
+                {
+                    ch.setCount();
+                }
                 checkbox4.Attributes.Add("category", cat);
                 checkbox4.Attributes.Add("correct", at);
+                checkbox4.Attributes.Add("group", i);
                 //Lägger in checkboxar i cellerna
                 cell1.Controls.Add(lblQuestion);
                 cell1.ColumnSpan = 2;
@@ -355,6 +380,10 @@ namespace WebApplication1.Employee
                 cell3.Controls.Add(checkbox2);
                 cell4.Controls.Add(checkbox3);
                 cell5.Controls.Add(checkbox4);
+
+                ch.setCat(cat);
+
+                list.Add(ch);
             }
             //Lägger in label i cellen
             cell1.Attributes.Add("class", "questionCell");
@@ -486,30 +515,15 @@ namespace WebApplication1.Employee
         }
         protected void calcPoints()
         {
-            int checkcount = 0;
-            int acount = 0;
-            string multi = "";
+         
+            countCheckboxes();
             foreach (TableRow rw in table1.Rows)
             {
                 foreach (TableCell cell in rw.Cells)
                 {
                     foreach (Control cl in cell.Controls)
                     {
-                        if (cl is Label)
-                        {
-                            Label lab = (Label)cl;
-                            multi = lab.Attributes["multi"];
-
-                            if (multi == "true")
-                            {
-                                int id = int.Parse(lab.Attributes["id"]);
-                                checkcount = countCorrect(id);
-                            }
-
-
-                        }
-
-
+                  
                         if (cl is RadioButton)
                         {
                             RadioButton rad = (RadioButton)cl;
@@ -523,14 +537,7 @@ namespace WebApplication1.Employee
                                     if (cat == "products")
                                     {
                                         prod++;
-                                        //string s = rad.ID;
-                                        //string x = rad.Text;
-                                        //XmlNode nd = right.SelectSingleNode("/test");
-                                        //XmlElement el = right.CreateElement("test");
-                                        //el.InnerText = prod.ToString();
-                                        //nd.AppendChild(el);
-
-                                        //right.Save("C:\\Users\\Henrik\\Desktop\\count.xml");
+                
                                     }
                                     else if (cat == "ethics")
                                     {
@@ -545,14 +552,7 @@ namespace WebApplication1.Employee
                                 }
                                 else if (cor == "false")
                                 {
-                                    //string s = rad.ID;
-                                    //string x = rad.Text;
-                                    //XmlNode nd = wrong.SelectSingleNode("/test");
-                                    //XmlElement el = wrong.CreateElement("test");
-                                    //el.InnerText = x;
-                                    //nd.AppendChild(el);
-
-                                    //wrong.Save("C:\\Users\\Henrik\\Desktop\\wronganswer.xml");
+   
                                 }
 
                             }
@@ -565,40 +565,30 @@ namespace WebApplication1.Employee
                             string cor = chk.Attributes["correct"];
                             string cat = chk.Attributes["category"];
                             string chkID = chk.Attributes["value"];
+                            
+                            
                             chk.Enabled = false;
                             if (chk.Checked == true)
                             {
                                 if (cor == "true")
                                 {
-                                    acount++;
-                                    if (cat == "products" && acount == checkcount)
+                                    int boxid = Convert.ToInt16(chk.Attributes["group"]);
+                                    foreach(var x in list)
                                     {
-
-                                        prod++;
-
-                                    }
-                                    else if (cat == "ethics" && acount == checkcount)
-                                    {
-                                        eth++;
-                                    }
-                                    else if (cat == "economy" && acount == checkcount)
-                                    {
-                                        eco++;
+                                        int ident = x.getId();
+                                        
+                                        if(ident == boxid)
+                                        {
+                                            x.setAnswer();
+                                        }
 
                                     }
+                             
+                          
+                      
 
                                 }
-                                else if (cor == "false")
-                                {
-                                    //string s = chk.ID;
-                                    //string x = chk.Text;
-                                    //XmlNode nd = wrong.SelectSingleNode("/test");
-                                    //XmlElement el = wrong.CreateElement(s);
-                                    //el.InnerText = x;
-                                    //nd.AppendChild(el);
-
-                                    //wrong.Save("C:\\Users\\Henrik\\Desktop\\correctanswer.xml");
-                                }
+                     
 
                             }
 
@@ -608,32 +598,40 @@ namespace WebApplication1.Employee
                     }
                 }
             }
+            countCorrect();
             saveResult();
 
 
 
 
         }
-        protected int countCorrect(int i)
+        protected void countCorrect()
         {
-            int count = 0;
-            xmldoc2.Load(Server.MapPath("usertest.xml"));
-
-
-
-            for (int z = 1; z < 5; z++)
+   
+            foreach(var o in list)
             {
-                XmlNode node = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + z + "']");
-                string attributeID = node.Attributes["correct"].Value;
-                if (attributeID == "true")
+                if(o.getCorrect() == true)
                 {
-                    count++;
+                    string cat = o.getCat();
+                    if (cat == "products")
+                    {
+                        prod++;
+                    }
+                    else if(cat == "ethics")
+                    {
+                        eth++;
+                    }
+                    else
+                    {
+                        eco++;
+                    }
                 }
             }
 
+            
 
 
-            return count;
+           
 
 
 
@@ -724,6 +722,24 @@ namespace WebApplication1.Employee
 
 
           }
+        protected void countCheckboxes()
+        {
+            foreach (TableRow rw in table1.Rows)
+            {
+                foreach (TableCell cell in rw.Cells)
+                {
+                    foreach (Control cl in cell.Controls)
+                    {
+                        if(cl is CheckBox)
+                        {
+                            CheckBox check = (CheckBox)cl;
+                        
+                        }
+                    }
+                }
+
+            }
+        }
         protected void load()
         {
             Response.Redirect("index.aspx");
