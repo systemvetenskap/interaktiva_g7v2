@@ -87,12 +87,15 @@
      }
      function result() {
          var tpoints = <%=this.tpoints%>;
+         var prod = <%=this.pPoints%>;
+         var eth = <%=this.ethPoints%>;
+         var eco = <%=this.ecPoints%>;
          var gr = <%=this.gr%>;
-         var ec = <%=this.ecPoints%>;
-         var et = <%=this.ethPoints%>;
-         var pr = <%=this.pPoints%>;
+
+    
         
-         var etotal = ec / 8;
+      
+       
         if (gr < 2)
          {
             var grade = "Godkänd";
@@ -101,7 +104,7 @@
         else{
             var grade ="Icke godkänd";
         }
-         document.getElementById("LabelTimer").innerHTML = "Poäng:"+tpoints+" Betyg: "+grade+"<br><br>"+"<span style='color: green;'>Grönmarkerade fält = rätt svar</span>"+"<br>"+"<span style='color: red;'>Rödmarkerade fält = fel svar</span>"+"<br>"+"<span>Products: "+etotal+"</span>";
+        document.getElementById("LabelTimer").innerHTML = "Poäng: "+tpoints+" Betyg: "+grade+"<br><br>"+"<span style='color: green;'>Grönmarkerade fält = rätt svar</span>"+"<br>"+"<span style='color: red;'>Rödmarkerade fält = fel svar</span>"+"<br><br>"+"<span>Products: "+prod+"%</span>"+"<br>"+"<span>Economy: "+eco+"%</span>"+"<br>"+"<span>Ethics: "+eth+"%</span>";
      }
      
     </script>

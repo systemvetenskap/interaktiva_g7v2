@@ -27,13 +27,12 @@ namespace WebApplication1.Employee
         RadioButton radiob1, radiob2, radiob3, radiob4;
         CheckBox checkbox1, checkbox2, checkbox3, checkbox4;
         public int timerVar = 1;
-        public string tpoints;
-        public int gr, ecPoints, pPoints, ethPoints;
-
-       
-        int prod = 0;
-        int eco = 0;
-        int eth = 0;
+        public string tpoints, p, ec, et;
+        public int gr;
+        public string ecPoints, pPoints, ethPoints;     
+        double prod = 0;
+        double eco = 0;
+        double eth = 0;
       
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
@@ -42,10 +41,16 @@ namespace WebApplication1.Employee
 
             if (!IsPostBack)
             {
-                string type = Application["type"].ToString();
+                //string type = Application["type"].ToString();
+                string type = "b";
                 int x = 0;
                 timerVar = 1;
                 tpoints = "na";
+                ecPoints = "na";
+                ethPoints = "na";
+                pPoints = "na";
+
+                
                 gr = 0;
                 right.LoadXml("<test></test>");
                 wrong.LoadXml("<test></test>");
@@ -636,108 +641,89 @@ namespace WebApplication1.Employee
         }
         protected void saveResult()
         {
-            double prodcat = 8;
-            double ecocat = 8;
-            double ethcat = 9;
+      
             double total = prod;
             total += eco;
             total += eth;
             tpoints = total.ToString();
-            ecPoints = eco;
-            pPoints = prod;
-            ethPoints = eth;
-            string gradestring = "";
-            if (total / 25 >= 0.70 && prod / 8 > 0.60 && eco / 8 > 0.60 && eth / 8 > 0.60)
+            //string type = Application["type"].ToString();
+            string type = "a";
+            if (type == "a")
             {
-                gr = 1;
-                gradestring = "Godkänd";
+                int percentProducts = (int)Math.Round((double)(100 * prod) / 8);
+                int percentEthics = (int)Math.Round((double)(100 * eth) / 9);
+                int percentEconomy = (int)Math.Round((double)(100 * eco) / 8);
+                ecPoints = percentEconomy.ToString();
+                ethPoints = percentEthics.ToString();
+                pPoints = percentProducts.ToString();
+                string gradestring = "";
+                if (total / 25 >= 0.70 && prod / 8 > 0.60 && eco / 8 > 0.60 && eth / 8 > 0.60)
+                {
+                    gr = 1;
+                    gradestring = "Godkänd";
+                }
+                else
+                {
+                    gr = 2;
+                    gradestring = "Icke Godkänd";
+                }
+
+                string savexml = xmldoc2.OuterXml;
+                string tn = "Licenseringstest";
+                int ln = 1;
+                DateTime date = DateTime.Today;
+                string sql = "insert into license_test(name, user_id, grade, points, date, testxml) values(:tname, :user, :grd, :pts, :dt, :addxml)";
+                try
+                {
+                    conn.Open();
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                    cmd.Parameters.Add(new NpgsqlParameter("tname", tn));
+                    cmd.Parameters.Add(new NpgsqlParameter("user", ln));
+                    cmd.Parameters.Add(new NpgsqlParameter("grd", gradestring));
+                    cmd.Parameters.Add(new NpgsqlParameter("pts", total));
+                    cmd.Parameters.Add(new NpgsqlParameter("dt", date));
+                    cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                catch
+                {
+
+                }
+
+
+
+
+
+
+
             }
             else
             {
-                gr = 2;
-                gradestring = "Icke Godkänd";
-            }
+                int percentProducts = (int)Math.Round((double)(100 * prod) / 5);
+                int percentEthics = (int)Math.Round((double)(100 * eth) / 5);
+                int percentEconomy = (int)Math.Round((double)(100 * eco) / 5);
+                ecPoints = percentEconomy.ToString();
+                ethPoints = percentEthics.ToString();
+                pPoints = percentProducts.ToString();
+                string gradestring = "";
+                if (total / 15 >= 0.70 && prod / 8 > 0.60 && eco / 8 > 0.60 && eth / 8 > 0.60)
+                {
+                    gr = 1;
+                    gradestring = "Godkänd";
+                }
+                else
+                {
+                    gr = 2;
+                    gradestring = "Icke Godkänd";
 
-            string savexml = xmldoc2.OuterXml;
-            string tn = "Licenseringstest";
-            int ln = 1;
-            DateTime date = DateTime.Today;
-            string sql = "insert into license_test(name, user_id, grade, points, date, testxml) values(:tname, :user, :grd, :pts, :dt, :addxml)";
-            try
-            {
-                conn.Open();
-                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
-                cmd.Parameters.Add(new NpgsqlParameter("tname", tn));
-                cmd.Parameters.Add(new NpgsqlParameter("user", ln));
-                cmd.Parameters.Add(new NpgsqlParameter("grd", gradestring));
-                cmd.Parameters.Add(new NpgsqlParameter("pts", total));
-                cmd.Parameters.Add(new NpgsqlParameter("dt", date));
-                cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch
-            {
+                }
 
             }
 
 
-            if (prod / prodcat >= 0.60)
-            {
-                //XmlNode nd = wrong.SelectSingleNode("/test");
-                //XmlElement el = wrong.CreateElement("test");
-                //el.InnerText = "du är godkänd i kategori products!";
-                //nd.AppendChild(el);
 
-                //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
-            }
-            else if (prod / prodcat < 0.60)
-            {
-                //XmlNode nd = wrong.SelectSingleNode("/test");
-                //XmlElement el = wrong.CreateElement("test");
-                //el.InnerText = "du är inte godkänd i kategori products!";
-                //nd.AppendChild(el);
-
-                //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
-            }
-            if (eco / ecocat >= 0.60)
-            {
-                //XmlNode nd = wrong.SelectSingleNode("/test");
-                //XmlElement el = wrong.CreateElement("test");
-                //el.InnerText = "du är godkänd i kategori economy!";
-                //nd.AppendChild(el);
-
-                //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
-            }
-            else if (eco / ecocat < 0.60)
-            {
-                //XmlNode nd = wrong.SelectSingleNode("/test");
-                //XmlElement el = wrong.CreateElement("test");
-                //el.InnerText = "du är inte godkänd i kategori economy!";
-                //nd.AppendChild(el);
-
-                //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
-            }
-            if (eth / ethcat >= 0.60)
-            {
-                //XmlNode nd = wrong.SelectSingleNode("/test");
-                //XmlElement el = wrong.CreateElement("test");
-                //el.InnerText = "du är godkänd i kategori ethics!";
-                //nd.AppendChild(el);
-
-                //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
-            }
-            else if (eth / ethcat < 0.60)
-            {
-                //XmlNode nd = wrong.SelectSingleNode("/test");
-                //XmlElement el = wrong.CreateElement("test");
-                //el.InnerText = "du är inte godkänd i kategori ethics!";
-                //nd.AppendChild(el);
-
-                //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
-            }
-
-        }
+          }
         protected void load()
         {
             Response.Redirect("index.aspx");
