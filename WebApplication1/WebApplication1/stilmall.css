@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     background-image: url(images/background.jpg);
-    background-repeat: no-repeat;
     background-attachment: fixed;
     overflow-y:scroll;
 }
