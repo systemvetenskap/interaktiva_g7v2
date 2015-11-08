@@ -153,7 +153,7 @@ div.loginbox
 }
 .GridView td
 {
-    padding: 5px 35px 5px 35px;
+    padding: 5px 15px 5px 15px;
     border:none;
     border-bottom:1px solid grey;   
 }
@@ -163,7 +163,7 @@ div.loginbox
     color:white;
     text-align:justify;
     font-weight:bold;
-    padding: 10px 35px 10px 35px;
+    padding: 5px 15px 5px 15px;
     border:none;   
 }
 
