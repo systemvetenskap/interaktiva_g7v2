@@ -39,6 +39,7 @@ div.header h1{
 div.nav{
     background-color: #253648;
     border-bottom: inset #eb9b00;
+    margin:0px 0px 20px 0px;
 }
 
 div.nav ul{
@@ -166,6 +167,7 @@ div.loginbox
     padding: 10px 35px 10px 35px;
     border:none;   
 }
+
 
 .clear:before, .clear:after{content: ""; display: table;}
 .clear:after {clear: both;}

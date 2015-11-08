@@ -26,18 +26,19 @@
         </div>
           
          <!-- Tests -->     
-            <asp:Label ID="LabelLicens" class="Button Licens" runat="server" Text="Licens"></asp:Label>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     
+             <asp:Label ID="LabelLicens" class="Button Licens" runat="server" Text="Licens" Font-Size="Large"></asp:Label>
 
-            <asp:DropDownList ID="DropDownListLicensed" Class="Dropdown Licens" runat="server">
+            &nbsp;<asp:DropDownList ID="DropDownListLicensed" Class="Dropdown Licens" runat="server" Font-Size="Large">
                 <asp:ListItem Value="Alla">Alla</asp:ListItem>
                 <asp:ListItem Value="Licensed">Licensed</asp:ListItem>
                 <asp:ListItem Value="Icke licensed">Icke licensed</asp:ListItem>
             </asp:DropDownList>
 
 
-            <asp:Label ID="LabelBetyg" class="Button Betyg" runat="server" Text="Betyg"></asp:Label>
+            &nbsp;<asp:Label ID="LabelBetyg" class="Button Betyg" runat="server" Text="Betyg" Font-Size="Large"></asp:Label>
 
-            <asp:DropDownList ID="DropDownListGrade" Class="Dropdown Grade" runat="server">
+            &nbsp;<asp:DropDownList ID="DropDownListGrade" Class="Dropdown Grade" runat="server" Font-Size="Large">
                 <asp:ListItem Value="Inga betyg">Inga betyg</asp:ListItem>
                 <asp:ListItem Value="Alla">Alla</asp:ListItem>
                 <asp:ListItem Value="Godkänd">Godkänd</asp:ListItem>
@@ -45,15 +46,18 @@
             </asp:DropDownList>
 
 
-            <asp:Label ID="LabelLeader" class="Button Ledare" runat="server" Text="Ledare"></asp:Label>
+            &nbsp;<asp:Label ID="LabelLeader" class="Button Ledare" runat="server" Text="Ledare" Font-Size="Large"></asp:Label>
 
-             <asp:DropDownList ID="DropDownListLeader" runat="server" Class="Dropdown Leader" DataTextField="Desc" DataValueField="leader_id">
+             &nbsp;<asp:DropDownList ID="DropDownListLeader" runat="server" Class="Dropdown Leader" DataTextField="Desc" DataValueField="leader_id" Font-Size="Large">
                  <asp:ListItem Value="Alla">Alla</asp:ListItem>
             </asp:DropDownList>
 
            
 
-            <asp:Button ID="ButtonSearchTest" Text="Search" OnServerClick="ListShows" Width="93px"  runat="server" />
+            &nbsp;<asp:Button ID="ButtonSearchTest" Text="Sök" OnServerClick="ListShows" Width="93px"  runat="server" Font-Size="Large" />
+
+            <br />
+            <br />
 
             <asp:GridView ID="GridViewMyTests" class="GridViewMyTests GridView" runat="server" AutoGenerateColumns="False">
                 <Columns>
