@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
@@ -734,6 +735,11 @@ namespace WebApplication1.Employee
 
                 //wrong.Save("C:\\Users\\Henrik\\Desktop\\betygr.xml");
             }
+
+        }
+        [WebMethod]
+        public static void timeOut()
+        {
 
         }
 

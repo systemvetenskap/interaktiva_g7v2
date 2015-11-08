@@ -11,9 +11,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        
+      
+       
          <!-- Container -->
         <div class="container"> 
-
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"> </asp:ScriptManager>
+       
         <!-- Header -->
         <div class="header">          
             <h1>JE Bank</h1>
@@ -64,7 +68,7 @@
         }
      function timer() {
 
-
+            
             seconds = seconds - 1
             if (seconds <= 0) {
                 minutes -= 1;
@@ -76,6 +80,7 @@
                 clearInterval(counter);
                 alert("Tiden är slut");
                 //Kod här när tiden är slut
+                
                 return;
             }
             document.getElementById("timer").innerHTML = minutes + " minuter " + seconds + " sekunder";
