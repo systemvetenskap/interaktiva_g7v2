@@ -48,7 +48,7 @@
 
             <asp:Button ID="ButtonSearchTest" Text="Search" OnServerClick="ListShows" Width="93px"  runat="server" />
 
-            <asp:GridView ID="GridViewMyTests" runat="server" AutoGenerateColumns="False">
+            <asp:GridView ID="GridViewMyTests" class="GridViewMyTests" runat="server" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="fullname" HeaderText="Namn" />
                     <asp:BoundField DataField="licensed" HeaderText="Licens" />

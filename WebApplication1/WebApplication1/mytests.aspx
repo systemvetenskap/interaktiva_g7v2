@@ -33,7 +33,7 @@
                 &nbsp;<asp:Button ID="btnUpdateTest" runat="server" Text="Starta Kunskapsupdatering" OnClick="btnUpdateTest_Click"  href = "dotest.aspx" />
                 </div>
         <div class="tests">
-             <asp:GridView ID="GridViewTests" runat="server" AutoGenerateColumns="False">
+             <asp:GridView ID="GridViewTests" class="GridViewTests" runat="server" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="date" HeaderText="Datum" HtmlEncode="false" DataFormatString="{0:m}" />
                     <asp:BoundField DataField="grade" HeaderText="Betyg" />
