@@ -20,11 +20,12 @@
         <!-- Navigation -->
         <div class="nav">
             <ul class="clear">
-                <li><a class="home" href = "index.html">Home</a></li>
+                <li><a class="home" href = "mytests.aspx">Mina prov</a></li>
+                <li><a class="home" href = "testres.aspx">Provresultat</a></li>
             </ul> 
         </div>
           
-              
+         <!-- Tests -->     
             <asp:Label ID="LabelLicens" class="Button Licens" runat="server" Text="Licens"></asp:Label>
 
             <asp:DropDownList ID="DropDownListLicensed" Class="Dropdown Licens" runat="server">
