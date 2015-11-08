@@ -21,7 +21,7 @@ namespace WebApplication1
             {
                 ListLeaders();
                 DropDownListGrade.SelectedValue = "Icke godkänd";
-                ShowList2();
+                ShowList();
             }
             
             
@@ -31,7 +31,7 @@ namespace WebApplication1
         
         void ListShows_Click(Object sender, EventArgs e)
         {
-            ShowList2();
+            ShowList();
         }
 
 
@@ -73,7 +73,7 @@ namespace WebApplication1
         }
     
 
-        private void ShowList2()
+        private void ShowList()
         {
 
             string sql = @"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname

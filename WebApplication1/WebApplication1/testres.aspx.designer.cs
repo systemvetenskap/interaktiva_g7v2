@@ -22,22 +22,31 @@ namespace WebApplication1 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Label1 control.
+        /// LabelLicens control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label LabelLicens;
         
         /// <summary>
-        /// Label2 control.
+        /// DropDownListLicensed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListLicensed;
+        
+        /// <summary>
+        /// LabelBetyg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelBetyg;
         
         /// <summary>
         /// DropDownListGrade control.
@@ -49,13 +58,13 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.DropDownList DropDownListGrade;
         
         /// <summary>
-        /// DropDownListLicensed control.
+        /// LabelLeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListLicensed;
+        protected global::System.Web.UI.WebControls.Label LabelLeader;
         
         /// <summary>
         /// DropDownListLeader control.

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>My tests</title>
+    <title>All tests</title>
     <link href="stilmall.css" type="text/css" rel="stylesheet" /> 
 </head>
 <body>
@@ -23,24 +23,30 @@
                 <li><a class="home" href = "index.html">Home</a></li>
             </ul> 
         </div>
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-            
-            <!-- Navigation -->
-            <asp:DropDownList ID="DropDownListGrade" runat="server">
+          
+              
+            <asp:Label ID="LabelLicens" class="Button Licens" runat="server" Text="Licens"></asp:Label>
+
+            <asp:DropDownList ID="DropDownListLicensed" Class="Dropdown Licens" runat="server">
+                <asp:ListItem Value="Alla">Alla</asp:ListItem>
+                <asp:ListItem Value="Licensed">Licensed</asp:ListItem>
+                <asp:ListItem Value="Icke licensed">Icke licensed</asp:ListItem>
+            </asp:DropDownList>
+
+
+            <asp:Label ID="LabelBetyg" class="Button Betyg" runat="server" Text="Betyg"></asp:Label>
+
+            <asp:DropDownList ID="DropDownListGrade" Class="Dropdown Grade" runat="server">
                 <asp:ListItem Value="Inga betyg">Inga betyg</asp:ListItem>
                 <asp:ListItem Value="Alla">Alla</asp:ListItem>
                 <asp:ListItem Value="Godkänd">Godkänd</asp:ListItem>
                 <asp:ListItem Value="Icke godkänd">Icke godkänd</asp:ListItem>
             </asp:DropDownList>
 
-            <asp:DropDownList ID="DropDownListLicensed" runat="server">
-                <asp:ListItem Value="Alla">Alla</asp:ListItem>
-                <asp:ListItem Value="Licensed">Licensed</asp:ListItem>
-                <asp:ListItem Value="Icke licensed">Icke licensed</asp:ListItem>
-            </asp:DropDownList>
 
-             <asp:DropDownList ID="DropDownListLeader" runat="server" DataTextField="Desc" DataValueField="leader_id">
+            <asp:Label ID="LabelLeader" class="Button Ledare" runat="server" Text="Ledare"></asp:Label>
+
+             <asp:DropDownList ID="DropDownListLeader" runat="server" Class="Dropdown Leader" DataTextField="Desc" DataValueField="leader_id">
                  <asp:ListItem Value="Alla">Alla</asp:ListItem>
             </asp:DropDownList>
 
@@ -55,7 +61,7 @@
                     <asp:BoundField DataField="name" HeaderText="Test namn" />
                     <asp:BoundField DataField="grade" HeaderText="Betyg" />
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
-                    <asp:BoundField DataField="maxdate" HeaderText="Datum" HtmlEncode="false" DataFormatString="{0:m}" />
+                    <asp:BoundField DataField="maxdate" HeaderText="Datum"  />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
                 </Columns>
                 
