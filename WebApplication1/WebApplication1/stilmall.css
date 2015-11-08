@@ -73,9 +73,8 @@ div.questionbox{
 }
 
 div.mytests{
-    width:400px;
+    width:800px;
     margin: 50px auto;
-    padding: 10px 10px 10px 10px
 }
 
 table.tbl {
@@ -167,6 +166,11 @@ div.loginbox
     padding: 10px 35px 10px 35px;
     border:none;   
 }
+
+input[type=submit] {
+  background-color:#eb9b00;
+  font-size:large;
+  }
 
 
 .clear:before, .clear:after{content: ""; display: table;}
