@@ -163,6 +163,7 @@ namespace WebApplication1
                     string grade = r[4].ToString();
                     string points = r[5].ToString();
                     string date = r[6].ToString();
+                    DateTime datetime = Convert.ToDateTime(date);
                     string leader = r[7].ToString() +" " + r[8].ToString();
                     row = dt.NewRow();
                     row[0] = fullname;
@@ -170,7 +171,7 @@ namespace WebApplication1
                     row[2] = testname;
                     row[3] = grade;
                     row[4] = points;
-                    row[5] = date;                              
+                    row[5] = datetime.ToString("yyyy-MM-dd");                              
                     row[6] = leader;
 
                     dt.Rows.Add(row);
