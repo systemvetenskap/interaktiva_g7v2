@@ -28,10 +28,8 @@ namespace WebApplication1.Employee
         CheckBox checkbox1, checkbox2, checkbox3, checkbox4;
         public int timerVar = 1;
         public string tpoints;
-        public int gr;
-        public string pPoints;
-        public string ecPoints;
-        public string ethPoints;
+        public int gr, ecPoints, pPoints, ethPoints;
+
        
         int prod = 0;
         int eco = 0;
@@ -645,8 +643,11 @@ namespace WebApplication1.Employee
             total += eco;
             total += eth;
             tpoints = total.ToString();
+            ecPoints = eco;
+            pPoints = prod;
+            ethPoints = eth;
             string gradestring = "";
-            if (total / 25 >= 0.70)
+            if (total / 25 >= 0.70 && prod / 8 > 0.60 && eco / 8 > 0.60 && eth / 8 > 0.60)
             {
                 gr = 1;
                 gradestring = "Godkänd";
@@ -737,11 +738,11 @@ namespace WebApplication1.Employee
             }
 
         }
-        [WebMethod]
-        public static void timeOut()
+        protected void load()
         {
-
+            Response.Redirect("index.aspx");
         }
+
 
 
     }
