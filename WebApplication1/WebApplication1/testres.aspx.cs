@@ -171,10 +171,10 @@ namespace WebApplication1
                 string leader = r[7].ToString() + " " + r[8].ToString(); // sätta ihop firstname + lastname på en ledare
                 string testid = r[9].ToString();
 
-                if(r[9] != DBNull.Value)
-                {
-                  testid = "Hämta prov";
-                }
+                //if(r[9] != DBNull.Value)
+                //{
+                //  testid = "Hämta prov";
+                //}
                 row = dt.NewRow();
                 row[0] = fullname;
                 row[1] = licens;
@@ -184,6 +184,7 @@ namespace WebApplication1
                 row[5] = date;
                 row[6] = leader;
                 row[7] = testid;
+                
 
                 dt.Rows.Add(row);
             }
