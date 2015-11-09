@@ -62,7 +62,7 @@ namespace WebApplication1
                 row[2] = r[2];
                 row[3] = r[3];
                 row[4] = r[4].ToString() + " " + r[5].ToString();
-                row[5] = r[6] + hl1.Text; 
+                row[5] = r[6];
 
                 dt2.Rows.Add(row);
             }

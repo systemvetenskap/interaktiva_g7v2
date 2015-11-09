@@ -28,17 +28,21 @@ namespace WebApplication1
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            loadXml(1);
-            loadQuest();
-            loadTable();
+            
+          
+                string id = Request.QueryString[0];
+                int i = int.Parse(id);
+                loadXml(i);
+                loadQuest();
+                loadTable();
+        
+            
 
 
         }
-        protected void loadXml(int userid)
+        protected void loadXml(int testid)
         {
-            string sql = "select testxml from license_test where testid = 79";
+            string sql = "select testxml from license_test where testid = "+testid+"";
             string xml = "";
             conn.Open();
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
@@ -66,23 +70,23 @@ namespace WebApplication1
                 for(int i = 0; i <4; i++)
                 {
                     string a = node["answer"].ChildNodes[i].InnerText;
-                    bool bb = node["useranswer"].HasChildNodes;
-                    int count = node.SelectNodes("useranswer").Count;
-                    if(bb == true)
-                    {   
-                        for(int z = 0; z < count; z++)
-                        {
-                            //string b = node["useranswer"].ChildNodes[i].InnerText;
-                            //t.setYouranwser(b);
-                        }
-                        
-                    }
+      
                    
                     t.setAnswers(a);
                     
                 }
+                bool bb = node["useranswer"].HasChildNodes;
+                if (bb == true)
+                {
+                    int count = node.SelectNodes("useranswer").Count;
 
-
+                    for(int z = 0; z < count; z++ )
+                    {
+                        string b = node["useranswer"].ChildNodes[z].InnerText;
+                        t.setYouranwser(b);
+                    }
+                  
+                }
 
                 t.setId(id);
                 t.setQuestion(q);
@@ -133,7 +137,7 @@ namespace WebApplication1
                 lbl6.Text = "Ni svarade:";
                 if(yans.Count > 0)
                 {
-                    for(int i = 0; i <= yans.Count; i++)
+                    for(int i = 0; i < yans.Count; i++)
                     {
                         lbl7.Text += yans[i].ToString();
                     }
