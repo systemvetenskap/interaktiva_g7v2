@@ -61,10 +61,12 @@ namespace WebApplication1
                 string q = node.FirstChild.InnerText;
                 string id = node.Attributes["id"].Value;
                 string a = node["answer"].InnerText;
-          
+                string b = node["useranswer"].InnerText;
                 Test t = new Test();
                 t.setId(id);
                 t.setQuestion(q);
+                t.setAnswers(a);
+                t.setYouranwser(b);
             }
             
             //Response.Redirect("oldtest.xml");

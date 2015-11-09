@@ -11,8 +11,8 @@ namespace WebApplication1
         private string question;
         private string[] answers;
         private string[] youranwsers;
-        private int i;
-        private int y;
+        private int i = 0;
+        private int y = 0;
         public void setId(string i)
         {
             id = i;
@@ -31,9 +31,9 @@ namespace WebApplication1
         }
         public void setAnswers(string a)
         {
-            
+            int add = 1;
             answers[i] = a;
-            i++;
+            i += add;
         }
         public string[] getAnswers()
         {
@@ -42,7 +42,7 @@ namespace WebApplication1
         public void setYouranwser(string s)
         {
             youranwsers[y] = s;
-            y++;
+            y += 1;
         }
         public string[] getYouranswers()
         {
