@@ -70,10 +70,12 @@
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
                     <asp:HyperLinkField
                         DataNavigateUrlFields="testid"
-                        DataNavigateUrlFormatString="oldtest.aspx"
+                        DataNavigateUrlFormatString="https://www.pinterest.com/"
                         DataTextField="testid"
                         HeaderText="Hämta test"
-                        SortExpression="testid" />
+                        SortExpression="testid"
+                        Target="_blank"
+                         />
                 </Columns>
                 
             </asp:GridView>

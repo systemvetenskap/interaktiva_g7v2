@@ -169,9 +169,12 @@ namespace WebApplication1
                 string points = r[5].ToString();
                 string date = r[6].ToString();                  
                 string leader = r[7].ToString() + " " + r[8].ToString(); // sätta ihop firstname + lastname på en ledare
-                //string testid = r[9].ToString();
-                string testid = "Hämta test";
+                string testid = r[9].ToString();
 
+                if(r[9] != DBNull.Value)
+                {
+                  testid = "Hämta prov";
+                }
                 row = dt.NewRow();
                 row[0] = fullname;
                 row[1] = licens;
@@ -184,7 +187,6 @@ namespace WebApplication1
 
                 dt.Rows.Add(row);
             }
-
             GridViewMyTests.DataSource = dt;
             GridViewMyTests.DataBind();
 
