@@ -68,6 +68,7 @@
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
                     <asp:BoundField DataField="maxdate" HeaderText="Datum"  />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
+                    <asp:BoundField DataField="testid" HeaderText="Hämta prov" />
                 </Columns>
                 
             </asp:GridView>
