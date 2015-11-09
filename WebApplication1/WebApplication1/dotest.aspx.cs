@@ -28,13 +28,7 @@ namespace WebApplication1.Employee
         CheckBox checkbox1, checkbox2, checkbox3, checkbox4;
         string[] correct;
         public int timerVar = 1;
-        public string tpoints, p, ec, et;
-
-        protected void btn2_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("mytests.aspx");
-        }
-
+        public string tpoints, p, ec, et;            
         public int gr;
         public string ecPoints, pPoints, ethPoints;     
         double prod = 0;
@@ -42,6 +36,7 @@ namespace WebApplication1.Employee
         double eth = 0;
         int[] count;
         List<answ> list = new List<answ>();
+        List<questions> listq = new List<questions>();
 
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
@@ -81,21 +76,25 @@ namespace WebApplication1.Employee
 
                 //Skapar ny array och stoppar in variabler av typen int(minsta värde, högsta värde)
                 int[] arrayQuestions = RandomNumbers(1, x, 4);
-                int[] arrayAnswers = RandomNumbers(1, 4, 2);
+                
 
                 //Hämtar frågor från orginaldokumentet och stoppar in detta i det nya
                 foreach (int i in arrayQuestions)
                 {
                     XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']"), false);
+                    string text = xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']").FirstChild.InnerText;
                     XmlNode parent = xmldoc2.SelectSingleNode("categories");
                     parent.AppendChild(newnode);
                     parent = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    XmlText txt = xmldoc2.CreateTextNode(text);
+                    parent.AppendChild(txt);
                     XmlElement newel = xmldoc2.CreateElement("answer");
                     parent.AppendChild(newel);
-          
+
+
                     XmlNode tst = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                     string img = tst.Attributes["image"].Value;
-                    if(img == "true")
+                    if (img == "true")
                     {
                         XmlNode newnode2 = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']/image"), true);
                         parent.AppendChild(newnode2);
@@ -103,13 +102,21 @@ namespace WebApplication1.Employee
                     newel = xmldoc2.CreateElement("useranswer");
                     parent.AppendChild(newel);
 
-
+                    //skicka arrayen vidare
+                    int[] arrayAnswers = RandomNumbers(1, 4, 2);
+                    questions q = new questions();
+                    q.setId(i);
+                    q.setArr(arrayAnswers);
+                    listq.Add(q);
                     foreach (int ix in arrayAnswers)
                     {
                         XmlNode newnode2 = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + ix + "']"), true);
                         XmlNode parent2 = xmldoc2.SelectSingleNode("categories/question[@id='" + i + "']/answer");
                         parent2.AppendChild(newnode2);
                     }
+
+
+
                     xmldoc2.Save(Server.MapPath("usertest.xml"));
                 }
                 //Lägger in alla question nodes i en XML lista
@@ -118,11 +125,13 @@ namespace WebApplication1.Employee
                 int count = 1;
                 foreach (XmlNode node in lst)
                 {
+                    
+     
                     string attributeID = node.Attributes["id"].Value;
                     string attributeMulti = node.Attributes["multi"].Value;
                     string img = node.Attributes["image"].Value;
                     int i = Convert.ToInt16(attributeID);
-           
+
                     loadQuest(attributeID, attributeMulti, img, count);
                     count++;
 
@@ -146,6 +155,7 @@ namespace WebApplication1.Employee
                     string attributeMulti = node.Attributes["multi"].Value;
                     string img = node.Attributes["image"].Value;
                     int i = Convert.ToInt16(attributeID);
+     
                     loadQuest(attributeID, attributeMulti, img, count);
                     count++;
 
@@ -217,7 +227,16 @@ namespace WebApplication1.Employee
         }
         protected void loadQuest(string i, string attributeMulti, string img, int count)
         {
-           
+            int[] arr = new int[4];
+            foreach(var x in listq)
+            {
+                int id = x.getId();
+                if(id.ToString() == i)
+                {
+                    arr = x.getArr();
+                }
+            }
+            xmldoc2.Save("usertest.xml");
             //Skapar nya rader                  
             row1 = new TableRow();
             row2 = new TableRow();
@@ -269,8 +288,8 @@ namespace WebApplication1.Employee
                 string cat2 = n1.Attributes["id"].Value;
                 lblQuestion.Attributes.Add("id", cat2);
 
-                radiob1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
-                XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
+                radiob1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '"+arr[0]+"']").InnerText;
+                XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer['" + arr[0] + "']");
                 string at = n.Attributes["correct"].Value;
                 n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 string cat = n.Attributes["category"].Value;
@@ -278,24 +297,24 @@ namespace WebApplication1.Employee
                 radiob1.Attributes.Add("correct", at);
                 radiob1.Attributes.Add("category", cat);
 
-                radiob2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
-                n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='2']");
+                radiob2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[1] + "']").InnerText;
+                n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[1] + "']");
                 at = n.Attributes["correct"].Value;
                 n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 cat = n.Attributes["category"].Value;
                 radiob2.Attributes.Add("category", cat);
                 radiob2.Attributes.Add("correct", at);
 
-                radiob3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
-                n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='3']");
+                radiob3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[2] + "']").InnerText;
+                n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[2] + "']");
                 at = n.Attributes["correct"].Value;
                 n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 cat = n.Attributes["category"].Value;
                 radiob3.Attributes.Add("category", cat);
                 radiob3.Attributes.Add("correct", at);
 
-                radiob4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
-                n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='4']");
+                radiob4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[3] + "']").InnerText;
+                n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[3] + "']");
                 at = n.Attributes["correct"].Value;
                 n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 cat = n.Attributes["category"].Value;
@@ -343,8 +362,8 @@ namespace WebApplication1.Employee
                 lblQuestion.Attributes.Add("id", cat2);
                 
 
-                checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '1']").InnerText;
-                XmlNode usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='1']");
+                checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[0] + "']").InnerText;
+                XmlNode usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[0] + "']");
                 string at = usernode.Attributes["correct"].Value;
                 usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 string cat = usernode.Attributes["category"].Value;
@@ -357,8 +376,8 @@ namespace WebApplication1.Employee
                     ch.setCount();
                 }
 
-                checkbox2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '2']").InnerText;
-                usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='2']");
+                checkbox2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[1] + "']").InnerText;
+                usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[1] + "']");
                 at = usernode.Attributes["correct"].Value;
                 usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 cat = usernode.Attributes["category"].Value;
@@ -371,8 +390,8 @@ namespace WebApplication1.Employee
                 checkbox2.Attributes.Add("group", i);
 
 
-                checkbox3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '3']").InnerText;
-                usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='3']");
+                checkbox3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[2] + "']").InnerText;
+                usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[2] + "']");
                 at = usernode.Attributes["correct"].Value;
                 usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 cat = usernode.Attributes["category"].Value;
@@ -384,8 +403,8 @@ namespace WebApplication1.Employee
                 checkbox3.Attributes.Add("correct", at);
                 checkbox3.Attributes.Add("group", i);
 
-                checkbox4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '4']").InnerText;
-                usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='4']");
+                checkbox4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[3] + "']").InnerText;
+                usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[3] + "']");
                 at = usernode.Attributes["correct"].Value;
                 usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                 cat = usernode.Attributes["category"].Value;
@@ -733,6 +752,10 @@ namespace WebApplication1.Employee
 
 
           }
+        protected void btn2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("mytests.aspx");
+        }
 
 
 
