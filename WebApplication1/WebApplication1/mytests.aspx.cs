@@ -37,10 +37,11 @@ namespace WebApplication1
             dt2.Columns.Add("points");
             dt2.Columns.Add("name");
             dt2.Columns.Add("leader");
+            dt2.Columns.Add("oldtest");
             string format = "yyyy-MM-dd";
           
 
-                     // Use current time.
+           // Use current time.
            // Use this format.
         
 
