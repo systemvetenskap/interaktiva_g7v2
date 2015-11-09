@@ -14,11 +14,16 @@ namespace WebApplication1
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            string role = Application["role"].ToString();
-            if (role=="member")
+            if(Application["Role"] != null)
             {
-                provresultat.Visible = false;
+                string role = Application["role"].ToString();
+                if (role == "member")
+                {
+                    provresultat.Visible = false;
+                }
+
             }
+ 
             DataTable dt = new DataTable();
             DataTable dt2 = new DataTable();
             string sql = @"select date, grade, points,  name, leader.firstname, leader.lastname , testid from license_test
