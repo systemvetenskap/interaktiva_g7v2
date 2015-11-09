@@ -154,6 +154,7 @@ namespace WebApplication1
             dt.Columns.Add("leader");
             dt.Columns.Add("testid");
 
+            
             DataRow row = dt.NewRow();
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
             da.Fill(dt2);
@@ -168,7 +169,9 @@ namespace WebApplication1
                 string points = r[5].ToString();
                 string date = r[6].ToString();                  
                 string leader = r[7].ToString() + " " + r[8].ToString(); // sätta ihop firstname + lastname på en ledare
-                string testid = r[9].ToString();
+                //string testid = r[9].ToString();
+                string testid = "Hämta test";
+
                 row = dt.NewRow();
                 row[0] = fullname;
                 row[1] = licens;
