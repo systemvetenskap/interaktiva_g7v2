@@ -40,7 +40,7 @@
                     <asp:BoundField DataField="grade" HeaderText="Betyg" />
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
-                    <asp:HyperLinkField DataNavigateUrlFields="testid" DataNavigateUrlFormatString="oldtest.aspx?id={0}" DataTextField="testid" HeaderText="Hämta prov"  />
+                    <asp:HyperLinkField DataNavigateUrlFields="testid" DataNavigateUrlFormatString="oldtest.aspx?id={0}" Text="Hämta Prov" HeaderText="Hämta prov"  />
                 </Columns>
                 
             </asp:GridView>

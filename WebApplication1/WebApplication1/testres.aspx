@@ -68,11 +68,11 @@
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
                     <asp:BoundField DataField="maxdate" HeaderText="Datum"  />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
-                    <asp:HyperLinkField
+                
+                    <asp:HyperLinkField  
                         DataNavigateUrlFields="testid"
-                        DataNavigateUrlFormatString="oldtest.aspx?id={0}"
-                        DataTextField="testid"
-                        HeaderText="Hämta test"
+                        DataNavigateUrlFormatString="oldtest.aspx?id={0}"                       
+                        HeaderText="Hämta prov"
                         Text ="Hämta prov"
                         SortExpression="testid"
                         Target="_blank"

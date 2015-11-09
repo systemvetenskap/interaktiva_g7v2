@@ -160,8 +160,10 @@ namespace WebApplication1
             da.Fill(dt2);
 
             //lägg till rows from datatable dt2 til datatable dt 
+            
             foreach (DataRow r in dt2.Rows)
             {
+                
                 string fullname = r[0].ToString() + " " + r[1].ToString(); // sätta ihop firstname + lastname på en medlem
                 string licens = r[2].ToString();
                 string testname = r[3].ToString();
@@ -171,23 +173,49 @@ namespace WebApplication1
                 string leader = r[7].ToString() + " " + r[8].ToString(); // sätta ihop firstname + lastname på en ledare
                 string testid = r[9].ToString();
 
-                //if(r[9] != DBNull.Value)
-                //{
-                //  testid = "Hämta prov";
-                //}
-                row = dt.NewRow();
-                row[0] = fullname;
-                row[1] = licens;
-                row[2] = testname;
-                row[3] = grade;
-                row[4] = points;
-                row[5] = date;
-                row[6] = leader;
-                row[7] = testid;
+                if(r[9] == DBNull.Value)
+                {
+                  
+                    row = dt.NewRow();
+                    row[0] = fullname;
+                    row[1] = licens;
+                    row[2] = testname;
+                    row[3] = grade;
+                    row[4] = points;
+                    row[5] = date;
+                    row[6] = leader;
+                   
+                    dt.Rows.Add(row);
+        
+                }
+                else
+                {
+                    row = dt.NewRow();
+                    row[0] = fullname;
+                    row[1] = licens;
+                    row[2] = testname;
+                    row[3] = grade;
+                    row[4] = points;
+                    row[5] = date;
+                    row[6] = leader;
+                    row[7] = testid;
+                    dt.Rows.Add(row);
+                }
+           
+
+
+
+
+      
                 
 
-                dt.Rows.Add(row);
+
             }
+
+
+           
+
+
             GridViewMyTests.DataSource = dt;
             GridViewMyTests.DataBind();
 
