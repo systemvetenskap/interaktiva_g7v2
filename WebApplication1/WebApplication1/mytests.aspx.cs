@@ -38,13 +38,18 @@ namespace WebApplication1
             dt2.Columns.Add("name");
             dt2.Columns.Add("leader");            
             dt2.Columns.Add("testid");
+   
+
             string format = "yyyy-MM-dd";
 
            // Use current time.
            // Use this format.
-
             foreach (DataRow r in dt.Rows)
             {
+                HyperLink hl1 = new HyperLink();
+                hl1.Text = " Visa";
+                hl1.NavigateUrl = "oldtest.aspx";
+
                 DataRow row = dt2.NewRow();
                 DateTime date = Convert.ToDateTime(r[0]);
                 row[0] = date.ToString(format);
@@ -52,21 +57,18 @@ namespace WebApplication1
                 row[2] = r[2];
                 row[3] = r[3];
                 row[4] = r[4].ToString() + " " + r[5].ToString();
-                row[5] = r[6];
+                row[5] = r[6] + hl1.Text; 
+
                 dt2.Rows.Add(row);
             }
-
             GridViewTests.DataSource = dt2;
             GridViewTests.DataBind();
             conn.Close();
-
         }
-
         protected void btnLicenseTest_Click(object sender, EventArgs e)
         {
             Application["type"] = "a";
             Response.Redirect("dotest.aspx");
-
         }
 
         protected void btnUpdateTest_Click(object sender, EventArgs e)
