@@ -114,9 +114,9 @@ namespace WebApplication1
                 sql += addSql3;
                 }
                 
-            else if (DropDownListGrade.SelectedValue == "Icke godkänd")
+            else if (DropDownListGrade.SelectedValue == "Underkänd")
             {
-                string addSql4 = "AND grade = 'Icke godkänd' ";
+                string addSql4 = "AND grade = 'Underkänd' ";
                 sql += addSql4;
             }
 

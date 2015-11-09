@@ -42,7 +42,7 @@
                 <asp:ListItem Value="Inga betyg">Inga betyg</asp:ListItem>
                 <asp:ListItem Value="Alla">Alla</asp:ListItem>
                 <asp:ListItem Value="Godkänd">Godkänd</asp:ListItem>
-                <asp:ListItem Value="Icke godkänd">Icke godkänd</asp:ListItem>
+                <asp:ListItem Value="Underkänd">Underkänd</asp:ListItem>
             </asp:DropDownList>
 
 
