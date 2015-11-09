@@ -17,7 +17,7 @@
         </div>
         <!-- Navigation -->
         <div class="nav">
-            <ul class="clear">
+            <ul class="clear"> 
 
             </ul> 
         </div>
