@@ -42,7 +42,7 @@
                 <asp:ListItem Value="Inga betyg">Inga betyg</asp:ListItem>
                 <asp:ListItem Value="Alla">Alla</asp:ListItem>
                 <asp:ListItem Value="Godkänd">Godkänd</asp:ListItem>
-                <asp:ListItem Value="Icke godkänd">Icke godkänd</asp:ListItem>
+                <asp:ListItem Value="Underkänd">Underkänd</asp:ListItem>
             </asp:DropDownList>
 
 
@@ -68,6 +68,7 @@
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
                     <asp:BoundField DataField="maxdate" HeaderText="Datum"  />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
+                    <asp:BoundField DataField="testid" HeaderText="Hämta prov" />
                 </Columns>
                 
             </asp:GridView>

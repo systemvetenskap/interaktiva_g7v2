@@ -78,7 +78,7 @@ namespace WebApplication1
         private void ShowList()
         {
             // sql visar alla i listan
-            string sql = @"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname
+            string sql = @"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname, testid
                                                        from license_test t
                                                        inner join
                                                        (
@@ -114,9 +114,9 @@ namespace WebApplication1
                 sql += addSql3;
                 }
                 
-            else if (DropDownListGrade.SelectedValue == "Icke godkänd")
+            else if (DropDownListGrade.SelectedValue == "Underkänd")
             {
-                string addSql4 = "AND grade = 'Icke godkänd' ";
+                string addSql4 = "AND grade = 'Underkänd' ";
                 sql += addSql4;
             }
 
@@ -152,7 +152,8 @@ namespace WebApplication1
             dt.Columns.Add("points");
             dt.Columns.Add("maxdate");
             dt.Columns.Add("leader");
-             
+            dt.Columns.Add("testid");
+
             DataRow row = dt.NewRow();
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
             da.Fill(dt2);
@@ -167,6 +168,7 @@ namespace WebApplication1
                 string points = r[5].ToString();
                 string date = r[6].ToString();                  
                 string leader = r[7].ToString() + " " + r[8].ToString(); // sätta ihop firstname + lastname på en ledare
+                string testid = r[9].ToString();
                 row = dt.NewRow();
                 row[0] = fullname;
                 row[1] = licens;
@@ -175,6 +177,7 @@ namespace WebApplication1
                 row[4] = points;
                 row[5] = date;
                 row[6] = leader;
+                row[7] = testid;
 
                 dt.Rows.Add(row);
             }

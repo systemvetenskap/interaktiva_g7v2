@@ -26,7 +26,7 @@ namespace WebApplication1
  
             DataTable dt = new DataTable();
             DataTable dt2 = new DataTable();
-            string sql = @"select date, grade, points, name, leader.firstname, leader.lastname from license_test
+            string sql = @"select date, grade, points,  name, leader.firstname, leader.lastname , testid from license_test
                             inner join users on license_test.user_id = users.userid
                             inner join leader on users.leader_id = leader.leader_id
                             where users.userid = 1";
@@ -41,14 +41,12 @@ namespace WebApplication1
             dt2.Columns.Add("grade");
             dt2.Columns.Add("points");
             dt2.Columns.Add("name");
-            dt2.Columns.Add("leader");
-            dt2.Columns.Add("oldtest");
+            dt2.Columns.Add("leader");            
+            dt2.Columns.Add("testid");
             string format = "yyyy-MM-dd";
-          
 
            // Use current time.
            // Use this format.
-        
 
             foreach (DataRow r in dt.Rows)
             {
@@ -59,6 +57,7 @@ namespace WebApplication1
                 row[2] = r[2];
                 row[3] = r[3];
                 row[4] = r[4].ToString() + " " + r[5].ToString();
+                row[5] = r[6];
                 dt2.Rows.Add(row);
             }
 
