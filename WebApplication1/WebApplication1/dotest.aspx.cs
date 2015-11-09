@@ -135,6 +135,7 @@ namespace WebApplication1.Employee
                     loadQuest(attributeID, attributeMulti, img, count, listq, pb);
                     count++;
                     xmldoc2.Save(Server.MapPath("usertest.xml"));
+                    
 
                 }
 
@@ -771,6 +772,28 @@ namespace WebApplication1.Employee
                 {
                     gr = 2;
                     gradestring = "icke godkänd";
+                }
+
+                string savexml = xmldoc2.OuterXml;
+                string tn = "ÅKU";
+                int ln = 1;
+                DateTime date = DateTime.Today;
+                string sql = "insert into license_test(name, user_id, grade, points, date, testxml) values(:tname, :user, :grd, :pts, :dt, :addxml)";
+                try
+                {
+                    conn.Open();
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                    cmd.Parameters.Add(new NpgsqlParameter("tname", tn));
+                    cmd.Parameters.Add(new NpgsqlParameter("user", ln));
+                    cmd.Parameters.Add(new NpgsqlParameter("grd", gradestring));
+                    cmd.Parameters.Add(new NpgsqlParameter("pts", total));
+                    cmd.Parameters.Add(new NpgsqlParameter("dt", date));
+                    cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                catch
+                {
 
                 }
 
