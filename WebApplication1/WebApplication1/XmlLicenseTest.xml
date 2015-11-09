@@ -129,9 +129,9 @@
     </question>
 
     <question id="13" category="economy" multi ="false" image ="false">
-      Vart hittar man som anställd de rekommenderade räntorna för de olika lånen hos JEBanen ?<answer>
+      Var hittar man som anställd de rekommenderade räntorna för de olika lånen hos JEBanken ?<answer>
         <answer id="1" correct="false">På JEBankens hemsida</answer>
-        <answer id="2" correct="true">Riksdagens hemsida</answer>
+        <answer id="2" correct="false">Riksdagens hemsida</answer>
         <answer id="3" correct="true">I vårt interna system</answer>
         <answer id="4" correct="false">Man frågar chefen</answer>
       </answer>
@@ -170,11 +170,11 @@
   <!--//Slut kategori ekonomi
   //Kategori etik-->
     <question id="17" category="ethics" multi ="false" image ="false">
-      Vilka kunder bör kunna förhandla till sig lägre ränta ?<answer>
+      Vilka kunder bör kunna förhandla till sig lägre ränta ? <answer>
         <answer id="1" correct="true">De med stabil ekonomi</answer>
         <answer id="2" correct="false">De som varit kunder längre än 10 år hos JEBanken</answer>
         <answer id="3" correct="false">De som har det svårast ekonomiskt</answer>
-        <answer id="4" correct="true">Större företag</answer>
+        <answer id="4" correct="false">Större företag</answer>
       </answer>
       <useranswer></useranswer>
     </question>
@@ -226,7 +226,7 @@
         <answer id="3" correct="false">Jobbar halva dagen för att få in lite pengar i alla fall</answer>
         <answer id="4" correct="false">Ringer chefen och ber om full ersättning trots frånvaro då jag har en snäll chef</answer>
       </answer>
-      <image>Images\\nyser.jpg</image>
+      <image>Images\\sicksmiley.png</image>
       <useranswer></useranswer>
     </question>
 

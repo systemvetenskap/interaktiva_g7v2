@@ -10,7 +10,7 @@
 namespace WebApplication1 {
     
     
-    public partial class mytests {
+    public partial class testres {
         
         /// <summary>
         /// form1 control.
@@ -22,48 +22,75 @@ namespace WebApplication1 {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// LabelLicensetest control.
+        /// LabelLicens control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelLicensetest;
+        protected global::System.Web.UI.WebControls.Label LabelLicens;
         
         /// <summary>
-        /// LabelUpdatetest control.
+        /// DropDownListLicensed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelUpdatetest;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListLicensed;
         
         /// <summary>
-        /// btnLicenseTest control.
+        /// LabelBetyg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLicenseTest;
+        protected global::System.Web.UI.WebControls.Label LabelBetyg;
         
         /// <summary>
-        /// btnUpdateTest control.
+        /// DropDownListGrade control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateTest;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListGrade;
         
         /// <summary>
-        /// GridViewTests control.
+        /// LabelLeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewTests;
+        protected global::System.Web.UI.WebControls.Label LabelLeader;
+        
+        /// <summary>
+        /// DropDownListLeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListLeader;
+        
+        /// <summary>
+        /// ButtonSearchTest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonSearchTest;
+        
+        /// <summary>
+        /// GridViewMyTests control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewMyTests;
     }
 }

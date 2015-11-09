@@ -52,7 +52,7 @@
       <HintPath>..\..\..\..\..\AppData\Roaming\Skype\My Skype Received Files\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="Npgsql">
-      <HintPath>..\..\..\..\..\AppData\Roaming\Skype\My Skype Received Files\Npgsql.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 14.0\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -72,16 +72,25 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dotest.aspx" />
+    <Content Include="Images\arnold.png" />
     <Content Include="Images\background.jpg" />
-    <Content Include="Images\bat.jpg" />
     <Content Include="Images\calvin.png" />
+    <Content Include="Images\checkgreen.png" />
+    <Content Include="Images\checkred.png" />
     <Content Include="Images\dollarsign.jpg" />
     <Content Include="Images\globe.png" />
     <Content Include="Images\header1.png" />
-    <Content Include="Images\nyser.jpg" />
+    <Content Include="Images\karta.png" />
+    <Content Include="Images\ladygaga.png" />
+    <Content Include="Images\sicksmiley.png" />
+    <Content Include="Images\tyrion.png" />
+    <Content Include="index.aspx" />
     <Content Include="JavaScript.js" />
     <Content Include="mytests.aspx" />
     <Content Include="packages.config" />
+    <Content Include="testres.aspx" />
+    <Content Include="XmlUpdateTest.xml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -90,13 +99,29 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="quest.aspx" />
     <Content Include="stilmall.css" />
     <Content Include="usertest.xml" />
     <Content Include="Web.config" />
-    <Content Include="XmlQuestions.xml" />
+    <Content Include="XmlLicenseTest.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="answ.cs" />
+    <Compile Include="dotest.aspx.cs">
+      <DependentUpon>dotest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dotest.aspx.designer.cs">
+      <DependentUpon>dotest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="mytests.aspx.cs">
       <DependentUpon>mytests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -105,14 +130,16 @@
       <DependentUpon>mytests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="quest.aspx.cs">
-      <DependentUpon>quest.aspx</DependentUpon>
+    <Compile Include="questions.cs" />
+    <Compile Include="testres.aspx.cs">
+      <DependentUpon>testres.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="quest.aspx.designer.cs">
-      <DependentUpon>quest.aspx</DependentUpon>
+    <Compile Include="testres.aspx.designer.cs">
+      <DependentUpon>testres.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
