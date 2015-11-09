@@ -12,6 +12,7 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Xml.Linq;
 using System.Timers;
+using System.Diagnostics;
 
 
 namespace WebApplication1
@@ -20,6 +21,7 @@ namespace WebApplication1
     {
     
         XmlDocument xmldoc = new XmlDocument();
+        List<Test> testlist = new List<Test>();
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,8 +51,23 @@ namespace WebApplication1
         }
         protected void loadQuest()
         {
+            XmlNodeList nodes = xmldoc.SelectNodes("categories/question");
+            
+            foreach(XmlNode node in nodes)
+            {
+                
+                Debug.WriteLine(node.FirstChild.InnerText);
 
-            Response.Redirect("oldtest.xml");
+                string q = node.FirstChild.InnerText;
+                string id = node.Attributes["id"].Value;
+                string a = node["answer"].InnerText;
+          
+                Test t = new Test();
+                t.setId(id);
+                t.setQuestion(q);
+            }
+            
+            //Response.Redirect("oldtest.xml");
             
         }
     }
