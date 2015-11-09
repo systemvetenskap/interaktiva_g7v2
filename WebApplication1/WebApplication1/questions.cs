@@ -5,6 +5,7 @@ using System.Web;
 
 namespace WebApplication1
 {
+    [Serializable]
     public class questions
     {
         private int id;

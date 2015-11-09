@@ -32,8 +32,8 @@
 
             &nbsp;<asp:DropDownList ID="DropDownListLicensed" Class="Dropdown Licens" runat="server" Font-Size="Large">
                 <asp:ListItem Value="Alla">Alla</asp:ListItem>
-                <asp:ListItem Value="Licensed">Licensed</asp:ListItem>
-                <asp:ListItem Value="Icke licensed">Icke licensed</asp:ListItem>
+                <asp:ListItem Value="Licensed">Licenserad</asp:ListItem>
+                <asp:ListItem Value="Icke licensed">Ej licenserad</asp:ListItem>
             </asp:DropDownList>
 
 
@@ -43,7 +43,7 @@
                 <asp:ListItem Value="Inga betyg">Inga betyg</asp:ListItem>
                 <asp:ListItem Value="Alla">Alla</asp:ListItem>
                 <asp:ListItem Value="Godkänd">Godkänd</asp:ListItem>
-                <asp:ListItem Value="Icke godkänd">Icke godkänd</asp:ListItem>
+                <asp:ListItem Value="Underkänd">Underkänd</asp:ListItem>
             </asp:DropDownList>
 
 
@@ -69,6 +69,15 @@
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
                     <asp:BoundField DataField="maxdate" HeaderText="Datum"  />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
+                
+                    <asp:HyperLinkField  
+                        DataNavigateUrlFields="testid"
+                        DataNavigateUrlFormatString="oldtest.aspx?id={0}"                       
+                        HeaderText="Hämta prov"
+                        Text ="Hämta prov"
+                        SortExpression="testid"
+                        Target="_blank"
+                         />
                 </Columns>
                 
             </asp:GridView>

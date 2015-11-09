@@ -19,7 +19,7 @@
         <div class="nav">
             <ul class="clear">
                 <li><a class="mytestsmenu" href = "mytests.aspx">Mina prov</a></li>
-                <li><a href = "testres.aspx">Provresultat</a></li>
+                <li id="provresultat" runat="server"><a href = "testres.aspx">Provresultat</a></li>
 
             </ul> 
         </div>
@@ -40,13 +40,11 @@
                     <asp:BoundField DataField="grade" HeaderText="Betyg" />
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
+                    <asp:HyperLinkField DataNavigateUrlFields="testid" DataNavigateUrlFormatString="oldtest.aspx?id={0}" Text="Hämta Prov" HeaderText="Hämta prov"  />
                 </Columns>
                 
             </asp:GridView>
-
-
-        </div>
-    
+        </div>    
     </div>
     </form>
 </body>

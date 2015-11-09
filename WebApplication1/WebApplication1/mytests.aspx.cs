@@ -18,6 +18,16 @@ namespace WebApplication1
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Application["Role"] != null)
+            {
+                string role = Application["role"].ToString();
+                if (role == "member")
+                {
+                    provresultat.Visible = false;
+                }
+
+            }
+ 
             if(!IsPostBack)
             {
                 ListLeaders();
@@ -130,11 +140,13 @@ namespace WebApplication1
 
                 }
 
-                DataTable dt = new DataTable();
-                DataTable dt2 = new DataTable();
-                GridViewMyTests.DataSource = null;
-
-                conn.Open();
+            DataTable dt = new DataTable();
+            DataTable dt2 = new DataTable();
+            string sql = @"select date, grade, points,  name, leader.firstname, leader.lastname , testid from license_test
+                            inner join users on license_test.user_id = users.userid
+                            inner join leader on users.leader_id = leader.leader_id
+                            where users.userid = 1";
+            conn.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@grade", dropdownGrade);
                 cmd.Parameters.AddWithValue("@grade2", dropdownGrade2);
@@ -153,7 +165,7 @@ namespace WebApplication1
                 dt.Columns.Add("leader");
 
                 DataRow row = dt.NewRow();
-                NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
                 da.Fill(dt2);
                 foreach (DataRow r in dt2.Rows)
                 {
@@ -172,7 +184,17 @@ namespace WebApplication1
                     row[4] = points;
                     row[5] = date;
                     row[6] = leader;
+            da.Fill(dt);
+            dt2.Columns.Add("date");
+            dt2.Columns.Add("grade");
+            dt2.Columns.Add("points");
+            dt2.Columns.Add("name");
+            dt2.Columns.Add("leader");            
+            dt2.Columns.Add("testid");
+   
 
+            string format = "yyyy-MM-dd";
+          
                     dt.Rows.Add(row);
                 }
                 
@@ -184,6 +206,9 @@ namespace WebApplication1
 
 
             else
+           // Use current time.
+           // Use this format.
+            foreach (DataRow r in dt.Rows)
             {
                 string sql2 = @"select u.first_name, u.last_name, u.licensed, t.name, t.grade, t.points, t2.maxdate, l.firstname, l.lastname
                                                        from license_test t
@@ -220,7 +245,21 @@ namespace WebApplication1
                     string addSql = "and l.leader_id ='" + id + "'";
                     sql2 += addSql;
 
-                }
+                HyperLink hl1 = new HyperLink();
+                hl1.Text = " Hämta prov";
+                hl1.NavigateUrl = "oldtest.aspx";
+
+                DataRow row = dt2.NewRow();
+                DateTime date = Convert.ToDateTime(r[0]);
+                row[0] = date.ToString(format);
+                row[1] = r[1];
+                row[2] = r[2];
+                row[3] = r[3];
+                row[4] = r[4].ToString() + " " + r[5].ToString();
+                row[5] = r[6];
+
+                dt2.Rows.Add(row);
+            }
                // NpgsqlDataAdapter da;
                 DataTable dt = new DataTable();
                 DataTable dt2 = new DataTable();
@@ -269,7 +308,7 @@ namespace WebApplication1
                     row[6] = leader;
 
                     dt.Rows.Add(row);
-                }
+        }
 
                 GridViewMyTests.DataSource = dt;
                 GridViewMyTests.DataBind();
@@ -281,7 +320,6 @@ namespace WebApplication1
         {
             Application["type"] = "a";
             Response.Redirect("dotest.aspx");
-
         }
 
         protected void btnUpdateTest_Click(object sender, EventArgs e)
