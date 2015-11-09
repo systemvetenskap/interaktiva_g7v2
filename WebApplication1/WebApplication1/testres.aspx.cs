@@ -159,6 +159,8 @@ namespace WebApplication1
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
             da.Fill(dt2);
 
+            string currentID = "";
+
             //lägg till rows from datatable dt2 til datatable dt 
             foreach (DataRow r in dt2.Rows)
             {
@@ -169,9 +171,13 @@ namespace WebApplication1
                 string points = r[5].ToString();
                 string date = r[6].ToString();                  
                 string leader = r[7].ToString() + " " + r[8].ToString(); // sätta ihop firstname + lastname på en ledare
-                //string testid = r[9].ToString();
-                string testid = "Hämta test";
+                string testid = r[9].ToString();
+                currentID += testid;
 
+                if(r[9] != DBNull.Value)
+                {
+                  testid = "Hämta test";
+                }
                 row = dt.NewRow();
                 row[0] = fullname;
                 row[1] = licens;
@@ -184,6 +190,7 @@ namespace WebApplication1
 
                 dt.Rows.Add(row);
             }
+            LabelBetyg.Text = currentID;
 
             GridViewMyTests.DataSource = dt;
             GridViewMyTests.DataBind();
