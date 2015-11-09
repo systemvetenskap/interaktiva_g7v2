@@ -37,7 +37,6 @@ namespace WebApplication1
             dt2.Columns.Add("points");
             dt2.Columns.Add("name");
             dt2.Columns.Add("leader");
-            dt2.Columns.Add("oldtest");
             dt2.Columns.Add("testid");
             string format = "yyyy-MM-dd";
           
