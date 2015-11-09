@@ -40,6 +40,7 @@
                     <asp:BoundField DataField="grade" HeaderText="Betyg" />
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
+                    <asp:BoundField DataField="oldtest" HeaderText="Hämta prov" />
                 </Columns>
                 
             </asp:GridView>
