@@ -10,7 +10,7 @@
 namespace WebApplication1 {
     
     
-    public partial class testres1 {
+    public partial class testres {
         
         /// <summary>
         /// form1 control.
