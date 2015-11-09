@@ -70,7 +70,7 @@
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
                     <asp:HyperLinkField
                         DataNavigateUrlFields="testid"
-                        DataNavigateUrlFormatString="mytests.aspx"
+                        DataNavigateUrlFormatString="oldtest.aspx"
                         DataTextField="testid"
                         HeaderText="Hämta test"
                         SortExpression="testid" />
