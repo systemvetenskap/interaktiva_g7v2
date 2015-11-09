@@ -19,7 +19,7 @@
         <div class="nav">
             <ul class="clear">
                 <li><a class="mytestsmenu" href = "mytests.aspx">Mina prov</a></li>
-                <li><a href = "testres.aspx">Provresultat</a></li>
+                <li id="provresultat" runat="server"><a href = "testres.aspx">Provresultat</a></li>
 
             </ul> 
         </div>
