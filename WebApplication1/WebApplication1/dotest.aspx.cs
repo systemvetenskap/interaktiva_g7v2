@@ -312,13 +312,15 @@ namespace WebApplication1.Employee
                     lblQuestion.Attributes.Add("id", cat2);
 
                     radiob1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[0] + "']").InnerText;
-                    XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer['" + arr[0] + "']");
+                    XmlNode n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id ='" + arr[0] + "']");
                     string at = n.Attributes["correct"].Value;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
-                    string cat = n.Attributes["category"].Value;
+                    string cat = n.Attributes["category"].Value;                    
                     lblQuestion.Text += " (" + cat + ")";
                     radiob1.Attributes.Add("correct", at);
                     radiob1.Attributes.Add("category", cat);
+                    string qid = n.Attributes["id"].Value;
+                    radiob1.Attributes.Add("qid", qid);
 
                     radiob2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[1] + "']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[1] + "']");
@@ -327,24 +329,30 @@ namespace WebApplication1.Employee
                     cat = n.Attributes["category"].Value;
                     radiob2.Attributes.Add("category", cat);
                     radiob2.Attributes.Add("correct", at);
+                    qid = n.Attributes["id"].Value;
+                    radiob2.Attributes.Add("qid", qid);
 
-                    radiob3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[2] + "']").InnerText;
+                radiob3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[2] + "']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[2] + "']");
                     at = n.Attributes["correct"].Value;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                     cat = n.Attributes["category"].Value;
                     radiob3.Attributes.Add("category", cat);
                     radiob3.Attributes.Add("correct", at);
+                qid = n.Attributes["id"].Value;
+                radiob3.Attributes.Add("qid", qid);
 
-                    radiob4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[3] + "']").InnerText;
+                radiob4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[3] + "']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[3] + "']");
                     at = n.Attributes["correct"].Value;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                     cat = n.Attributes["category"].Value;
                     radiob4.Attributes.Add("category", cat);
                     radiob4.Attributes.Add("correct", at);
-                    //Lägger in radiobuttons i cellerna
-                    cell1.Controls.Add(lblQuestion);
+                qid = n.Attributes["id"].Value;
+                radiob4.Attributes.Add("qid", qid);
+                //Lägger in radiobuttons i cellerna
+                cell1.Controls.Add(lblQuestion);
                     cell1.ColumnSpan = 2;
                     cell2.Controls.Add(radiob1);
                     cell3.Controls.Add(radiob2);
@@ -383,9 +391,10 @@ namespace WebApplication1.Employee
                     lblQuestion.Attributes.Add("multi", cat1);
                     string cat2 = n1.Attributes["id"].Value;
                     lblQuestion.Attributes.Add("id", cat2);
+          
 
 
-                    checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[0] + "']").InnerText;
+                checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[0] + "']").InnerText;
                     XmlNode usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[0] + "']");
                     string at = usernode.Attributes["correct"].Value;
                     usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
@@ -394,7 +403,9 @@ namespace WebApplication1.Employee
                     checkbox1.Attributes.Add("category", cat);
                     checkbox1.Attributes.Add("correct", at);
                     checkbox1.Attributes.Add("group", i);
-                    if (at == "true")
+                    string qid = n1.Attributes["id"].Value;
+                    checkbox1.Attributes.Add("qid", qid);
+                if (at == "true")
                     {
                         ch.setCount();
                     }
@@ -404,7 +415,9 @@ namespace WebApplication1.Employee
                     at = usernode.Attributes["correct"].Value;
                     usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                     cat = usernode.Attributes["category"].Value;
-                    if (at == "true")
+                    qid = n1.Attributes["id"].Value;
+                    checkbox2.Attributes.Add("qid", qid);
+                if (at == "true")
                     {
                         ch.setCount();
                     }
@@ -418,7 +431,9 @@ namespace WebApplication1.Employee
                     at = usernode.Attributes["correct"].Value;
                     usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                     cat = usernode.Attributes["category"].Value;
-                    if (at == "true")
+                    qid = n1.Attributes["id"].Value;
+                    checkbox3.Attributes.Add("qid", qid);
+                if (at == "true")
                     {
                         ch.setCount();
                     }
@@ -438,8 +453,10 @@ namespace WebApplication1.Employee
                     checkbox4.Attributes.Add("category", cat);
                     checkbox4.Attributes.Add("correct", at);
                     checkbox4.Attributes.Add("group", i);
-                    //Lägger in checkboxar i cellerna
-                    cell1.Controls.Add(lblQuestion);
+                    qid = n1.Attributes["id"].Value;
+                    checkbox4.Attributes.Add("qid", qid);
+                //Lägger in checkboxar i cellerna
+                cell1.Controls.Add(lblQuestion);
                     cell1.ColumnSpan = 2;
 
                     cell2.Controls.Add(checkbox1);
@@ -586,21 +603,28 @@ namespace WebApplication1.Employee
         }
         protected void calcPoints()
         {
-         
-           
+
+            string id = "";
+            string qtext = "";
             foreach (TableRow rw in table1.Rows)
             {
                 foreach (TableCell cell in rw.Cells)
                 {
                     foreach (Control cl in cell.Controls)
                     {
-                  
+                        if(cl is Label)
+                        {
+                            Label label = (Label)cl;
+                            id = label.Attributes["id"];
+                          
+                        }
                         if (cl is RadioButton)
                         {
                             RadioButton rad = (RadioButton)cl;
                             rad.Enabled = false;
                             string cor = rad.Attributes["correct"];
                             string cat = rad.Attributes["category"];
+                            string qid = rad.Attributes["qid"];
                             if (rad.Checked == true)
                             {
                                 if (cor == "true")
@@ -608,15 +632,21 @@ namespace WebApplication1.Employee
                                     if (cat == "products")
                                     {
                                         prod++;
+                                        qtext = rad.Text;
+                                        writeToXml(id, qtext, qid, cor);
                 
                                     }
                                     else if (cat == "ethics")
                                     {
                                         eth++;
+                                        qtext = rad.Text;
+                                        writeToXml(id,qtext, qid,cor);
                                     }
                                     else if (cat == "economy")
                                     {
                                         eco++;
+                                        qtext = rad.Text;
+                                        writeToXml(id,qtext,qid,cor);
 
                                     }
 
@@ -636,13 +666,14 @@ namespace WebApplication1.Employee
                             string cor = chk.Attributes["correct"];
                             string cat = chk.Attributes["category"];
                             string chkID = chk.Attributes["value"];
-                            
+                            string qid = chk.Attributes["qid"];
                             
                             chk.Enabled = false;
                             if (chk.Checked == true)
                             {
                                 if (cor == "true")
                                 {
+                                    writeToXml(id, qtext, qid, cor);
                                     int boxid = Convert.ToInt16(chk.Attributes["group"]);
                                     foreach(var x in list)
                                     {
@@ -805,6 +836,16 @@ namespace WebApplication1.Employee
         protected void btn2_Click(object sender, EventArgs e)
         {
             Response.Redirect("mytests.aspx");
+        }
+        protected void writeToXml(string i, string q, string qid, string avalue)
+        {
+            XmlNode nd = xmldoc2.SelectSingleNode("/categories/question[@id='"+i+"']/useranswer");
+            XmlElement el = xmldoc2.CreateElement("question");
+            el.SetAttribute("id", qid);
+            el.SetAttribute("correct", avalue);
+            el.InnerText = q;       
+            nd.AppendChild(el);
+            xmldoc2.Save(Server.MapPath("usertest.xml"));
         }
 
 
