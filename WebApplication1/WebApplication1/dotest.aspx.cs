@@ -45,6 +45,7 @@ namespace WebApplication1.Employee
 
             if (!IsPostBack)
             {
+                bool pb = true;
                 //string type = Application["type"].ToString();
                 btn2.Visible = false;
                 string type = "a";
@@ -108,6 +109,8 @@ namespace WebApplication1.Employee
                     q.setId(i);
                     q.setArr(arrayAnswers);
                     listq.Add(q);
+                    ViewState.Add("questions", listq);
+
                     foreach (int ix in arrayAnswers)
                     {
                         XmlNode newnode2 = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + ix + "']"), true);
@@ -132,15 +135,17 @@ namespace WebApplication1.Employee
                     string img = node.Attributes["image"].Value;
                     int i = Convert.ToInt16(attributeID);
 
-                    loadQuest(attributeID, attributeMulti, img, count);
+                    loadQuest(attributeID, attributeMulti, img, count,listq, pb);
                     count++;
+                    xmldoc2.Save("usertest.xml");
 
                 }
 
             }
             else if (IsPostBack)
             {
-
+                bool pb = false;
+                List<questions> lista = new List<questions>(); ;
                 timerVar = 2;
                 btn1.Visible = false;
                 btn2.Visible = true;
@@ -149,6 +154,10 @@ namespace WebApplication1.Employee
                 XmlNodeList lst = xmldoc2.SelectNodes("categories/question");
                 //Loopar igenom xml listan 1st
                 int count = 1;
+                if(ViewState["questions"] != null)
+                {
+                    lista = (List<questions>)ViewState["questions"];
+                }
                 foreach (XmlNode node in lst)
                 {
                     string attributeID = node.Attributes["id"].Value;
@@ -156,9 +165,9 @@ namespace WebApplication1.Employee
                     string img = node.Attributes["image"].Value;
                     int i = Convert.ToInt16(attributeID);
      
-                    loadQuest(attributeID, attributeMulti, img, count);
+                    loadQuest(attributeID, attributeMulti, img, count, lista, pb);
                     count++;
-
+                   
                 }
 
 
@@ -184,6 +193,7 @@ namespace WebApplication1.Employee
         {
             ViewState.Add("points", tpoints);
             ViewState.Add("grade", gr);
+            
 
         }
         protected void btnSubmint_Click(object sender, EventArgs e)
@@ -225,17 +235,33 @@ namespace WebApplication1.Employee
             calcPoints();
             feedbackAnswers();
         }
-        protected void loadQuest(string i, string attributeMulti, string img, int count)
+        protected void loadQuest(string i, string attributeMulti, string img, int count, List<questions> t, bool pb)
         {
             int[] arr = new int[4];
-            foreach(var x in listq)
+            if(pb == true)
             {
-                int id = x.getId();
-                if(id.ToString() == i)
+                foreach (var x in listq)
                 {
-                    arr = x.getArr();
+                    int id = x.getId();
+                    if (id.ToString() == i)
+                    {
+                        arr = x.getArr();
+                    }
+                }
+
+            }
+            else if(pb == false)
+            {
+                foreach(var x in t)
+                {
+                    int id = x.getId();
+                    if(id.ToString() == i)
+                    {
+                        arr = x.getArr();
+                    }
                 }
             }
+  
             xmldoc2.Save("usertest.xml");
             //Skapar nya rader                  
             row1 = new TableRow();
@@ -427,6 +453,8 @@ namespace WebApplication1.Employee
                 ch.setCat(cat);
 
                 list.Add(ch);
+            
+
             }
             //Lägger in label i cellen
             cell1.Attributes.Add("class", "questionCell");
@@ -694,12 +722,12 @@ namespace WebApplication1.Employee
                 if (total / 25 >= 0.70 && prod / 8 > 0.60 && eco / 8 > 0.60 && eth / 8 > 0.60)
                 {
                     gr = 1;
-                    gradestring = "Godkänd";
+                    gradestring = "godkänd";
                 }
                 else
                 {
                     gr = 2;
-                    gradestring = "Icke Godkänd";
+                    gradestring = "icke godkänd";
                 }
 
                 string savexml = xmldoc2.OuterXml;
@@ -738,12 +766,12 @@ namespace WebApplication1.Employee
                 if (total / 15 >= 0.70 && prod / 8 > 0.60 && eco / 8 > 0.60 && eth / 8 > 0.60)
                 {
                     gr = 1;
-                    gradestring = "Godkänd";
+                    gradestring = "godkänd";
                 }
                 else
                 {
                     gr = 2;
-                    gradestring = "Icke Godkänd";
+                    gradestring = "icke godkänd";
 
                 }
 
