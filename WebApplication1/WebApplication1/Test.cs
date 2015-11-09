@@ -9,8 +9,8 @@ namespace WebApplication1
     {
         private string id;
         private string question;
-        private string[] answers;
-        private string[] youranwsers;
+        private List<string> answers = new List<string>();
+        private List<string> youranwsers = new List<string>();
         private int i = 0;
         private int y = 0;
         public void setId(string i)
@@ -31,20 +31,17 @@ namespace WebApplication1
         }
         public void setAnswers(string a)
         {
-            int add = 1;
-            answers[i] = a;
-            i += add;
+            answers.Add(a);
         }
-        public string[] getAnswers()
+        public List<string> getAnswers()
         {
             return answers;
         }
         public void setYouranwser(string s)
         {
-            youranwsers[y] = s;
-            y += 1;
+            youranwsers.Add(s);
         }
-        public string[] getYouranswers()
+        public List<string> getYouranswers()
         {
             return youranwsers;
         }

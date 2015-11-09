@@ -53,21 +53,29 @@ namespace WebApplication1
         {
             XmlNodeList nodes = xmldoc.SelectNodes("categories/question");
             
-            foreach(XmlNode node in nodes)
+            foreach (XmlNode node in nodes)
             {
-                
-                Debug.WriteLine(node.FirstChild.InnerText);
+                Test t = new Test();
+
+                //Debug.WriteLine(node.FirstChild.InnerText);
 
                 string q = node.FirstChild.InnerText;
                 string id = node.Attributes["id"].Value;
-                Debug.WriteLine(node["answer"].InnerText);
-                string a = node["answer"].InnerText;
-                string b = node["useranswer"].InnerText;
-                Test t = new Test();
+                //Debug.WriteLine(node["answer"].Attributes["id"].ToString());
+                for(int i = 0; i <4; i++)
+                {
+                    string a = node["answer"].ChildNodes[i].InnerText;
+                    string b = node["useranswer"].ChildNodes[i].InnerText;
+                    t.setAnswers(a);
+                    t.setYouranwser(b);
+                }
+
+
+
                 t.setId(id);
                 t.setQuestion(q);
                 //t.setAnswers(a);
-                //t.setYouranwser(b);
+               
             }
             
             //Response.Redirect("oldtest.xml");
