@@ -36,14 +36,12 @@ namespace WebApplication1
             dt2.Columns.Add("grade");
             dt2.Columns.Add("points");
             dt2.Columns.Add("name");
-            dt2.Columns.Add("leader");
+            dt2.Columns.Add("leader");            
             dt2.Columns.Add("testid");
             string format = "yyyy-MM-dd";
-          
 
            // Use current time.
            // Use this format.
-        
 
             foreach (DataRow r in dt.Rows)
             {
@@ -54,7 +52,7 @@ namespace WebApplication1
                 row[2] = r[2];
                 row[3] = r[3];
                 row[4] = r[4].ToString() + " " + r[5].ToString();
-                row[6] = r[6];
+                row[5] = r[6];
                 dt2.Rows.Add(row);
             }
 
