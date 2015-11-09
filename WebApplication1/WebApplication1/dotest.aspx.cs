@@ -236,7 +236,7 @@ namespace WebApplication1.Employee
                     arr = x.getArr();
                 }
             }
-            xmldoc2.Save("usertest.xml");
+           
             //Skapar nya rader                  
             row1 = new TableRow();
             row2 = new TableRow();

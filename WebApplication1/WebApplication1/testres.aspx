@@ -31,8 +31,8 @@
 
             &nbsp;<asp:DropDownList ID="DropDownListLicensed" Class="Dropdown Licens" runat="server" Font-Size="Large">
                 <asp:ListItem Value="Alla">Alla</asp:ListItem>
-                <asp:ListItem Value="Licensed">Licensed</asp:ListItem>
-                <asp:ListItem Value="Icke licensed">Icke licensed</asp:ListItem>
+                <asp:ListItem Value="Licensed">Licenserad</asp:ListItem>
+                <asp:ListItem Value="Icke licensed">Ej licenserad</asp:ListItem>
             </asp:DropDownList>
 
 
