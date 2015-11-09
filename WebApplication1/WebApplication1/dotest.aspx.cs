@@ -32,6 +32,8 @@ namespace WebApplication1.Employee
         double prod = 0;
         double eco = 0;
         double eth = 0;
+        public int testType = 0;
+        string type = "";
         List<answ> list = new List<answ>();
         List<questions> listq = new List<questions>();
 
@@ -43,9 +45,9 @@ namespace WebApplication1.Employee
             if (!IsPostBack)
             {
                 bool pb = true;
-                //string type = Application["type"].ToString();
+                //type = Application["type"].ToString();
                 btn2.Visible = false;
-                string type = "a";
+                type = "a";
                 int x = 0;
                 timerVar = 1;
                 tpoints = "na";
@@ -62,11 +64,13 @@ namespace WebApplication1.Employee
                 {
                     xmldoc.Load(Server.MapPath("/XmlLicenseTest.xml"));
                     x = 25;
+                    testType = 1;
                 }
                 else
                 {
                     xmldoc.Load(Server.MapPath("/XmlUpdateTest.xml"));
                     x = 15;
+                    testType = 0;
                 }
 
                 //Laddar endast in taggar i xmldoc2 som är identiska med XmlQuestions.xml
@@ -512,10 +516,6 @@ namespace WebApplication1.Employee
 
                 }
 
-
-
-
-
             
 }
 
@@ -846,6 +846,56 @@ namespace WebApplication1.Employee
             el.InnerText = q;       
             nd.AppendChild(el);
             xmldoc2.Save(Server.MapPath("usertest.xml"));
+        }
+        [WebMethod]
+        public static void timeOut(int type)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
+            XmlDocument xmldoc2 = new XmlDocument();
+            DateTime date = DateTime.Today;
+            int total = 0;
+            string gradestring = "Icke godkänd";
+            string licensed = "Ej licensierad";
+            int userid = 6;
+            string tn = "";
+
+            xmldoc2.Load("usertest.xml");
+            string savexml = xmldoc2.OuterXml;
+
+            if(type == 1)
+            {
+                tn = "Licenseringstest";
+            }
+            else
+            {
+                tn = "ÅKU";
+            }
+      
+           
+            string sql = "insert into license_test(name, user_id, grade, points, date, testxml) values(:tname, :user, :grd, :pts, :dt, :addxml)";
+            try
+            {
+                conn.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.Add(new NpgsqlParameter("tname", tn));
+                cmd.Parameters.Add(new NpgsqlParameter("user", userid));
+                cmd.Parameters.Add(new NpgsqlParameter("grd", gradestring));
+                cmd.Parameters.Add(new NpgsqlParameter("pts", total));
+                cmd.Parameters.Add(new NpgsqlParameter("dt", date));
+                cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                conn.Open();
+                cmd = new NpgsqlCommand("update users set(licensed = @value)where users.user_id = @id", conn);
+                cmd.Parameters.Add(new NpgsqlParameter("@value", licensed));
+                cmd.Parameters.Add(new NpgsqlParameter("@id", userid));
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch
+            {
+
+            }
         }
 
 

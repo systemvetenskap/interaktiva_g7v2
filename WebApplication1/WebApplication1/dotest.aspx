@@ -6,6 +6,7 @@
 <head runat="server">
     <title>Home</title>
     <link href="/stilmall.css" type="text/css" rel="stylesheet" /> 
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   
 
 </head>
@@ -54,6 +55,7 @@
          var seconds = 00;
          var run = <%=this.timerVar%>;
         
+        
        
 
         if (run < 2)
@@ -78,9 +80,20 @@
                 minutes == 1;
                 seconds = 0;
                 clearInterval(counter);
-                alert("Tiden är slut");
+                //alert("Tiden är slut");
+               
+                var testtype = <%=this.testType%>;
                 //Kod här när tiden är slut
-                window.location.replace("mytests.aspx");
+                PageMethods.timeOut(testtype,onSuccess,onError);
+                function onSuccess(){
+                    alert("Tiden är ute.");
+                    window.location.replace("mytests.aspx");
+                }
+                function onError(){
+                    alert("Oväntat fel uppstod, kontakta administratören.");
+                    window.location.replace("mytests.aspx");
+                }
+                
                 return;
             }
             document.getElementById("timer").innerHTML = minutes + " minuter " + seconds + " sekunder";
