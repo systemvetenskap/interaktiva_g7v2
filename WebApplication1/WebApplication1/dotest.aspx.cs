@@ -32,7 +32,6 @@ namespace WebApplication1.Employee
         double prod = 0;
         double eco = 0;
         double eth = 0;
-
         List<answ> list = new List<answ>();
         List<questions> listq = new List<questions>();
 
@@ -135,7 +134,7 @@ namespace WebApplication1.Employee
 
                     loadQuest(attributeID, attributeMulti, img, count, listq, pb);
                     count++;
-                    xmldoc2.Save("usertest.xml");
+                    xmldoc2.Save(Server.MapPath("usertest.xml"));
 
                 }
 
