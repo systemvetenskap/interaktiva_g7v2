@@ -41,7 +41,7 @@
         <div class="questionbox" id="qDiv" runat="server">
 
         &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
-            <asp:Button class="btnsub" ID="btn1" text="Lämna in" runat="server" OnClick="btn1_Click" />      
+            <asp:Button class="btnsub" ID="btn1" text="Lämna in" runat="server" OnClick="btn1_Click" /><asp:Button class="btnsub" ID="btn2" text="Klar" runat="server" OnClick="btn2_Click" />        
         </div>
         <!-- Footer -->
         <div class="footer">

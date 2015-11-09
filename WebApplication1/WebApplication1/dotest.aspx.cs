@@ -29,6 +29,12 @@ namespace WebApplication1.Employee
         string[] correct;
         public int timerVar = 1;
         public string tpoints, p, ec, et;
+
+        protected void btn2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("mytests.aspx");
+        }
+
         public int gr;
         public string ecPoints, pPoints, ethPoints;     
         double prod = 0;
@@ -45,6 +51,7 @@ namespace WebApplication1.Employee
             if (!IsPostBack)
             {
                 //string type = Application["type"].ToString();
+                btn2.Visible = false;
                 string type = "a";
                 int x = 0;
                 timerVar = 1;
@@ -74,13 +81,35 @@ namespace WebApplication1.Employee
 
                 //Skapar ny array och stoppar in variabler av typen int(minsta värde, högsta värde)
                 int[] arrayQuestions = RandomNumbers(1, x, 4);
+                int[] arrayAnswers = RandomNumbers(1, 4, 2);
 
                 //Hämtar frågor från orginaldokumentet och stoppar in detta i det nya
                 foreach (int i in arrayQuestions)
                 {
-                    XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']"), true);
+                    XmlNode newnode = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']"), false);
                     XmlNode parent = xmldoc2.SelectSingleNode("categories");
                     parent.AppendChild(newnode);
+                    parent = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    XmlElement newel = xmldoc2.CreateElement("answer");
+                    parent.AppendChild(newel);
+          
+                    XmlNode tst = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
+                    string img = tst.Attributes["image"].Value;
+                    if(img == "true")
+                    {
+                        XmlNode newnode2 = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']/image"), true);
+                        parent.AppendChild(newnode2);
+                    }
+                    newel = xmldoc2.CreateElement("useranswer");
+                    parent.AppendChild(newel);
+
+
+                    foreach (int ix in arrayAnswers)
+                    {
+                        XmlNode newnode2 = xmldoc2.ImportNode(xmldoc.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + ix + "']"), true);
+                        XmlNode parent2 = xmldoc2.SelectSingleNode("categories/question[@id='" + i + "']/answer");
+                        parent2.AppendChild(newnode2);
+                    }
                     xmldoc2.Save(Server.MapPath("usertest.xml"));
                 }
                 //Lägger in alla question nodes i en XML lista
@@ -93,6 +122,7 @@ namespace WebApplication1.Employee
                     string attributeMulti = node.Attributes["multi"].Value;
                     string img = node.Attributes["image"].Value;
                     int i = Convert.ToInt16(attributeID);
+           
                     loadQuest(attributeID, attributeMulti, img, count);
                     count++;
 
@@ -104,6 +134,7 @@ namespace WebApplication1.Employee
 
                 timerVar = 2;
                 btn1.Visible = false;
+                btn2.Visible = true;
                 
                 xmldoc2.Load(Server.MapPath("usertest.xml"));
                 XmlNodeList lst = xmldoc2.SelectNodes("categories/question");
@@ -133,14 +164,7 @@ namespace WebApplication1.Employee
                     gr = a;
 
                 }
-
-
-
-                //string s = (string)ViewState["grade"];
-                //grade = s;
-
-                //
-                //
+        
 
             }
 
@@ -516,7 +540,7 @@ namespace WebApplication1.Employee
         protected void calcPoints()
         {
          
-            countCheckboxes();
+           
             foreach (TableRow rw in table1.Rows)
             {
                 foreach (TableCell cell in rw.Cells)
@@ -628,14 +652,7 @@ namespace WebApplication1.Employee
                 }
             }
 
-            
-
-
            
-
-
-
-
         }
         protected void saveResult()
         {
@@ -689,12 +706,6 @@ namespace WebApplication1.Employee
 
                 }
 
-
-
-
-
-
-
             }
             else
             {
@@ -722,28 +733,8 @@ namespace WebApplication1.Employee
 
 
           }
-        protected void countCheckboxes()
-        {
-            foreach (TableRow rw in table1.Rows)
-            {
-                foreach (TableCell cell in rw.Cells)
-                {
-                    foreach (Control cl in cell.Controls)
-                    {
-                        if(cl is CheckBox)
-                        {
-                            CheckBox check = (CheckBox)cl;
-                        
-                        }
-                    }
-                }
 
-            }
-        }
-        protected void load()
-        {
-            Response.Redirect("index.aspx");
-        }
+
 
 
 
