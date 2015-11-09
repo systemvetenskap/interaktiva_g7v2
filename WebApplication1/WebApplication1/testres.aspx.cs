@@ -88,19 +88,19 @@ namespace WebApplication1
             ///// LICENS
                 if (DropDownListLicensed.SelectedValue == "Licensed")
                 {
-                string addSql = "WHERE  licensed = 'Licensed' ";
+                string addSql = "WHERE  licensed = 'Licenserad' ";
                 sql += addSql;
                 }
 
                 else if (DropDownListLicensed.SelectedValue == "Icke licensed")
                 {
-                string addSql1 = "WHERE  licensed = 'Icke licensed' ";
+                string addSql1 = "WHERE  licensed = 'Ej licensierad' ";
                 sql += addSql1;
                 }
 
             else if (DropDownListLicensed.SelectedValue == "Alla")
                 {
-                string addSql2 = "WHERE  (licensed = 'Icke licensed' OR licensed = 'Licensed') ";
+                string addSql2 = "WHERE  (licensed = 'Ej licensierad' OR licensed = 'Licenserad') ";
                 sql += addSql2;
                 }
 
@@ -113,7 +113,7 @@ namespace WebApplication1
                 
             else if (DropDownListGrade.SelectedValue == "Icke godkänd")
             {
-                string addSql4 = "AND grade = 'Icke Godkänd' ";
+                string addSql4 = "AND grade = 'Icke godkänd' ";
                 sql += addSql4;
             }
 

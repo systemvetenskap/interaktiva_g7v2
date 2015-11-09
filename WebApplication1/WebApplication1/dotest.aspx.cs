@@ -167,7 +167,7 @@ namespace WebApplication1.Employee
      
                     loadQuest(attributeID, attributeMulti, img, count, lista, pb);
                     count++;
-                   
+
                 }
 
 
@@ -193,7 +193,7 @@ namespace WebApplication1.Employee
         {
             ViewState.Add("points", tpoints);
             ViewState.Add("grade", gr);
-            
+
 
         }
         protected void btnSubmint_Click(object sender, EventArgs e)
@@ -253,16 +253,14 @@ namespace WebApplication1.Employee
             else if(pb == false)
             {
                 foreach(var x in t)
+            {
+                int id = x.getId();
+                if(id.ToString() == i)
                 {
-                    int id = x.getId();
-                    if(id.ToString() == i)
-                    {
-                        arr = x.getArr();
-                    }
+                    arr = x.getArr();
                 }
             }
-  
-            xmldoc2.Save("usertest.xml");
+           
             //Skapar nya rader                  
             row1 = new TableRow();
             row2 = new TableRow();
