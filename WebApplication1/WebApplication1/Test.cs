@@ -11,8 +11,7 @@ namespace WebApplication1
         private string question;
         private List<string> answers = new List<string>();
         private List<string> youranwsers = new List<string>();
-        private int i = 0;
-        private int y = 0;
+
         public void setId(string i)
         {
             id = i;
