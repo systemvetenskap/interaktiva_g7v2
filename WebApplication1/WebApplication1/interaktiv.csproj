@@ -89,6 +89,7 @@
     <Content Include="index.aspx" />
     <Content Include="JavaScript.js" />
     <Content Include="mytests.aspx" />
+    <Content Include="oldtest.aspx" />
     <Content Include="packages.config" />
     <Content Include="testres.aspx" />
     <Content Include="XmlUpdateTest.xml" />
@@ -130,8 +131,16 @@
     <Compile Include="mytests.aspx.designer.cs">
       <DependentUpon>mytests.aspx</DependentUpon>
     </Compile>
+    <Compile Include="oldtest.aspx.cs">
+      <DependentUpon>oldtest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="oldtest.aspx.designer.cs">
+      <DependentUpon>oldtest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="questions.cs" />
+    <Compile Include="Test.cs" />
     <Compile Include="testres.aspx.cs">
       <DependentUpon>testres.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
