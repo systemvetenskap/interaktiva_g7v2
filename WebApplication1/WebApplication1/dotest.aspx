@@ -51,8 +51,8 @@
     
     </form>
         <script type="text/javascript">
-         var minutes = 30;
-         var seconds = 00;
+         var minutes = 00;
+         var seconds = 02;
          var run = <%=this.timerVar%>;
         
         
@@ -83,8 +83,9 @@
                 //alert("Tiden är slut");
                
                 var testtype = <%=this.testType%>;
+                var id = <%=this.userid%>;
                 //Kod här när tiden är slut
-                PageMethods.timeOut(testtype,onSuccess,onError);
+                PageMethods.timeOut(testtype,id,onSuccess,onError);
                 function onSuccess(){
                     alert("Tiden är ute.");
                     window.location.replace("mytests.aspx");

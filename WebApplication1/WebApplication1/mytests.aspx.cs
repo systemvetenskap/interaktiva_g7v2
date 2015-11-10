@@ -12,8 +12,45 @@ namespace WebApplication1
     public partial class mytests : System.Web.UI.Page
     {
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
+        string user;
+        int userid = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Application["user"] != null)
+            {
+                user = Application["user"].ToString();
+                if(user == "henrik")
+                {
+                    
+                    userid = 3;
+                   
+                }
+                else if (user == "michael")
+                {
+                    userid = 2;
+                   
+                }
+                else if (user == "stefan")
+                {
+                    userid = 1;
+                  
+                }
+                else if(user == "bertil")
+                {
+                    userid = 6;
+                    
+                }
+                else if(user == "nils")
+                {
+                    userid = 5;
+                    
+                }
+                else
+                {
+                    userid = 1;
+                   
+                }
+            }
             if(Application["Role"] != null)
             {
                 string role = Application["role"].ToString();
@@ -29,7 +66,7 @@ namespace WebApplication1
             string sql = @"select date, grade, points,  name, leader.firstname, leader.lastname , testid from license_test
                             inner join users on license_test.user_id = users.userid
                             inner join leader on users.leader_id = leader.leader_id
-                            where users.userid = 1";
+                            where users.userid = '"+userid+"'";
             conn.Open();
 
             sql += "order by date desc";

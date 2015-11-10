@@ -34,6 +34,7 @@ namespace WebApplication1.Employee
         double eth = 0;
         public int testType = 0;
         string type = "";
+        public int userid = 0;
         List<answ> list = new List<answ>();
         List<questions> listq = new List<questions>();
 
@@ -44,8 +45,10 @@ namespace WebApplication1.Employee
 
             if (!IsPostBack)
             {
+                user();
                 bool pb = true;
                 //type = Application["type"].ToString();
+      
                 btn2.Visible = false;
                 type = "a";
                 int x = 0;
@@ -750,20 +753,24 @@ namespace WebApplication1.Employee
                 ethPoints = percentEthics.ToString();
                 pPoints = percentProducts.ToString();
                 string gradestring = "";
+                string licens = "";
                 if (total / 25 >= 0.70 && prod / 8 > 0.60 && eco / 8 > 0.60 && eth / 8 > 0.60)
                 {
                     gr = 1;
-                    gradestring = "godkänd";
+                    gradestring = "Godkänd";
+                    licens = "Licensierad";
                 }
                 else
                 {
                     gr = 2;
-                    gradestring = "icke godkänd";
+                    gradestring = "Underkänd";
+                    licens = "Ej licensierad";
                 }
 
                 string savexml = xmldoc2.OuterXml;
                 string tn = "Licenseringstest";
-                int ln = 1;
+                user();
+                int ln = userid;
                 DateTime date = DateTime.Today;
                 string sql = "insert into license_test(name, user_id, grade, points, date, testxml) values(:tname, :user, :grd, :pts, :dt, :addxml)";
                 try
@@ -778,10 +785,16 @@ namespace WebApplication1.Employee
                     cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
                     cmd.ExecuteNonQuery();
                     conn.Close();
+                    conn.Open();
+                    cmd = new NpgsqlCommand("update users set(licensed = @value)where users.user_id = @id", conn);
+                    cmd.Parameters.Add(new NpgsqlParameter("@value", licens));
+                    cmd.Parameters.Add(new NpgsqlParameter("@id", ln));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
                 }
                 catch
                 {
-
+                    
                 }
 
             }
@@ -794,20 +807,22 @@ namespace WebApplication1.Employee
                 ethPoints = percentEthics.ToString();
                 pPoints = percentProducts.ToString();
                 string gradestring = "";
+            
                 if (total / 15 >= 0.70 && prod / 8 > 0.60 && eco / 8 > 0.60 && eth / 8 > 0.60)
                 {
                     gr = 1;
-                    gradestring = "godkänd";
+                    gradestring = "Godkänd";
                 }
                 else
                 {
                     gr = 2;
-                    gradestring = "icke godkänd";
+                    gradestring = "Underkänd";
                 }
 
                 string savexml = xmldoc2.OuterXml;
                 string tn = "ÅKU";
-                int ln = 1;
+                user();
+                int ln = userid;
                 DateTime date = DateTime.Today;
                 string sql = "insert into license_test(name, user_id, grade, points, date, testxml) values(:tname, :user, :grd, :pts, :dt, :addxml)";
                 try
@@ -822,6 +837,7 @@ namespace WebApplication1.Employee
                     cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
                     cmd.ExecuteNonQuery();
                     conn.Close();
+   
                 }
                 catch
                 {
@@ -847,16 +863,55 @@ namespace WebApplication1.Employee
             nd.AppendChild(el);
             xmldoc2.Save(Server.MapPath("usertest.xml"));
         }
+        protected void user()
+        {
+            if (Application["user"] != null)
+            {
+                string user = Application["user"].ToString();
+                if (user == "henrik")
+                {
+
+                    userid = 3;
+
+                }
+                else if (user == "michael")
+                {
+                    userid = 2;
+
+                }
+                else if (user == "stefan")
+                {
+                    userid = 1;
+
+                }
+                else if (user == "bertil")
+                {
+                    userid = 6;
+
+                }
+                else if (user == "nils")
+                {
+                    userid = 5;
+
+                }
+                else
+                {
+                    userid = 1;
+
+                }
+            }
+        }
         [WebMethod]
-        public static void timeOut(int type)
+        public static void timeOut(int type,int id)
         {
             NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
             XmlDocument xmldoc2 = new XmlDocument();
             DateTime date = DateTime.Today;
             int total = 0;
-            string gradestring = "Icke godkänd";
+            string gradestring = "Underkänd";
             string licensed = "Ej licensierad";
-            int userid = 6;
+            
+            int userid = id;
             string tn = "";
 
             xmldoc2.Load("usertest.xml");
@@ -885,16 +940,29 @@ namespace WebApplication1.Employee
                 cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
                 cmd.ExecuteNonQuery();
                 conn.Close();
-                conn.Open();
-                cmd = new NpgsqlCommand("update users set(licensed = @value)where users.user_id = @id", conn);
-                cmd.Parameters.Add(new NpgsqlParameter("@value", licensed));
-                cmd.Parameters.Add(new NpgsqlParameter("@id", userid));
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                
+
+     
             }
             catch
             {
 
+            }
+            try
+            {
+                if (type == 1)
+                {
+                    conn.Open();
+                    NpgsqlCommand cmd = new NpgsqlCommand("update users set(licensed = @value)where users.user_id = @id", conn);
+                    cmd.Parameters.Add(new NpgsqlParameter("@value", licensed));
+                    cmd.Parameters.Add(new NpgsqlParameter("@id", userid));
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch
+            {
+                
             }
         }
 

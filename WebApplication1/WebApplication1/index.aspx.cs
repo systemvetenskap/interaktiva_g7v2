@@ -22,8 +22,11 @@ namespace WebApplication1
 
         protected void btnemp_Click(object sender, EventArgs e)
         {
+            string s = TextBox1.Text;
+            Application["user"] = s;
             Application["role"] = "member";
             Response.Redirect("mytests.aspx");
+
         }
 
         protected void btnlead_Click(object sender, EventArgs e)
