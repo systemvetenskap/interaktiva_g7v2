@@ -42,6 +42,7 @@ namespace WebApplication1
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
             da.Fill(dt);
+
             dt2.Columns.Add("date");
             dt2.Columns.Add("grade");
             dt2.Columns.Add("points");
@@ -51,11 +52,8 @@ namespace WebApplication1
    
             string format = "yyyy-MM-dd";
 
-           // Use current time.
-           // Use this format.
             foreach (DataRow r in dt.Rows)
             {
-
                 DataRow row = dt2.NewRow();
                 DateTime date = Convert.ToDateTime(r[0]);
                 row[0] = date.ToString(format);
