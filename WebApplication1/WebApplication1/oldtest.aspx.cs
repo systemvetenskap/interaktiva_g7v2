@@ -35,8 +35,9 @@ namespace WebApplication1
                 loadXml(i);
                 loadQuest();
                 loadTable();
-        
-            
+            LoadTestInfo();
+
+
 
 
         }
@@ -184,6 +185,35 @@ namespace WebApplication1
 
 
             }
+
+
+        }
+
+        private void LoadTestInfo()
+        {
+            string id = Request.QueryString[0];
+
+            string sql = @"select u.first_name, u.last_name, t.name, t.grade, t.points, t.date from license_test t
+                            inner join  users u
+                            on u.userid = t.user_id
+                            where testid = @testid";
+
+            conn.Open();
+            
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@testid", id);
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+
+                LabelFullName.Text = dr.GetValue(0).ToString() + " " + dr.GetValue(1).ToString();
+                LabelTestName.Text = dr.GetValue(2).ToString();
+                LabelTestGrade.Text = dr.GetValue(3).ToString();
+                LabelTestPoints.Text = dr.GetValue(4).ToString();
+                LabelTestDate.Text = dr.GetValue(5).ToString();
+            }
+            conn.Close();
 
 
         }

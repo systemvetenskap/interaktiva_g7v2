@@ -51,9 +51,6 @@ namespace WebApplication1
            // Use this format.
             foreach (DataRow r in dt.Rows)
             {
-                HyperLink hl1 = new HyperLink();
-                hl1.Text = " Hämta prov";
-                hl1.NavigateUrl = "oldtest.aspx";
 
                 DataRow row = dt2.NewRow();
                 DateTime date = Convert.ToDateTime(r[0]);
