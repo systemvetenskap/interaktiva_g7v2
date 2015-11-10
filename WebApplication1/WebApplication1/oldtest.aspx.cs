@@ -27,14 +27,14 @@ namespace WebApplication1
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+                     
                 string id = Request.QueryString[0];
                 int i = int.Parse(id);
                 loadXml(i);
                 loadQuest();
                 loadTable();
             LoadTestInfo();
-        
+
         }
         protected void loadXml(int testid)
         {
@@ -62,19 +62,24 @@ namespace WebApplication1
                 Test t = new Test();              
 
                 string q = node.FirstChild.InnerText;
-                string id = node.Attributes["id"].Value;          
+                string id = node.Attributes["id"].Value;
+                //string cor = node.Attributes["correct"].Value;
                 //string chosen = node.Attributes[""]          
                 for(int i = 0; i <4; i++)
                 {
                     string a = node["answer"].ChildNodes[i].InnerText;
-      
-                    t.setAnswers(a);
+                    XmlNode nd = node.SelectSingleNode("useranswer/question");
+                    //string attr = nd.Attributes["id"].Value;
+                        
+                    t.setAnswers(a);                   
                 }
                 bool bb = node["useranswer"].HasChildNodes;
                 if (bb == true)
                 {
-
+                   
                     XmlNodeList list = node.SelectNodes("useranswer/question");
+                    XmlNode nd = node.SelectSingleNode("useranswer/question");
+                    string attr = nd.Attributes["id"].Value;
                     int c = list.Count;
                         
                     for (int z = 0; z < c; z++ )
@@ -90,7 +95,7 @@ namespace WebApplication1
                 t.setQuestion(q);
                 testlist.Add(t);
                
-            }
+            }                        
         }
         protected void loadTable()
         {

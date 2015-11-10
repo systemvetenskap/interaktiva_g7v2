@@ -11,6 +11,7 @@ namespace WebApplication1
         private string question;
         private List<string> answers = new List<string>();
         private List<string> youranwsers = new List<string>();
+        private List<int> answerid = new List<int>();
 
         public void setId(string i)
         {
@@ -43,6 +44,14 @@ namespace WebApplication1
         public List<string> getYouranswers()
         {
             return youranwsers;
+        }
+        public void setAid(int i)
+        {
+            answerid.Add(i);
+        }
+        public List<int> getAid()
+        {
+            return answerid;
         }
     }
 
