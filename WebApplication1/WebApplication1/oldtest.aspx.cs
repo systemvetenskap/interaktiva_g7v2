@@ -14,7 +14,6 @@ using System.Xml.Linq;
 using System.Timers;
 using System.Diagnostics;
 
-
 namespace WebApplication1
 {
     public partial class oldtest : System.Web.UI.Page
@@ -29,17 +28,13 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         {
             
-          
                 string id = Request.QueryString[0];
                 int i = int.Parse(id);
                 loadXml(i);
                 loadQuest();
                 loadTable();
             LoadTestInfo();
-
-
-
-
+        
         }
         protected void loadXml(int testid)
         {
@@ -68,22 +63,24 @@ namespace WebApplication1
 
                 string q = node.FirstChild.InnerText;
                 string id = node.Attributes["id"].Value;          
+                //string chosen = node.Attributes[""]          
                 for(int i = 0; i <4; i++)
                 {
                     string a = node["answer"].ChildNodes[i].InnerText;
       
-                   
                     t.setAnswers(a);
-                    
                 }
                 bool bb = node["useranswer"].HasChildNodes;
                 if (bb == true)
                 {
-                    int count = node.SelectNodes("useranswer").Count;
 
-                    for(int z = 0; z < count; z++ )
+                    XmlNodeList list = node.SelectNodes("useranswer/question");
+                    int c = list.Count;
+                        
+                    for (int z = 0; z < c; z++ )
                     {
                         string b = node["useranswer"].ChildNodes[z].InnerText;
+                       
                         t.setYouranwser(b);
                     }
                   
@@ -94,9 +91,6 @@ namespace WebApplication1
                 testlist.Add(t);
                
             }
-            
-            //Response.Redirect("oldtest.xml");
-            
         }
         protected void loadTable()
         {
@@ -135,17 +129,15 @@ namespace WebApplication1
                 lbl3.Text = ans[1].ToString();
                 lbl4.Text = ans[2].ToString();
                 lbl5.Text = ans[3].ToString();
-                lbl6.Text = "Ni svarade:";
+                lbl6.Text = "Svar: ";
                 if(yans.Count > 0)
                 {
                     for(int i = 0; i < yans.Count; i++)
                     {
-                        lbl7.Text += yans[i].ToString();
+                        lbl7.Text +=yans[i].ToString()+"<br><br>";
                     }
 
                 }
-
-
                 cell1.Controls.Add(lbl1);
                 cell2.Controls.Add(lbl2);
                 cell3.Controls.Add(lbl3);
@@ -154,6 +146,7 @@ namespace WebApplication1
                 cell6.Controls.Add(lbl6);
                 cell7.Controls.Add(lbl7);
                 cell1.Attributes.Add("class", "questionCell");
+                //cell7.Attributes.Add("class", "answerCell");
 
                 row1.Controls.Add(cell1);
                 row2.Controls.Add(cell2);
@@ -214,7 +207,6 @@ namespace WebApplication1
                 LabelTestDate.Text = dr.GetValue(5).ToString();
             }
             conn.Close();
-
 
         }
     }
