@@ -31,13 +31,13 @@ namespace WebApplication1 {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// qDiv control.
+        /// questionbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl qDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl questionbox;
         
         /// <summary>
         /// table1 control.
