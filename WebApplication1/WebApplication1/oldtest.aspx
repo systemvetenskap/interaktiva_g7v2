@@ -24,31 +24,14 @@
         <div class="header">          
             <h1>JE Bank</h1>
         </div>
-        <!-- Navigation -->
-        <div class="nav">
-            <ul class="clear">
-               <%-- <li><a class="home" href = "MyTests.aspx">Mina prov</a></li>
-                <li><a class="home" href = "/TestLeader/TestResults.aspx">Provresultat</a></li>--%>
-
-            </ul> 
-        </div>
     
         <!-- Questions -->
-    
-
-        
-      
-        <span id="timer"></span>
-            </div>
-        <div class="questionbox" id="qDiv" runat="server">
+        <div class="questionbox" id="questionbox" runat="server">
 
         &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
               
         </div>
-        <!-- Footer -->
-        <div class="footer">
-        </div>
- 
+    </div>
     
     </form>
 
