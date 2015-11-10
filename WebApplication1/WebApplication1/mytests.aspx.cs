@@ -49,16 +49,12 @@ namespace WebApplication1
             dt2.Columns.Add("leader");            
             dt2.Columns.Add("testid");
    
-
             string format = "yyyy-MM-dd";
 
            // Use current time.
            // Use this format.
             foreach (DataRow r in dt.Rows)
             {
-                HyperLink hl1 = new HyperLink();
-                hl1.Text = " Hämta prov";
-                hl1.NavigateUrl = "oldtest.aspx";
 
                 DataRow row = dt2.NewRow();
                 DateTime date = Convert.ToDateTime(r[0]);
@@ -93,10 +89,7 @@ namespace WebApplication1
                 user = Application["user"].ToString();
                 if (user == "henrik")
                 {
-
                     userid = 3;
-
-
                 }
                 else if (user == "michael")
                 {
@@ -252,10 +245,6 @@ namespace WebApplication1
             }
             conn.Close();
 
-
-
         }
-
-
     }
 }

@@ -13,27 +13,16 @@
 <body>
     <form id="form1" runat="server">
      <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"> </asp:ScriptManager>   
-      
-       
+             
          <!-- Container -->
         <div class="container"> 
-        
        
         <!-- Header -->
         <div class="header">          
             <h1>JE Bank</h1>
         </div>
-        <!-- Navigation -->
-        <div class="nav">
-            <ul class="clear">
-               <%-- <li><a class="home" href = "MyTests.aspx">Mina prov</a></li>
-                <li><a class="home" href = "/TestLeader/TestResults.aspx">Provresultat</a></li>--%>
 
-            </ul> 
-        </div>
-    
         <!-- Questions -->
-    
 
         <div id="timerbox" runat ="server">
         <asp:Label id="LabelTimer" runat="server" value="Tid kvar:"></asp:Label>
@@ -54,23 +43,18 @@
          var minutes = 30;
          var seconds = 00;
          var run = <%=this.timerVar%>;
-        
-        
-       
 
         if (run < 2)
         {
      
          var counter = setInterval(timer, 1000) //körs varje sekund
-
             
         }
         else{
             result();
         }
      function timer() {
-
-            
+           
             seconds = seconds - 1
             if (seconds <= 0) {
                 minutes -= 1;
@@ -80,7 +64,6 @@
                 minutes == 1;
                 seconds = 0;
                 clearInterval(counter);
-                //alert("Tiden är slut");
                
                 var testtype = <%=this.testType%>;
                 var id = <%=this.userid%>;
@@ -105,15 +88,10 @@
          var eth = <%=this.ethPoints%>;
          var eco = <%=this.ecPoints%>;
          var gr = <%=this.gr%>;
-
-    
-        
-      
        
         if (gr < 2)
          {
             var grade = "Godkänd";
-
         }
         else{
             var grade ="Icke godkänd";

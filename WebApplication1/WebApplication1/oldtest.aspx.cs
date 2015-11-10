@@ -14,7 +14,6 @@ using System.Xml.Linq;
 using System.Timers;
 using System.Diagnostics;
 
-
 namespace WebApplication1
 {
     public partial class oldtest : System.Web.UI.Page
@@ -28,16 +27,12 @@ namespace WebApplication1
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-          
+                     
                 string id = Request.QueryString[0];
                 int i = int.Parse(id);
                 loadXml(i);
                 loadQuest();
                 loadTable();
-        
-            
-
 
         }
         protected void loadXml(int testid)
@@ -70,10 +65,8 @@ namespace WebApplication1
                 for(int i = 0; i <4; i++)
                 {
                     string a = node["answer"].ChildNodes[i].InnerText;
-      
-                   
-                    t.setAnswers(a);
-                    
+                        
+                    t.setAnswers(a);                   
                 }
                 bool bb = node["useranswer"].HasChildNodes;
                 if (bb == true)
@@ -92,10 +85,7 @@ namespace WebApplication1
                 t.setQuestion(q);
                 testlist.Add(t);
                
-            }
-            
-            //Response.Redirect("oldtest.xml");
-            
+            }                        
         }
         protected void loadTable()
         {
@@ -143,8 +133,6 @@ namespace WebApplication1
                     }
 
                 }
-
-
                 cell1.Controls.Add(lbl1);
                 cell2.Controls.Add(lbl2);
                 cell3.Controls.Add(lbl3);
@@ -177,15 +165,7 @@ namespace WebApplication1
                 table1.Controls.Add(row5);
                 table1.Controls.Add(row6);
                 table1.Controls.Add(row7);
-
-
-
-
-
-
-
             }
-
 
         }
     }
