@@ -46,8 +46,15 @@ namespace WebApplication1.Employee
             {
                 user();
                 bool pb = true;
-                //type = Application["type"].ToString();
-      
+                if (Application["type"] != null)
+                {
+                    type = Application["type"].ToString();
+                }
+                else
+                {
+                    type = "a";
+                }
+
                 btn2.Visible = false;
                 type = "a";
                 int x = 0;
@@ -583,26 +590,25 @@ namespace WebApplication1.Employee
                             string qid = rad.Attributes["qid"];
                             if (rad.Checked == true)
                             {
+                                qtext = rad.Text;
+                                writeToXml(id, qtext, qid, cor);
                                 if (cor == "true")
                                 {
                                     if (cat == "products")
                                     {
                                         prod++;
-                                        qtext = rad.Text;
-                                        writeToXml(id, qtext, qid, cor);
+                                      
                 
                                     }
                                     else if (cat == "ethics")
                                     {
                                         eth++;
-                                        qtext = rad.Text;
-                                        writeToXml(id,qtext, qid,cor);
+                                 
                                     }
                                     else if (cat == "economy")
                                     {
                                         eco++;
-                                        qtext = rad.Text;
-                                        writeToXml(id,qtext,qid,cor);
+                                    
 
                                     }
 
@@ -624,12 +630,15 @@ namespace WebApplication1.Employee
                             string chkID = chk.Attributes["value"];
                             string qid = chk.Attributes["qid"];
                             
-                            chk.Enabled = false;
+                            
                             if (chk.Checked == true)
                             {
+                                qtext = chk.Text;
+                                writeToXml(id, qtext, qid, cor);
+                                chk.Enabled = false;
                                 if (cor == "true")
                                 {
-                                    writeToXml(id, qtext, qid, cor);
+                                    
                                     int boxid = Convert.ToInt16(chk.Attributes["group"]);
                                     foreach(var x in list)
                                     {
@@ -681,8 +690,16 @@ namespace WebApplication1.Employee
             total += eco;
             total += eth;
             tpoints = total.ToString();
-            //string type = Application["type"].ToString();
-            string type = "a";
+            if(Application["type"] != null)
+            {
+                type = Application["type"].ToString();
+            }
+            else
+            {
+                type = "a";
+            }
+
+            
             if (type == "a")
             {
                 int percentProducts = (int)Math.Round((double)(100 * prod) / 8);
@@ -724,10 +741,11 @@ namespace WebApplication1.Employee
                     cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
                     cmd.ExecuteNonQuery();
                     conn.Close();
+                    
                     conn.Open();
-                    cmd = new NpgsqlCommand("update users set(licensed = @value)where users.user_id = @id", conn);
-                    cmd.Parameters.Add(new NpgsqlParameter("@value", licens));
-                    cmd.Parameters.Add(new NpgsqlParameter("@id", ln));
+                    cmd = new NpgsqlCommand("update users set licensed = @value where users.userid = @id", conn);
+                    cmd.Parameters.AddWithValue("@value", licens);
+                    cmd.Parameters.AddWithValue("@id", userid);
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
@@ -829,6 +847,14 @@ namespace WebApplication1.Employee
                 {
                     userid = 5;
 
+                }
+                else if(user == "kalle")
+                {
+                    userid = 7;
+                }
+                else if(user == "tobbe")
+                {
+                    userid = 8;
                 }
                 else
                 {

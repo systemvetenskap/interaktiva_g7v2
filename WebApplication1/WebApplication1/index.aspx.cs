@@ -30,6 +30,8 @@ namespace WebApplication1
         protected void btnlead_Click(object sender, EventArgs e)
         {
             Application["role"] = "leader";
+            string s = TextBox1.Text;
+            Application["user"] = s;
             Response.Redirect("testres.aspx");
         }
 
