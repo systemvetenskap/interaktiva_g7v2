@@ -68,11 +68,19 @@ namespace WebApplication1
                 for(int i = 0; i <4; i++)
                 {
                     string a = node["answer"].ChildNodes[i].InnerText;
-                    XmlNode nd = node.SelectSingleNode("useranswer/question");
-                    //string attr = nd.Attributes["id"].Value;
+                    
                         
                     t.setAnswers(a);                   
                 }
+                XmlNodeList lista = node.SelectNodes("answer/answer");
+                foreach(XmlNode n in lista)
+                {
+                    string a = n.Attributes["id"].Value;
+                    string b = n.Attributes["correct"].Value;
+                    t.setAnsId(Convert.ToInt16(a));
+                    t.setTor(b);    
+                }
+
                 bool bb = node["useranswer"].HasChildNodes;
                 if (bb == true)
                 {
@@ -88,7 +96,15 @@ namespace WebApplication1
                        
                         t.setYouranwser(b);
                     }
-                  
+                    XmlNodeList list2 = node.SelectNodes("useranswer/question");
+                    foreach (XmlNode n in list2)
+                    {
+                        string attri = n.Attributes["qid"].Value;
+                        int ids = Convert.ToInt16(attri);
+                        t.setAid(ids);
+                    }
+
+
                 }
 
                 t.setId(id);
@@ -103,6 +119,9 @@ namespace WebApplication1
             {
                 List<string> ans = x.getAnswers();
                 List<string> yans = x.getYouranswers();
+                List<int> answerid = x.getAnsId();
+                List<int> usera = x.getAid();
+                List<string> tor = x.getTor();
                 row1 = new TableRow();
                 row2 = new TableRow();
                 row3 = new TableRow();
@@ -130,10 +149,23 @@ namespace WebApplication1
                 lbl8 = new Label();
 
                 lbl1.Text = x.getQuestion();
+
                 lbl2.Text = ans[0].ToString();
+                lbl2.Attributes.Add("id", answerid[0].ToString());
+                lbl2.Attributes.Add("correct", tor[0].ToString());
+
                 lbl3.Text = ans[1].ToString();
+                lbl3.Attributes.Add("id", answerid[1].ToString());
+                lbl2.Attributes.Add("correct", tor[1].ToString());
+
                 lbl4.Text = ans[2].ToString();
+                lbl4.Attributes.Add("id", answerid[2].ToString());
+                lbl2.Attributes.Add("correct", tor[2].ToString());
+
                 lbl5.Text = ans[3].ToString();
+                lbl5.Attributes.Add("id", answerid[3].ToString());
+                lbl2.Attributes.Add("correct", tor[3].ToString());
+
                 lbl6.Text = "Svar: ";
                 if(yans.Count > 0)
                 {
@@ -175,17 +207,49 @@ namespace WebApplication1
                 table1.Controls.Add(row5);
                 table1.Controls.Add(row6);
                 table1.Controls.Add(row7);
+                foreach (TableRow rw in table1.Rows)
+                {
+                    foreach (TableCell cell in rw.Cells)
+                    {
+                        foreach (Control cl in cell.Controls)
+                        {
+                         if(cl is Label)
+                          {
+                                Label lbl = (Label)cl;
+                                if(lbl.Attributes["id"] != null)
+                                {
+                                    string id = lbl.Attributes["id"];
+                                    string trueorfalse = lbl.Attributes["correct"];
+                                    int ix = int.Parse(id);
+                                    for (int z = 0; z < usera.Count; z++)
+                                    {
+                                        int iz = usera[z];
+                                        if (ix == iz)
+                                        {
+                                            if(trueorfalse == "true")
+                                            {
+                                                rw.Attributes.Add("class", "green");
+                                            }
+                                            else if(trueorfalse == "false")
+                                            {
+                                                rw.Attributes.Add("class", "red");
+                                            }
+                                            
+                                        }
 
+                                    }
+                                }
+                  
+                          }
+                  
 
+                         }
+       
+                     }
+                 }              
 
-
-
-
-
-            }
-
-
-        }
+           }
+}
 
         private void LoadTestInfo()
         {
