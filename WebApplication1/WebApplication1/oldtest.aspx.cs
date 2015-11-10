@@ -199,12 +199,13 @@ namespace WebApplication1
 
             while (dr.Read())
             {
+                DateTime date = Convert.ToDateTime(dr.GetValue(5));
 
                 LabelFullName.Text = dr.GetValue(0).ToString() + " " + dr.GetValue(1).ToString();
                 LabelTestName.Text = dr.GetValue(2).ToString();
                 LabelTestGrade.Text = dr.GetValue(3).ToString();
                 LabelTestPoints.Text = dr.GetValue(4).ToString();
-                LabelTestDate.Text = dr.GetValue(5).ToString();
+                LabelTestDate.Text = date.ToShortDateString();
             }
             conn.Close();
 
