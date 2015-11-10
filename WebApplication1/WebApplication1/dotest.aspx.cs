@@ -308,7 +308,7 @@ namespace WebApplication1.Employee
                     radiob1.Attributes.Add("correct", at);
                     radiob1.Attributes.Add("category", cat);
                     string qid = n.Attributes["id"].Value;
-                    radiob1.Attributes.Add("qid", qid);
+                    radiob1.Attributes.Add("qid", arr[0].ToString());
 
                     radiob2.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[1] + "']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[1] + "']");
@@ -318,7 +318,7 @@ namespace WebApplication1.Employee
                     radiob2.Attributes.Add("category", cat);
                     radiob2.Attributes.Add("correct", at);
                     qid = n.Attributes["id"].Value;
-                    radiob2.Attributes.Add("qid", qid);
+                    radiob2.Attributes.Add("qid", arr[1].ToString());
 
                 radiob3.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[2] + "']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[2] + "']");
@@ -328,7 +328,7 @@ namespace WebApplication1.Employee
                     radiob3.Attributes.Add("category", cat);
                     radiob3.Attributes.Add("correct", at);
                 qid = n.Attributes["id"].Value;
-                radiob3.Attributes.Add("qid", qid);
+                radiob3.Attributes.Add("qid", arr[2].ToString());
 
                 radiob4.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[3] + "']").InnerText;
                     n = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[3] + "']");
@@ -338,7 +338,7 @@ namespace WebApplication1.Employee
                     radiob4.Attributes.Add("category", cat);
                     radiob4.Attributes.Add("correct", at);
                 qid = n.Attributes["id"].Value;
-                radiob4.Attributes.Add("qid", qid);
+                radiob4.Attributes.Add("qid", arr[3].ToString());
                 //Lägger in radiobuttons i cellerna
                 cell1.Controls.Add(lblQuestion);
                     cell1.ColumnSpan = 2;
@@ -390,7 +390,7 @@ namespace WebApplication1.Employee
                     checkbox1.Attributes.Add("correct", at);
                     checkbox1.Attributes.Add("group", i);
                     string qid = n1.Attributes["id"].Value;
-                    checkbox1.Attributes.Add("qid", qid);
+                    checkbox1.Attributes.Add("qid", arr[0].ToString());
                 if (at == "true")
                     {
                         ch.setCount();
@@ -402,7 +402,7 @@ namespace WebApplication1.Employee
                     usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                     cat = usernode.Attributes["category"].Value;
                     qid = n1.Attributes["id"].Value;
-                    checkbox2.Attributes.Add("qid", qid);
+                    checkbox2.Attributes.Add("qid", arr[1].ToString());
                 if (at == "true")
                     {
                         ch.setCount();
@@ -418,7 +418,7 @@ namespace WebApplication1.Employee
                     usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                     cat = usernode.Attributes["category"].Value;
                     qid = n1.Attributes["id"].Value;
-                    checkbox3.Attributes.Add("qid", qid);
+                    checkbox3.Attributes.Add("qid", arr[2].ToString());
                 if (at == "true")
                     {
                         ch.setCount();
@@ -440,7 +440,7 @@ namespace WebApplication1.Employee
                     checkbox4.Attributes.Add("correct", at);
                     checkbox4.Attributes.Add("group", i);
                     qid = n1.Attributes["id"].Value;
-                    checkbox4.Attributes.Add("qid", qid);
+                    checkbox4.Attributes.Add("qid", arr[3].ToString());
                         //Lägger in checkboxar i cellerna
                     cell1.Controls.Add(lblQuestion);
                     cell1.ColumnSpan = 2;

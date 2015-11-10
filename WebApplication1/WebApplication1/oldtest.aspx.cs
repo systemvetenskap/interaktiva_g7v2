@@ -210,13 +210,21 @@ namespace WebApplication1
                     int count = usera.Count;
                     if(usera.Any() == true)
                     {
-                      
+                        string c = tor[y].ToString();
                             int uai = usera[xy];
                             if (ai == uai)
                             {
                                 TableCell cell = new TableCell();
                                 cell = clist[y];
+                                if(c == "true")
+                                {
                                 r.Attributes.Add("class", "green");
+                                }
+                                else if(c =="false")
+                                {
+                                r.Attributes.Add("class", "red");
+                                }
+                               
                                 r.Controls.Add(cell);
                                 table1.Controls.Add(r);
                                 xy++;
