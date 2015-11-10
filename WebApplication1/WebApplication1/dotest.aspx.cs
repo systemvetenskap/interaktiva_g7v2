@@ -810,11 +810,12 @@ namespace WebApplication1.Employee
         protected void writeToXml(string i, string q, string qid, string avalue)
         {
             XmlNode nd = xmldoc2.SelectSingleNode("/categories/question[@id='"+i+"']/useranswer");
-            XmlNode nd2 = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
-                
+            XmlNode nd2 = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer");
+            string answid = nd2.Attributes["id"].Value;   
             XmlElement el = xmldoc2.CreateElement("question");
             el.SetAttribute("id", qid);
             el.SetAttribute("correct", avalue);
+            el.SetAttribute("qid", answid);
             
             el.InnerText = q;       
             nd.AppendChild(el);

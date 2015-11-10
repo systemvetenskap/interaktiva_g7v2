@@ -62,11 +62,14 @@ namespace WebApplication1
 
                 string q = node.FirstChild.InnerText;
                 string id = node.Attributes["id"].Value;
+                //string cor = node.Attributes["correct"].Value;
                 //string chosen = node.Attributes[""]          
                 for(int i = 0; i <4; i++)
                 {
                     string a = node["answer"].ChildNodes[i].InnerText;
-                        
+                    XmlNode nd = node.SelectSingleNode("useranswer/question");
+                    //string attr = nd.Attributes["id"].Value;
+
                     t.setAnswers(a);                   
                 }
                 bool bb = node["useranswer"].HasChildNodes;
@@ -74,6 +77,8 @@ namespace WebApplication1
                 {
                    
                     XmlNodeList list = node.SelectNodes("useranswer/question");
+                    XmlNode nd = node.SelectSingleNode("useranswer/question");
+                    string attr = nd.Attributes["id"].Value;
                     int c = list.Count;
                         
                     for (int z = 0; z < c; z++ )
