@@ -118,6 +118,14 @@ namespace WebApplication1
                     userid = 5;
 
                 }
+                else if(user == "kalle")
+                {
+                    userid = 7;
+                }
+                else if(user == "tobbe")
+                {
+                    userid = 8;
+                }
                 else
                 {
                     userid = 1;

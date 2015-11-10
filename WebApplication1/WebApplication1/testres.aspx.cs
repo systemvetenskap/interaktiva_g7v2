@@ -14,11 +14,23 @@ namespace WebApplication1
     public partial class testres : System.Web.UI.Page
     {
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
-        
+        int leaderid = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)  ///allting inom parantes körs när man startar page första gången
             {
+                if(Application["user"] != null)
+                {
+                    string s = Application["user"].ToString();
+                    if(s == "eva")
+                    {
+                        leaderid = 1;
+                    }
+                    else if(s =="nicklas")
+                    {
+                        leaderid = 2;
+                    }
+                }
                 ListLeaders();
                 DropDownListGrade.SelectedValue = "Icke godkänd";
                 ShowList();

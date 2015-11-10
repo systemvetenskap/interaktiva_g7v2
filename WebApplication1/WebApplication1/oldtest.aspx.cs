@@ -153,6 +153,7 @@ namespace WebApplication1
                 cell6.Controls.Add(lbl6);
                 cell7.Controls.Add(lbl7);
                 cell1.Attributes.Add("class", "questionCell");
+                cell7.Attributes.Add("class", "answerCell");
 
                 row1.Controls.Add(cell1);
                 row2.Controls.Add(cell2);

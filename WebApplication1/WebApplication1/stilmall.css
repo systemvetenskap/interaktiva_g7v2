@@ -112,6 +112,10 @@ div.questionbox table.tbl  td.questionCell{
     background-color: #eb9b00;
     padding: 15px; 
 }
+div.questionbox table.tbl  td.answerCell{
+    background-color: #eb9b00;
+    padding: 15px; 
+}
 #timerbox{
     position: fixed;
     background-color: #eb9b00;

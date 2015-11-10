@@ -47,8 +47,15 @@ namespace WebApplication1.Employee
             {
                 user();
                 bool pb = true;
-                //type = Application["type"].ToString();
-      
+                if (Application["type"] != null)
+                {
+                    type = Application["type"].ToString();
+                }
+                else
+                {
+                    type = "a";
+                }
+
                 btn2.Visible = false;
                 type = "a";
                 int x = 0;
@@ -742,8 +749,16 @@ namespace WebApplication1.Employee
             total += eco;
             total += eth;
             tpoints = total.ToString();
-            //string type = Application["type"].ToString();
-            string type = "a";
+            if(Application["type"] != null)
+            {
+                type = Application["type"].ToString();
+            }
+            else
+            {
+                type = "a";
+            }
+
+            
             if (type == "a")
             {
                 int percentProducts = (int)Math.Round((double)(100 * prod) / 8);
@@ -893,6 +908,14 @@ namespace WebApplication1.Employee
                 {
                     userid = 5;
 
+                }
+                else if(user == "kalle")
+                {
+                    userid = 7;
+                }
+                else if(user == "tobbe")
+                {
+                    userid = 8;
                 }
                 else
                 {
