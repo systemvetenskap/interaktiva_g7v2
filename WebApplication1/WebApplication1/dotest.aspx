@@ -51,8 +51,8 @@
     
     </form>
         <script type="text/javascript">
-         var minutes = 00;
-         var seconds = 02;
+         var minutes = 30;
+         var seconds = 00;
          var run = <%=this.timerVar%>;
         
         

@@ -16,41 +16,9 @@ namespace WebApplication1
         int userid = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Application["user"] != null)
-            {
-                user = Application["user"].ToString();
-                if(user == "henrik")
-                {
-                    
-                    userid = 3;
-                   
-                }
-                else if (user == "michael")
-                {
-                    userid = 2;
-                   
-                }
-                else if (user == "stefan")
-                {
-                    userid = 1;
-                  
-                }
-                else if(user == "bertil")
-                {
-                    userid = 6;
-                    
-                }
-                else if(user == "nils")
-                {
-                    userid = 5;
-                    
-                }
-                else
-                {
-                    userid = 1;
-                   
-                }
-            }
+            loadUser();
+            loadData();
+
             if(Application["Role"] != null)
             {
                 string role = Application["role"].ToString();
@@ -118,5 +86,168 @@ namespace WebApplication1
             Application["type"] = "b";
             Response.Redirect("dotest.aspx");
         }
+        protected void loadUser()
+        {
+            if (Application["user"] != null)
+            {
+                user = Application["user"].ToString();
+                if (user == "henrik")
+                {
+
+                    userid = 3;
+
+
+                }
+                else if (user == "michael")
+                {
+                    userid = 2;
+
+                }
+                else if (user == "stefan")
+                {
+                    userid = 1;
+
+                }
+                else if (user == "bertil")
+                {
+                    userid = 6;
+
+                }
+                else if (user == "nils")
+                {
+                    userid = 5;
+
+                }
+                else
+                {
+                    userid = 1;
+
+                }
+            }
+        }
+        protected void loadData()
+        {
+            string s = "";
+            lblAku.Text = "";
+            lblLicens.Text = "";
+            DateTime date = DateTime.Today;
+            DateTime last = DateTime.Now;
+            conn.Open();
+            NpgsqlCommand cmd = new NpgsqlCommand("select licensed from users where users.userid = @id", conn);
+            cmd.Parameters.AddWithValue("@id", userid);
+            NpgsqlDataReader r = cmd.ExecuteReader();
+            while(r.Read())
+            {
+                s = r[0].ToString();
+            }
+            conn.Close();
+            if (s == "Ej licensierad")
+            {
+                lblLicens.Text = "Ej Licensierad";
+                lblLicens.ForeColor = System.Drawing.Color.Tomato;
+                btnUpdateTest.Enabled = false;
+            }
+            else
+            {
+                lblLicens.Text = "Licensierad";
+                lblLicens.ForeColor = System.Drawing.Color.LawnGreen;
+                btnLicenseTest.Enabled = false;
+            }
+            conn.Open();
+            string sql = @"select t.name, t.grade, t2.maxdate, testid, u.licensed from license_test t
+                                                       inner join
+                                                       (
+                                                       select max(date) maxdate, user_id from license_test
+                                                       group by user_id) t2 on t.user_id = t2.user_id and t.date = t2.maxdate
+                                                       right join users u on t.user_id = u.userid
+                                                       inner join leader l on u.leader_id = l.leader_id where u.userid = @id";
+            cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@id", userid);
+            r = cmd.ExecuteReader();
+            
+            while (r.Read())
+            {
+                if(!string.IsNullOrWhiteSpace(r[2].ToString()))
+                {
+                    last = Convert.ToDateTime(r[2].ToString());
+                    if(r[0].ToString() == "Licensieringstest")
+                    {
+                        if(r[1].ToString() == "Underkänd")
+                        {
+                            btnLicenseTest.Enabled = false;
+                            btnUpdateTest.Enabled = false;
+                            DateTime newtry = last.AddDays(7);
+                            lblLicens.Text = "Ej licensierad. Nytt försök kan göras tidigast: "+ newtry.ToShortDateString();
+                            lblLicens.ForeColor = System.Drawing.Color.Tomato;
+                            lblAku.Text = "";
+                            if(date >= newtry)
+                            {
+                                btnLicenseTest.Enabled = true;
+                                lblLicens.Text = "Ej licensierad. Nytt försök tillgängligt";
+                                lblLicens.ForeColor = System.Drawing.Color.Orange;
+
+                            }
+                        }
+                        else
+                        {
+                            btnLicenseTest.Enabled = false;
+                            btnUpdateTest.Enabled = false;
+                            DateTime newtry = last.AddYears(1);
+                            lblLicens.Text = "Licensierad";
+                            lblLicens.ForeColor = System.Drawing.Color.LawnGreen;
+                            lblAku.Text = "Kunskapsuppdatering tidigast: " + newtry.ToShortDateString();
+                            if (date >= newtry)
+                            {
+                                btnUpdateTest.Enabled = true;
+
+                                lblAku.Text = "Kunskapsuppdatering tillgänglig";
+                                lblAku.ForeColor = System.Drawing.Color.Orange;
+                            }
+                        }
+                    }
+                    else if(r[0].ToString() == "ÅKU")
+                    {
+                        if (r[1].ToString() == "Underkänd")
+                        {
+                            btnLicenseTest.Enabled = false;
+                            btnUpdateTest.Enabled = false;
+                            DateTime newtry = last.AddDays(7);
+                            lblLicens.Text = "Underkänd. Nytt försök kan göras tidigast: " + newtry.ToShortDateString();
+                            lblLicens.ForeColor = System.Drawing.Color.Tomato;
+                            if (date >= newtry)
+                            {
+                                btnUpdateTest.Enabled = true;
+                                lblAku.Text = "Kunskapsuppdatering tillgänglig";
+                                lblAku.ForeColor = System.Drawing.Color.Orange;
+                            }
+
+                        }
+                        else
+                        {
+                            btnLicenseTest.Enabled = false;
+                            btnUpdateTest.Enabled = false;
+                            DateTime newtry = last.AddYears(1);
+                            lblLicens.Text = "Licensierad";
+                            lblLicens.ForeColor = System.Drawing.Color.LawnGreen;
+                            lblAku.Text = "Kunskapsuppdatering tidigast: " + newtry.ToShortDateString();
+                            if (date >= newtry)
+                            {
+                                btnUpdateTest.Enabled = true;
+                                lblAku.Text = "Kunskapsuppdatering tillgänglig";
+                                lblAku.ForeColor = System.Drawing.Color.Orange;
+                            }
+                        }
+                    }
+                }
+                
+
+            }
+            conn.Close();
+
+
+
+        }
+
+
     }
 }

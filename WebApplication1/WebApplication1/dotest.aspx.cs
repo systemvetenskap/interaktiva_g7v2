@@ -768,7 +768,7 @@ namespace WebApplication1.Employee
                 }
 
                 string savexml = xmldoc2.OuterXml;
-                string tn = "Licenseringstest";
+                string tn = "Licensieringstest";
                 user();
                 int ln = userid;
                 DateTime date = DateTime.Today;
@@ -919,7 +919,7 @@ namespace WebApplication1.Employee
 
             if(type == 1)
             {
-                tn = "Licenseringstest";
+                tn = "Licensieringstest";
             }
             else
             {
@@ -953,16 +953,17 @@ namespace WebApplication1.Employee
                 if (type == 1)
                 {
                     conn.Open();
-                    NpgsqlCommand cmd = new NpgsqlCommand("update users set(licensed = @value)where users.user_id = @id", conn);
-                    cmd.Parameters.Add(new NpgsqlParameter("@value", licensed));
-                    cmd.Parameters.Add(new NpgsqlParameter("@id", userid));
+                    NpgsqlCommand cmd = new NpgsqlCommand("update users set licensed = @value where users.userid = @id", conn);
+                    cmd.Parameters.AddWithValue("@value", licensed);
+                    cmd.Parameters.AddWithValue("@id", userid);
                     cmd.ExecuteNonQuery();
                     conn.Close();
+            
                 }
             }
             catch
             {
-                
+
             }
         }
 
