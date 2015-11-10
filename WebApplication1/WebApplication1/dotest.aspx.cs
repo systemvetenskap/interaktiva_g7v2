@@ -42,7 +42,6 @@ namespace WebApplication1.Employee
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
             if (!IsPostBack)
             {
                 user();
@@ -57,7 +56,6 @@ namespace WebApplication1.Employee
                 ecPoints = "na";
                 ethPoints = "na";
                 pPoints = "na";
-
 
                 gr = 0;
                 right.LoadXml("<test></test>");
@@ -82,7 +80,6 @@ namespace WebApplication1.Employee
                 //Skapar ny array och stoppar in variabler av typen int(minsta värde, högsta värde)
                 int[] arrayQuestions = RandomNumbers(1, x, 4);
 
-
                 //Hämtar frågor från orginaldokumentet och stoppar in detta i det nya
                 foreach (int i in arrayQuestions)
                 {
@@ -95,7 +92,6 @@ namespace WebApplication1.Employee
                     parent.AppendChild(txt);
                     XmlElement newel = xmldoc2.CreateElement("answer");
                     parent.AppendChild(newel);
-
 
                     XmlNode tst = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
                     string img = tst.Attributes["image"].Value;
@@ -122,8 +118,6 @@ namespace WebApplication1.Employee
                         parent2.AppendChild(newnode2);
                     }
 
-
-
                     xmldoc2.Save(Server.MapPath("usertest.xml"));
                 }
                 //Lägger in alla question nodes i en XML lista
@@ -133,7 +127,6 @@ namespace WebApplication1.Employee
                 foreach (XmlNode node in lst)
                 {
 
-
                     string attributeID = node.Attributes["id"].Value;
                     string attributeMulti = node.Attributes["multi"].Value;
                     string img = node.Attributes["image"].Value;
@@ -141,9 +134,7 @@ namespace WebApplication1.Employee
 
                     loadQuest(attributeID, attributeMulti, img, count, listq, pb);
                     count++;
-                    xmldoc2.Save(Server.MapPath("usertest.xml"));
-                    
-
+                    xmldoc2.Save(Server.MapPath("usertest.xml"));                   
                 }
 
             }
@@ -172,9 +163,7 @@ namespace WebApplication1.Employee
 
                     loadQuest(attributeID, attributeMulti, img, count, lista, pb);
                     count++;
-
                 }
-
 
                 if (ViewState["points"] != null)
                 {
@@ -188,18 +177,12 @@ namespace WebApplication1.Employee
                     gr = a;
 
                 }
-
-
             }
-
-
         }
         protected void Page_PreRender(object sender, EventArgs e)
         {
             ViewState.Add("points", tpoints);
             ViewState.Add("grade", gr);
-
-
         }
         protected void btnSubmint_Click(object sender, EventArgs e)
         {
@@ -236,7 +219,6 @@ namespace WebApplication1.Employee
         }
         protected void btn1_Click(object sender, EventArgs e)
         {
-
             calcPoints();
             feedbackAnswers();
         }
@@ -266,7 +248,6 @@ namespace WebApplication1.Employee
                     }
                 }
             }
-
                 //Skapar nya rader                  
                 row1 = new TableRow();
                 row2 = new TableRow();
@@ -282,13 +263,6 @@ namespace WebApplication1.Employee
                 cell5 = new TableCell();
                 cell6 = new TableCell();
                 imgcell = new TableCell();
-
-
-
-
-
-
-
 
                 //Skapar ny label
                 Label lblQuestion = new Label();
@@ -398,10 +372,8 @@ namespace WebApplication1.Employee
                     lblQuestion.Attributes.Add("multi", cat1);
                     string cat2 = n1.Attributes["id"].Value;
                     lblQuestion.Attributes.Add("id", cat2);
-          
 
-
-                checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[0] + "']").InnerText;
+                    checkbox1.Text = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id = '" + arr[0] + "']").InnerText;
                     XmlNode usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']/answer/answer[@id='" + arr[0] + "']");
                     string at = usernode.Attributes["correct"].Value;
                     usernode = xmldoc2.SelectSingleNode("/categories/question[@id='" + i + "']");
@@ -462,8 +434,8 @@ namespace WebApplication1.Employee
                     checkbox4.Attributes.Add("group", i);
                     qid = n1.Attributes["id"].Value;
                     checkbox4.Attributes.Add("qid", qid);
-                //Lägger in checkboxar i cellerna
-                cell1.Controls.Add(lblQuestion);
+                        //Lägger in checkboxar i cellerna
+                    cell1.Controls.Add(lblQuestion);
                     cell1.ColumnSpan = 2;
 
                     cell2.Controls.Add(checkbox1);
@@ -472,14 +444,11 @@ namespace WebApplication1.Employee
                     cell5.Controls.Add(checkbox4);
 
                     ch.setCat(cat);
-
                     list.Add(ch);
-
 
                 }
                 //Lägger in label i cellen
                 cell1.Attributes.Add("class", "questionCell");
-
 
                 //Lägger in cellen på raden
                 row1.Controls.Add(cell1);
@@ -505,7 +474,6 @@ namespace WebApplication1.Employee
                 table1.Controls.Add(row6);
                 count++;
 
-
                 //Om attributet image är satt till true
                 if (img == "true")
                 {
@@ -515,11 +483,7 @@ namespace WebApplication1.Employee
                     imgcell.RowSpan = 4;
                     row2.Controls.Add(imgcell);
                     imgcell.Controls.Add(bild);
-
-
-                }
-
-            
+                }            
 }
 
         protected void feedbackAnswers()
@@ -537,7 +501,6 @@ namespace WebApplication1.Employee
 
                             if (rad.Checked == true)
                             {
-
                                 if (cor == "true")
                                 {
                                     rw.Attributes.Remove("class");
@@ -590,23 +553,14 @@ namespace WebApplication1.Employee
                                     rw.Attributes.Add("class", "green");
                                 }
                             }
-
                         }
-
-
                     }
-
                 }
-
             }
-
-
-
 
         }
         protected void calcPoints()
         {
-
             string id = "";
             string qtext = "";
             foreach (TableRow rw in table1.Rows)
@@ -618,8 +572,7 @@ namespace WebApplication1.Employee
                         if(cl is Label)
                         {
                             Label label = (Label)cl;
-                            id = label.Attributes["id"];
-                          
+                            id = label.Attributes["id"];                          
                         }
                         if (cl is RadioButton)
                         {
@@ -688,27 +641,15 @@ namespace WebApplication1.Employee
                                         }
 
                                     }
-                             
-                          
-                      
-
                                 }
                      
-
                             }
-
-
                         }
-
                     }
                 }
             }
             countCorrect();
             saveResult();
-
-
-
-
         }
         protected void countCorrect()
         {
@@ -731,9 +672,7 @@ namespace WebApplication1.Employee
                         eco++;
                     }
                 }
-            }
-
-           
+            } 
         }
         protected void saveResult()
         {
@@ -845,9 +784,6 @@ namespace WebApplication1.Employee
                 }
 
             }
-
-
-
           }
         protected void btn2_Click(object sender, EventArgs e)
         {
@@ -940,9 +876,6 @@ namespace WebApplication1.Employee
                 cmd.Parameters.Add(new NpgsqlParameter("addxml", savexml));
                 cmd.ExecuteNonQuery();
                 conn.Close();
-                
-
-     
             }
             catch
             {
@@ -966,11 +899,6 @@ namespace WebApplication1.Employee
 
             }
         }
-
-
-
-
-
     }
 
 }

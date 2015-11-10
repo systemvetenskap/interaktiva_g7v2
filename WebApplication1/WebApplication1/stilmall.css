@@ -6,7 +6,6 @@
     background-attachment: fixed;
     overflow-y:scroll;
 }
-
 h1 {
     margin: 0;
     padding: 0;
@@ -34,7 +33,6 @@ div.header h1{
     top: 15px;
     padding: 1% 5%;
 }
-
 div.nav{
     background-color: #253648;
     border-bottom: inset #eb9b00;
@@ -64,32 +62,26 @@ div.nav ul li a:link, div.nav ul li a:visited{
 div.nav ul li a:hover, div.nav ul li a:visited{
     background-color: #eb9b00;
 }
-
 div.questionbox{
     max-width: 70%;
     margin: 5% 3% 5% 3%;
     background-color:white;
 }
-
 div.mytests{
     width:800px;
     margin: 50px auto;
 }
-
 table.tbl {
      border-spacing: 1px;
 }
-
 table.tbl td
  { 
  font-family: Verdana;
  color: #404040;
  }
-
 .provresultat, .mytestsmenu{
     background-color: #eb9b00
 }
-
 div.questionbox table.tbl  tr.question{
     height:35px;
     font-weight: bold;
@@ -97,8 +89,6 @@ div.questionbox table.tbl  tr.question{
     font-size:14px; 
 }
 div.questionbox table.tbl  tr.answers{
-    
-    
     background-color: rgba(0, 109, 120, 0.11);
     height: 30px;
     font-size: 14px;
@@ -107,7 +97,6 @@ div.questionbox table.tbl  tr.empty{
     height: 20px;
 
 }
-
 div.questionbox table.tbl  td.questionCell{
     background-color: #eb9b00;
     padding: 15px; 
@@ -126,8 +115,7 @@ div.footer{
     background-color: #253648;
     height: 100px;
 }
-div.questionbox table.tbl  tr.green{
-    
+div.questionbox table.tbl  tr.green{   
     background-color: rgba(0,255,0,0.3);
     background-color: #00FF00;
     height: 30px;
@@ -173,7 +161,6 @@ input[type=submit] {
   background-color:#eb9b00;
   font-size:medium;
   }
-
 
 .clear:before, .clear:after{content: ""; display: table;}
 .clear:after {clear: both;}
