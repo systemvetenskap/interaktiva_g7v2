@@ -7,7 +7,7 @@
     <title>Home</title>
     <link href="/stilmall.css" type="text/css" rel="stylesheet" /> 
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  
+
 
 </head>
 <body>
@@ -98,6 +98,31 @@
         }
         document.getElementById("LabelTimer").innerHTML = "Poäng: "+tpoints+" Betyg: "+grade+"<br><br>"+"<span style='color: green;'>Grönmarkerade fält = rätt svar</span>"+"<br>"+"<span style='color: red;'>Rödmarkerade fält = fel svar</span>"+"<br><br>"+"<span>Products: "+prod+"%</span>"+"<br>"+"<span>Economy: "+eco+"%</span>"+"<br>"+"<span>Ethics: "+eth+"%</span>";
      }
+         function Check(me) {
+             alert(me.name);
+            
+            var i = 0;
+            var tot = 0;
+            //for (i = 0; i < chkBoxCount.length; i++) {
+            //    if (chkBoxCount[i].checked) {
+            //        tot = tot + 1;
+            //        //Check if selected count greater than 3
+            //        if (tot > 2) {
+            //        //Then unchecck the 4th checkbox
+            //            chkBoxCount[i].checked = false;
+            //        }
+            //    }
+            //}
+
+            //if (tot > 3) {
+            //    alert('Cannot check more than 3 check boxes');
+            //    return false;
+            //}
+            //else {
+            //    return false;
+            //}
+        }
+
      
     </script>
 </body>

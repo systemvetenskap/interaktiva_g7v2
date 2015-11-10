@@ -200,15 +200,15 @@ namespace WebApplication1
                 row6.Controls.Add(cell6);
                 row7.Controls.Add(cell7);
                 table1.Controls.Add(row1);
-         
+                int xy = 0;
                 for (int y = 0; y < answerid.Count; y++)
                 {
-                    int xy = 0;
+                    
                     TableRow r = new TableRow();
 
                     int ai = answerid[y];
                     int count = usera.Count;
-                    if(usera.Any() == true)
+                    if(usera.Any() == true && xy < usera.Count)
                     {
                         string c = tor[y].ToString();
                             int uai = usera[xy];
@@ -216,18 +216,23 @@ namespace WebApplication1
                             {
                                 TableCell cell = new TableCell();
                                 cell = clist[y];
-                                if(c == "true")
-                                {
+                            if(c == "true")
+                            {
                                 r.Attributes.Add("class", "green");
-                                }
-                                else if(c =="false")
-                                {
-                                r.Attributes.Add("class", "red");
-                                }
-                               
                                 r.Controls.Add(cell);
                                 table1.Controls.Add(r);
                                 xy++;
+                            }
+                            else if(c =="false")
+                            {
+                                r.Attributes.Add("class", "red");
+                                r.Controls.Add(cell);
+                                table1.Controls.Add(r);
+                                xy++;
+                            }
+                               
+                                
+                                //xy++;
                             }
                             else
                             {
@@ -248,29 +253,11 @@ namespace WebApplication1
                         r.Controls.Add(cell);
                         table1.Controls.Add(r);
                     }
-                    
-                  
-
-       
-                   
-                    
-                
+                             
     
-                }
-                //row1.Attributes.Add("class", "question");
-
-                //row2.Attributes.Add("class", "answers");
-                //row3.Attributes.Add("class", "answers");
-                //row4.Attributes.Add("class", "answers");
-                //row5.Attributes.Add("class", "answers");
+                }     
                 row6.Attributes.Add("class", "answers");
                 row7.Attributes.Add("class", "answers");
-
-
-                //table1.Controls.Add(row2);
-                //table1.Controls.Add(row3);
-                //table1.Controls.Add(row4);
-                //table1.Controls.Add(row5);
                 table1.Controls.Add(row6);
                 table1.Controls.Add(row7);
 

@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="answ.cs" />
+    <Compile Include="counter.cs" />
     <Compile Include="dotest.aspx.cs">
       <DependentUpon>dotest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
