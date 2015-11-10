@@ -176,10 +176,17 @@ namespace WebApplication1
 
                 }
                 cell1.Controls.Add(lbl1);
+                List<TableCell> clist = new List<TableCell>();
                 cell2.Controls.Add(lbl2);
                 cell3.Controls.Add(lbl3);
                 cell4.Controls.Add(lbl4);
                 cell5.Controls.Add(lbl5);
+                clist.Add(cell2);
+                clist.Add(cell3);
+                clist.Add(cell4);
+                clist.Add(cell5);
+                
+                
                 cell6.Controls.Add(lbl6);
                 cell7.Controls.Add(lbl7);
                 cell1.Attributes.Add("class", "questionCell");
@@ -192,63 +199,77 @@ namespace WebApplication1
                 row5.Controls.Add(cell5);
                 row6.Controls.Add(cell6);
                 row7.Controls.Add(cell7);
-                row1.Attributes.Add("class", "question");
-                row2.Attributes.Add("class", "answers");
-                row3.Attributes.Add("class", "answers");
-                row4.Attributes.Add("class", "answers");
-                row5.Attributes.Add("class", "answers");
+                table1.Controls.Add(row1);
+         
+                for (int y = 0; y < answerid.Count; y++)
+                {
+                    int xy = 0;
+                    TableRow r = new TableRow();
+
+                    int ai = answerid[y];
+                    int count = usera.Count;
+                    if(usera.Any() == true)
+                    {
+                      
+                            int uai = usera[xy];
+                            if (ai == uai)
+                            {
+                                TableCell cell = new TableCell();
+                                cell = clist[y];
+                                r.Attributes.Add("class", "green");
+                                r.Controls.Add(cell);
+                                table1.Controls.Add(r);
+                                xy++;
+                            }
+                            else
+                            {
+                                TableCell cell = new TableCell();
+                                cell = clist[y];
+                                r.Attributes.Add("class", "answers");
+                                r.Controls.Add(cell);
+                                table1.Controls.Add(r);
+                            }
+                        
+      
+                    }
+                    else
+                    {
+                        TableCell cell = new TableCell();
+                        cell = clist[y];
+                        r.Attributes.Add("class", "answers");
+                        r.Controls.Add(cell);
+                        table1.Controls.Add(r);
+                    }
+                    
+                  
+
+       
+                   
+                    
+                
+    
+                }
+                //row1.Attributes.Add("class", "question");
+
+                //row2.Attributes.Add("class", "answers");
+                //row3.Attributes.Add("class", "answers");
+                //row4.Attributes.Add("class", "answers");
+                //row5.Attributes.Add("class", "answers");
                 row6.Attributes.Add("class", "answers");
                 row7.Attributes.Add("class", "answers");
 
-                table1.Controls.Add(row1);
-                table1.Controls.Add(row2);
-                table1.Controls.Add(row3);
-                table1.Controls.Add(row4);
-                table1.Controls.Add(row5);
+
+                //table1.Controls.Add(row2);
+                //table1.Controls.Add(row3);
+                //table1.Controls.Add(row4);
+                //table1.Controls.Add(row5);
                 table1.Controls.Add(row6);
                 table1.Controls.Add(row7);
-                foreach (TableRow rw in table1.Rows)
-                {
-                    foreach (TableCell cell in rw.Cells)
-                    {
-                        foreach (Control cl in cell.Controls)
-                        {
-                         if(cl is Label)
-                          {
-                                Label lbl = (Label)cl;
-                                if(lbl.Attributes["id"] != null)
-                                {
-                                    string id = lbl.Attributes["id"];
-                                    string trueorfalse = lbl.Attributes["correct"];
-                                    int ix = int.Parse(id);
-                                    for (int z = 0; z < usera.Count; z++)
-                                    {
-                                        int iz = usera[z];
-                                        if (ix == iz)
-                                        {
-                                            if(trueorfalse == "true")
-                                            {
-                                                rw.Attributes.Add("class", "green");
-                                            }
-                                            else if(trueorfalse == "false")
-                                            {
-                                                rw.Attributes.Add("class", "red");
-                                            }
-                                            
-                                        }
 
-                                    }
-                                }
-                  
-                          }
-                  
 
-                         }
-       
-                     }
-                 }              
 
-           }
+
+            }
 }
 
         private void LoadTestInfo()
