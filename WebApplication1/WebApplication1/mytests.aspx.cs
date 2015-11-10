@@ -54,6 +54,7 @@ namespace WebApplication1
 
             foreach (DataRow r in dt.Rows)
             {
+
                 DataRow row = dt2.NewRow();
                 DateTime date = Convert.ToDateTime(r[0]);
                 row[0] = date.ToString(format);

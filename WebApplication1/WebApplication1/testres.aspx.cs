@@ -210,28 +210,16 @@ namespace WebApplication1
                     row[4] = points;
                     row[5] = date;
                     row[6] = leader;
-                    row[7] = testid;
+                    row[7] = "<a href='Oldtest.aspx?id="+testid+ "' Target='_blank'>Hämta prov</a>";
                     dt.Rows.Add(row);
                 }
-           
-
-
-
-
-      
-                
-
 
             }
-
-
-           
-
-
             GridViewMyTests.DataSource = dt;
             GridViewMyTests.DataBind();
 
             conn.Close();
         }
+
     }
 }
