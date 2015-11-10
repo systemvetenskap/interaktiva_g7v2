@@ -19,12 +19,6 @@
          <!-- Container -->
         <div class="container"> 
         
-       
-        <!-- Header -->
-        <div class="header">          
-            <h1>JE Bank</h1>
-        </div>
-    
         <!-- Info om testet -->
         <div class="OldTestInfo">
 

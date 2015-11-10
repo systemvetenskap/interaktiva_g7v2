@@ -69,7 +69,7 @@
                     <asp:BoundField DataField="maxdate" HeaderText="Datum"  />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
                 
-                    <asp:HyperLinkField  
+                    <asp:HyperLinkField 
                         DataTextField="testid"            
                         HeaderText="Hämta prov"
                         SortExpression="testid"
