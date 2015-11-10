@@ -61,7 +61,8 @@ namespace WebApplication1
                 Test t = new Test();              
 
                 string q = node.FirstChild.InnerText;
-                string id = node.Attributes["id"].Value;          
+                string id = node.Attributes["id"].Value;
+                //string chosen = node.Attributes[""]          
                 for(int i = 0; i <4; i++)
                 {
                     string a = node["answer"].ChildNodes[i].InnerText;
@@ -71,11 +72,14 @@ namespace WebApplication1
                 bool bb = node["useranswer"].HasChildNodes;
                 if (bb == true)
                 {
-                    int count = node.SelectNodes("useranswer").Count;
-
-                    for(int z = 0; z < count; z++ )
+                   
+                    XmlNodeList list = node.SelectNodes("useranswer/question");
+                    int c = list.Count;
+                        
+                    for (int z = 0; z < c; z++ )
                     {
                         string b = node["useranswer"].ChildNodes[z].InnerText;
+                       
                         t.setYouranwser(b);
                     }
                   
@@ -124,12 +128,12 @@ namespace WebApplication1
                 lbl3.Text = ans[1].ToString();
                 lbl4.Text = ans[2].ToString();
                 lbl5.Text = ans[3].ToString();
-                lbl6.Text = "Ni svarade:";
+                lbl6.Text = "Svar: ";
                 if(yans.Count > 0)
                 {
                     for(int i = 0; i < yans.Count; i++)
                     {
-                        lbl7.Text += yans[i].ToString();
+                        lbl7.Text +=yans[i].ToString()+"<br><br>";
                     }
 
                 }
