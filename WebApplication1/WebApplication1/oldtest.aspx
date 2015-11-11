@@ -19,18 +19,36 @@
          <!-- Container -->
         <div class="container"> 
         
-       
-        <!-- Header -->
-        <div class="header">          
-            <h1>JE Bank</h1>
-        </div>
-    
+        <!-- Info om testet -->
+        <div class="OldTestInfo">
+
+            <div class="NameInfo">
+            <asp:Label class="HeadlineLabels LabelFullname" ID="LabelFullNameHeadline" runat="server" Text="Namn:"></asp:Label>
+            <asp:Label class="Label" ID="LabelFullName" runat="server" Text="Label"></asp:Label>
+            </div>
+
+            <div class="TestInfo">
+            <asp:Label class="HeadlineLabels" ID="LabelTestNameHeadline" runat="server" Text="Test typ:"></asp:Label>
+            <asp:Label class="Label" ID="LabelTestName" runat="server" Text="Label"></asp:Label>
+
+            <asp:Label class="HeadlineLabels" ID="LabelTestPointsHeadline" runat="server" Text="Poäng:"></asp:Label>
+            <asp:Label class="Label" ID="LabelTestPoints" runat="server" Text="Label"></asp:Label>
+
+            <asp:Label class="HeadlineLabels" ID="LabelTestGradeHeadline" runat="server" Text="Betyg:"></asp:Label>
+            <asp:Label class="Label" ID="LabelTestGrade" runat="server" Text="Label"></asp:Label>
+
+            <asp:Label class="HeadlineLabels" ID="LabelTestDateHeadline" runat="server" Text="Datum:"></asp:Label>
+            <asp:Label class="Label" ID="LabelTestDate" runat="server" Text="Label"></asp:Label>
+            
+            </div>
+
+       </div> 
         <!-- Questions -->
         <div class="questionbox" id="questionbox" runat="server">
 
         &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
-              
         </div>
+
     </div>
     
     </form>

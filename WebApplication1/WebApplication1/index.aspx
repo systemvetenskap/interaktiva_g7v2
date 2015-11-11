@@ -4,7 +4,7 @@
 <head runat="server">
     <title>Home</title>
     <link href="stilmall.css" type="text/css" rel="stylesheet" /> 
-    <script src="javascript.js"></script> 
+    <%--<script src="javascript.js"></script> --%>
 </head>
 <body>
     <form id="form1" runat="server">

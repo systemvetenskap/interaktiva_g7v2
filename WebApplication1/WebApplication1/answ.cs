@@ -10,6 +10,7 @@ namespace WebApplication1
         private int id;
         private int count;
         private int answers;
+        private int tAnswers;
         private bool correct;
         private string category; 
 
@@ -39,14 +40,22 @@ namespace WebApplication1
         }
         public bool getCorrect()
         {
-            if(count == answers)
+            if(count == tAnswers)
             {
-                correct = true;
+                if (count == answers)
+                {
+                    correct = true;
+                }
+                else
+                {
+                    correct = false;
+                }
             }
             else
             {
                 correct = false;
             }
+
             return correct;
         } 
         public void setCat(string cat)
@@ -56,6 +65,14 @@ namespace WebApplication1
         public string getCat()
         {
             return category;
+        }
+        public void setTAnsw()
+        {
+            tAnswers++;
+        }
+        public int getTAnsw()
+        {
+            return tAnswers;
         }
     }
 }

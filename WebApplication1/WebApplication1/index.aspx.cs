@@ -16,7 +16,7 @@ namespace WebApplication1
 {
     public partial class index : System.Web.UI.Page
     {
-        public string fname, lname, auth;
+        public string fname, lname, auth, test;
         NpgsqlConnection conn = new NpgsqlConnection("Server=webblabb.miun.se;Port=5432; User Id=pgmvaru_g7;Password=akrobatik;Database=pgmvaru_g7;SSL=true;");
 
         protected void btnemp_Click(object sender, EventArgs e)

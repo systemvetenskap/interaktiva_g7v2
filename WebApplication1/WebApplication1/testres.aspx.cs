@@ -103,7 +103,7 @@ namespace WebApplication1
             // LICENS
                 if (DropDownListLicensed.SelectedValue == "Licensed")
                 {
-                string addSql = "WHERE  licensed = 'Licenserad' ";
+                string addSql = "WHERE  licensed = 'Licensierad' ";
                 sql += addSql;
                 }
 
@@ -115,7 +115,7 @@ namespace WebApplication1
 
             else if (DropDownListLicensed.SelectedValue == "Alla")
                 {
-                string addSql2 = "WHERE  (licensed = 'Ej licensierad' OR licensed = 'Licenserad') ";
+                string addSql2 = "WHERE  (licensed = 'Ej licensierad' OR licensed = 'Licensierad') ";
                 sql += addSql2;
                 }
 
@@ -175,13 +175,13 @@ namespace WebApplication1
             
             foreach (DataRow r in dt2.Rows)
             {
-                
+
                 string fullname = r[0].ToString() + " " + r[1].ToString(); // sätta ihop firstname + lastname på en medlem
                 string licens = r[2].ToString();
                 string testname = r[3].ToString();
                 string grade = r[4].ToString();
                 string points = r[5].ToString();
-                string date = r[6].ToString();                  
+                string date = r[6].ToString();
                 string leader = r[7].ToString() + " " + r[8].ToString(); // sätta ihop firstname + lastname på en ledare
                 string testid = r[9].ToString();
 
@@ -192,9 +192,9 @@ namespace WebApplication1
                     row[0] = fullname;
                     row[1] = licens;
                     row[2] = testname;
-                    row[3] = grade;
+                    row[3] = grade; 
                     row[4] = points;
-                    row[5] = date;
+                    row[5] = date; 
                     row[6] = leader;
                    
                     dt.Rows.Add(row);
@@ -202,36 +202,26 @@ namespace WebApplication1
                 }
                 else
                 {
+
+                    DateTime FULLdate = Convert.ToDateTime(r[6].ToString());
                     row = dt.NewRow();
                     row[0] = fullname;
                     row[1] = licens;
                     row[2] = testname;
                     row[3] = grade;
                     row[4] = points;
-                    row[5] = date;
+                    row[5] = FULLdate.ToShortDateString();
                     row[6] = leader;
-                    row[7] = testid;
+                    row[7] = "<a class='linkTest' href='Oldtest.aspx?id="+testid+ "' Target='_blank'>Hämta prov</a>";
                     dt.Rows.Add(row);
                 }
-           
-
-
-
-
-      
-                
-
 
             }
-
-
-           
-
-
             GridViewMyTests.DataSource = dt;
             GridViewMyTests.DataBind();
 
             conn.Close();
         }
+
     }
 }
