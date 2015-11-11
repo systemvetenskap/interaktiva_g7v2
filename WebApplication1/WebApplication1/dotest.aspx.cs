@@ -394,7 +394,7 @@ namespace WebApplication1.Employee
                 //checkbox3.ID = i.ToString() + "c3";
                 //checkbox4.ID = i.ToString() + "c4";
 
-                checkbox1.CheckedChanged += new EventHandler(this.checkedChanged);
+             
 
                     checkbox1.InputAttributes.Add("name", "check" + count);
                     checkbox1.InputAttributes.Add("value", "1");
@@ -402,15 +402,15 @@ namespace WebApplication1.Employee
 
                     checkbox2.InputAttributes.Add("name", "check" + count);
                     checkbox2.InputAttributes.Add("value", "2");
-                    checkbox2.CheckedChanged += new EventHandler(this.checkedChanged);
+            
 
                     checkbox3.InputAttributes.Add("name", "check" + count);
                     checkbox3.InputAttributes.Add("value", "3");
-                    checkbox3.CheckedChanged += new EventHandler(this.checkedChanged);
+           
 
                     checkbox4.InputAttributes.Add("name", "check" + count);
                     checkbox4.InputAttributes.Add("value", "4");
-                    checkbox4.CheckedChanged += new EventHandler(this.checkedChanged);
+                
                     cnt.setGroup("check" + count.ToString());
                     ch.setId(Convert.ToInt16(i));
           
@@ -871,31 +871,7 @@ namespace WebApplication1.Employee
             nd.AppendChild(el);
             xmldoc2.Save(Server.MapPath("usertest.xml"));
         }
-        protected void checkedChanged(object sender, EventArgs e)
-        {
-            CheckBox c = (CheckBox)sender;
-            string s = c.Attributes["name"].ToString();
-            foreach(counter x in checklist)
-            {
-                string z = x.getGroup();
-                if(s == z)
-                {
-                    int y = x.getCount();
-                    int i = x.getNroCounts();
-                    if(i<=y)
-                    {
-                        c.Checked = true;
-                        x.setNroCounts();
-                    }
-                    else
-                    {
-                        c.Checked = false;
-                    }
-                }
-            }
-            
 
-        }
         protected void user()
         {
             if (Application["user"] != null)

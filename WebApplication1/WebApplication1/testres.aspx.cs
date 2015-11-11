@@ -103,7 +103,7 @@ namespace WebApplication1
             // LICENS
                 if (DropDownListLicensed.SelectedValue == "Licensed")
                 {
-                string addSql = "WHERE  licensed = 'Licenserad' ";
+                string addSql = "WHERE  licensed = 'Licensierad' ";
                 sql += addSql;
                 }
 
@@ -115,7 +115,7 @@ namespace WebApplication1
 
             else if (DropDownListLicensed.SelectedValue == "Alla")
                 {
-                string addSql2 = "WHERE  (licensed = 'Ej licensierad' OR licensed = 'Licenserad') ";
+                string addSql2 = "WHERE  (licensed = 'Ej licensierad' OR licensed = 'Licensierad') ";
                 sql += addSql2;
                 }
 
