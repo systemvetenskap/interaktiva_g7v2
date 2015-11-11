@@ -80,7 +80,7 @@
                 
                 return;
             }
-            document.getElementById("timer").innerHTML = minutes + " minuter " + seconds + " sekunder";
+         document.getElementById("timer").innerHTML = minutes + " minuter " + seconds + " sekunder"+"<br><br>"+"<span style='font-size: 80%'>Tryck på lämna in när du är klar</span>";
      }
      function result() {
          var tpoints = <%=this.tpoints%>;
@@ -96,7 +96,7 @@
         else{
             var grade ="Icke godkänd";
         }
-        document.getElementById("LabelTimer").innerHTML = "Poäng: "+tpoints+" Betyg: "+grade+"<br><br>"+"<span style='color: green;'>Grönmarkerade fält = rätt svar</span>"+"<br>"+"<span style='color: red;'>Rödmarkerade fält = fel svar</span>"+"<br><br>"+"<span>Products: "+prod+"%</span>"+"<br>"+"<span>Economy: "+eco+"%</span>"+"<br>"+"<span>Ethics: "+eth+"%</span>";
+        document.getElementById("LabelTimer").innerHTML = "Poäng: "+tpoints+" Betyg: "+grade+"<br><br>"+"<span style='color: green;'>Grönmarkerade fält = rätt svar</span>"+"<br>"+"<span style='color: red;'>Rödmarkerade fält = fel svar</span>"+"<br><br>"+"<span>Products: "+prod+"%</span>"+"<br>"+"<span>Economy: "+eco+"%</span>"+"<br>"+"<span>Ethics: "+eth+"%</span>"+"<br><br>"+"<span style='font-size: 65%'>Ditt prov är inlämnat</span>"+"<br>"+"<span style='font-size: 65%'> Tryck på klar för att gå tillbaka till Mina Prov</span>";
      }
          //function Check(me) {
          //    alert(me.name);

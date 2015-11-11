@@ -73,13 +73,13 @@ namespace WebApplication1
         protected void btnLicenseTest_Click(object sender, EventArgs e)
         {
             Application["type"] = "a";
-            Response.Redirect("dotest.aspx");
+            Response.Redirect("dotest.aspx?type=a&id="+userid);
         }
 
         protected void btnUpdateTest_Click(object sender, EventArgs e)
         {
             Application["type"] = "b";
-            Response.Redirect("dotest.aspx");
+            Response.Redirect("dotest.aspx?type=b&id="+userid);
         }
         protected void loadUser()
         {
