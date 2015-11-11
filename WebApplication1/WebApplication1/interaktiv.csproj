@@ -88,6 +88,7 @@
     <Content Include="JavaScript.js" />
     <Content Include="mytests.aspx" />
     <Content Include="oldtest.aspx" />
+    <Content Include="oldtest.xml" />
     <Content Include="packages.config" />
     <Content Include="testres.aspx" />
     <Content Include="XmlUpdateTest.xml" />
@@ -108,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="answ.cs" />
+    <Compile Include="counter.cs" />
     <Compile Include="dotest.aspx.cs">
       <DependentUpon>dotest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

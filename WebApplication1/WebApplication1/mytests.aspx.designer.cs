@@ -40,6 +40,15 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.Label LabelLicensetest;
         
         /// <summary>
+        /// lblLicens control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLicens;
+        
+        /// <summary>
         /// LabelUpdatetest control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace WebApplication1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelUpdatetest;
+        
+        /// <summary>
+        /// lblAku control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAku;
         
         /// <summary>
         /// btnLicenseTest control.

@@ -7,33 +7,22 @@
     <title>Home</title>
     <link href="/stilmall.css" type="text/css" rel="stylesheet" /> 
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  
+
 
 </head>
 <body>
     <form id="form1" runat="server">
      <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"> </asp:ScriptManager>   
-      
-       
+             
          <!-- Container -->
         <div class="container"> 
-        
        
         <!-- Header -->
         <div class="header">          
             <h1>JE Bank</h1>
         </div>
-        <!-- Navigation -->
-        <div class="nav">
-            <ul class="clear">
-               <%-- <li><a class="home" href = "MyTests.aspx">Mina prov</a></li>
-                <li><a class="home" href = "/TestLeader/TestResults.aspx">Provresultat</a></li>--%>
 
-            </ul> 
-        </div>
-    
         <!-- Questions -->
-    
 
         <div id="timerbox" runat ="server">
         <asp:Label id="LabelTimer" runat="server" value="Tid kvar:"></asp:Label>
@@ -54,23 +43,18 @@
          var minutes = 30;
          var seconds = 00;
          var run = <%=this.timerVar%>;
-        
-        
-       
 
         if (run < 2)
         {
      
          var counter = setInterval(timer, 1000) //körs varje sekund
-
             
         }
         else{
             result();
         }
      function timer() {
-
-            
+           
             seconds = seconds - 1
             if (seconds <= 0) {
                 minutes -= 1;
@@ -80,11 +64,11 @@
                 minutes == 1;
                 seconds = 0;
                 clearInterval(counter);
-                //alert("Tiden är slut");
                
                 var testtype = <%=this.testType%>;
+                var id = <%=this.userid%>;
                 //Kod här när tiden är slut
-                PageMethods.timeOut(testtype,onSuccess,onError);
+                PageMethods.timeOut(testtype,id,onSuccess,onError);
                 function onSuccess(){
                     alert("Tiden är ute.");
                     window.location.replace("mytests.aspx");
@@ -104,21 +88,41 @@
          var eth = <%=this.ethPoints%>;
          var eco = <%=this.ecPoints%>;
          var gr = <%=this.gr%>;
-
-    
-        
-      
        
         if (gr < 2)
          {
             var grade = "Godkänd";
-
         }
         else{
             var grade ="Icke godkänd";
         }
         document.getElementById("LabelTimer").innerHTML = "Poäng: "+tpoints+" Betyg: "+grade+"<br><br>"+"<span style='color: green;'>Grönmarkerade fält = rätt svar</span>"+"<br>"+"<span style='color: red;'>Rödmarkerade fält = fel svar</span>"+"<br><br>"+"<span>Products: "+prod+"%</span>"+"<br>"+"<span>Economy: "+eco+"%</span>"+"<br>"+"<span>Ethics: "+eth+"%</span>";
      }
+         //function Check(me) {
+         //    alert(me.name);
+            
+         //   var i = 0;
+         //   var tot = 0;
+            //for (i = 0; i < chkBoxCount.length; i++) {
+            //    if (chkBoxCount[i].checked) {
+            //        tot = tot + 1;
+            //     
+            //        if (tot > 2) {
+            //        //Then unchecck the 4th checkbox
+            //            chkBoxCount[i].checked = false;
+            //        }
+            //    }
+            //}
+
+            //if (tot > 3) {
+            //    alert('inte mer än 3');
+            //    return false;
+            //}
+            //else {
+            //    return false;
+            //}
+        //}
+
      
     </script>
 </body>

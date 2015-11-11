@@ -112,6 +112,10 @@ div.questionbox table.tbl  td.questionCell{
     background-color: #eb9b00;
     padding: 15px; 
 }
+div.questionbox table.tbl  td.answerCell{
+    background-color: #eb9b00;
+    padding: 15px; 
+}
 #timerbox{
     position: fixed;
     background-color: #eb9b00;
@@ -124,7 +128,7 @@ div.questionbox table.tbl  td.questionCell{
 
 div.footer{
     background-color: #253648;
-    height: 200px;
+    height: 100px;
 }
 div.questionbox table.tbl  tr.green{
     
@@ -173,6 +177,46 @@ input[type=submit] {
   background-color:#eb9b00;
   font-size:medium;
   }
+
+
+
+
+div.OldTestInfo{
+    background-color: rgba(211, 153, 17, 0.42);
+    width: 95%;
+    margin: 1% 2% 1% 2%;
+}
+
+
+div.NameInfo{
+    padding:  1% 1% 1%;
+    
+}
+
+div.TestInfo{
+    padding:  1% 1% 1%;
+}
+
+.Label{
+    padding: 2% 5% 2% 2%;
+}
+
+.HeadlineLabels{
+    font-weight: bold;
+}
+
+
+a {
+color: #eb9b00;
+}
+a:link {
+color: #eb9b00;
+}
+
+a:hover {
+color: #253648;
+}
+
 
 
 .clear:before, .clear:after{content: ""; display: table;}

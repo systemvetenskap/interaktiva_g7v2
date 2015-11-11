@@ -70,14 +70,12 @@
                     <asp:BoundField DataField="maxdate" HeaderText="Datum"  />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
                 
-                    <asp:HyperLinkField  
-                        DataNavigateUrlFields="testid"
-                        DataNavigateUrlFormatString="oldtest.aspx?id={0}"                       
+                    <asp:HyperLinkField 
+                        DataTextField="testid"            
                         HeaderText="Hämta prov"
-                        Text ="Hämta prov"
                         SortExpression="testid"
-                        Target="_blank"
                          />
+
                 </Columns>
                 
             </asp:GridView>

@@ -27,10 +27,13 @@
         <!-- Questions -->
             <div id="mytests" class="mytests">
                 <asp:Label ID="LabelLicensetest" runat="server" Text="Licensieringstest: "></asp:Label>
+                <asp:Label ID="lblLicens" runat="server" Text="Label"></asp:Label>
                 <br /> <br />
-                <asp:Label ID="LabelUpdatetest" runat="server" Text="Årlig Kunskapsupdatering: "></asp:Label><br/><br />
+                <asp:Label ID="LabelUpdatetest" runat="server" Text="Årlig Kunskapsuppdatering: "></asp:Label>
+                <asp:Label ID="lblAku" runat="server" Text="Label"></asp:Label>
+                <br/><br />
                 <asp:Button ID="btnLicenseTest" runat="server" Text="Starta Licensieringstestet" OnClick="btnLicenseTest_Click"  href = "dotest.aspx" Font-Size="Large" />
-                <asp:Button ID="btnUpdateTest" runat="server" Text="Starta Kunskapsupdatering" OnClick="btnUpdateTest_Click"  href = "dotest.aspx" Font-Size="Large" />
+                <asp:Button ID="btnUpdateTest" runat="server" Text="Starta Kunskapsuppdatering" OnClick="btnUpdateTest_Click"  href = "dotest.aspx" Font-Size="Large" />
                 </div>
 
         <div class="tests">
@@ -40,7 +43,7 @@
                     <asp:BoundField DataField="grade" HeaderText="Betyg" />
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />
-                    <asp:HyperLinkField DataNavigateUrlFields="testid" DataNavigateUrlFormatString="oldtest.aspx?id={0}" Text="Hämta Prov" HeaderText="Hämta prov"  />
+                    <asp:HyperLinkField DataNavigateUrlFields="testid" DataNavigateUrlFormatString="oldtest.aspx?id={0}" Text="Hämta Prov" HeaderText="Hämta prov" Target="_blank"  />
                 </Columns>
                 
             </asp:GridView>

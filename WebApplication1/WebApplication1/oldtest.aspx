@@ -19,36 +19,37 @@
          <!-- Container -->
         <div class="container"> 
         
-       
-        <!-- Header -->
-        <div class="header">          
-            <h1>JE Bank</h1>
-        </div>
-        <!-- Navigation -->
-        <div class="nav">
-            <ul class="clear">
-               <%-- <li><a class="home" href = "MyTests.aspx">Mina prov</a></li>
-                <li><a class="home" href = "/TestLeader/TestResults.aspx">Provresultat</a></li>--%>
+        <!-- Info om testet -->
+        <div class="OldTestInfo">
 
-            </ul> 
-        </div>
-    
-        <!-- Questions -->
-    
-
-        
-      
-        <span id="timer"></span>
+            <div class="NameInfo">
+            <asp:Label class="HeadlineLabels LabelFullname" ID="LabelFullNameHeadline" runat="server" Text="Namn:"></asp:Label>
+            <asp:Label class="Label" ID="LabelFullName" runat="server" Text="Label"></asp:Label>
             </div>
-        <div class="questionbox" id="qDiv" runat="server">
+
+            <div class="TestInfo">
+            <asp:Label class="HeadlineLabels" ID="LabelTestNameHeadline" runat="server" Text="Test typ:"></asp:Label>
+            <asp:Label class="Label" ID="LabelTestName" runat="server" Text="Label"></asp:Label>
+
+            <asp:Label class="HeadlineLabels" ID="LabelTestPointsHeadline" runat="server" Text="Poäng:"></asp:Label>
+            <asp:Label class="Label" ID="LabelTestPoints" runat="server" Text="Label"></asp:Label>
+
+            <asp:Label class="HeadlineLabels" ID="LabelTestGradeHeadline" runat="server" Text="Betyg:"></asp:Label>
+            <asp:Label class="Label" ID="LabelTestGrade" runat="server" Text="Label"></asp:Label>
+
+            <asp:Label class="HeadlineLabels" ID="LabelTestDateHeadline" runat="server" Text="Datum:"></asp:Label>
+            <asp:Label class="Label" ID="LabelTestDate" runat="server" Text="Label"></asp:Label>
+            
+            </div>
+
+       </div> 
+        <!-- Questions -->
+        <div class="questionbox" id="questionbox" runat="server">
 
         &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
-              
         </div>
-        <!-- Footer -->
-        <div class="footer">
-        </div>
- 
+
+    </div>
     
     </form>
 
