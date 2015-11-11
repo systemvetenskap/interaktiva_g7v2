@@ -31,10 +31,10 @@ namespace WebApplication1
  
             DataTable dt = new DataTable();
             DataTable dt2 = new DataTable();
-            string sql = @"select date, grade, points,  name, leader.firstname, leader.lastname , testid from license_test
+            string sql = @"select date, grade, name, points,   leader.firstname, leader.lastname , testid from license_test
                             inner join users on license_test.user_id = users.userid
                             inner join leader on users.leader_id = leader.leader_id
-                            where users.userid = '"+userid+"'";
+                            where users.userid = '" + userid+"'";
             conn.Open();
 
             sql += "order by date desc";
@@ -45,8 +45,8 @@ namespace WebApplication1
 
             dt2.Columns.Add("date");
             dt2.Columns.Add("grade");
-            dt2.Columns.Add("points");
             dt2.Columns.Add("name");
+            dt2.Columns.Add("points");          
             dt2.Columns.Add("leader");            
             dt2.Columns.Add("testid");
    
