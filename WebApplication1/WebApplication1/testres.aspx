@@ -14,7 +14,7 @@
 
         <!-- Header -->
         <div class="header">          
-            <h1>JE Bank</h1>
+            <h1>JE Bank Kompetensportal</h1>
         </div>
             
         <!-- Navigation -->

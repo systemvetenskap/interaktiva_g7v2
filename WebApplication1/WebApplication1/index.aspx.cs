@@ -33,6 +33,7 @@ namespace WebApplication1
             string s = TextBox1.Text;
             Application["user"] = s;
             Response.Redirect("testres.aspx");
+            //kommentar
         }
 
         protected void Page_Load(object sender, EventArgs e)

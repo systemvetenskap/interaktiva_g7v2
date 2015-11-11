@@ -146,10 +146,10 @@ namespace WebApplication1
 
             DataTable dt = new DataTable();
             DataTable dt2 = new DataTable();
-            string sql = @"select date, grade, points,  name, leader.firstname, leader.lastname , testid from license_test
+            string sql = @"select date, grade, name, points,   leader.firstname, leader.lastname , testid from license_test
                             inner join users on license_test.user_id = users.userid
                             inner join leader on users.leader_id = leader.leader_id
-                            where users.userid = '"+userid+"'";
+                            where users.userid = '" + userid+"'";
             conn.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@grade", dropdownGrade);
@@ -192,8 +192,8 @@ namespace WebApplication1
 
             dt2.Columns.Add("date");
             dt2.Columns.Add("grade");
-            dt2.Columns.Add("points");
             dt2.Columns.Add("name");
+            dt2.Columns.Add("points");          
             dt2.Columns.Add("leader");            
             dt2.Columns.Add("testid");
    
@@ -272,13 +272,13 @@ namespace WebApplication1
         protected void btnLicenseTest_Click(object sender, EventArgs e)
         {
             Application["type"] = "a";
-            Response.Redirect("dotest.aspx");
+            Response.Redirect("dotest.aspx?type=a&id="+userid);
         }
 
         protected void btnUpdateTest_Click(object sender, EventArgs e)
         {
             Application["type"] = "b";
-            Response.Redirect("dotest.aspx");
+            Response.Redirect("dotest.aspx?type=b&id="+userid);
         }
         protected void loadUser()
         {
@@ -411,8 +411,8 @@ namespace WebApplication1
                             btnLicenseTest.Enabled = false;
                             btnUpdateTest.Enabled = false;
                             DateTime newtry = last.AddDays(7);
-                            lblLicens.Text = "Underkänd. Nytt försök kan göras tidigast: " + newtry.ToShortDateString();
-                            lblLicens.ForeColor = System.Drawing.Color.Tomato;
+                            lblAku.Text = "Underkänd. Nytt försök kan göras tidigast: " + newtry.ToShortDateString();
+                            lblAku.ForeColor = System.Drawing.Color.Tomato;
                             if (date >= newtry)
                             {
                                 btnUpdateTest.Enabled = true;

@@ -82,7 +82,6 @@
     <Content Include="Images\karta.png" />
     <Content Include="Images\ladygaga.png" />
     <Content Include="Images\sicksmiley.png" />
-    <Content Include="Images\testicon.ico" />
     <Content Include="Images\tyrion.png" />
     <Content Include="index.aspx" />
     <Content Include="JavaScript.js" />

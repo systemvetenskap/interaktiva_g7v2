@@ -13,7 +13,7 @@
         
         <!-- Header -->
         <div class="header">          
-            <h1>JE Bank</h1>
+            <h1>JE Bank Kompetensportal</h1>
         </div>
         <!-- Navigation -->
         <div class="nav">
@@ -40,6 +40,7 @@
              <asp:GridView ID="GridViewTests" class="GridViewTests GridView" runat="server" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="date" HeaderText="Datum" HtmlEncode="false" DataFormatString="{0:m}" />
+                    <asp:BoundField DataField="name" HeaderText="Testyp" />
                     <asp:BoundField DataField="grade" HeaderText="Betyg" />
                     <asp:BoundField DataField="points" HeaderText="Poäng" />
                     <asp:BoundField DataField="leader" HeaderText="Ledare" />

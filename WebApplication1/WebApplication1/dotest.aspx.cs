@@ -45,19 +45,15 @@ namespace WebApplication1.Employee
 
             if (!IsPostBack)
             {
-                user();
+                type = Request.QueryString["type"];
+                string usid = Request.QueryString["id"];
+                userid = Convert.ToInt16(usid);
+                //user();
                 bool pb = true;
-                if (Application["type"] != null)
-                {
-                    type = Application["type"].ToString();
-                }
-                else
-                {
-                    type = "a";
-                }
+       
 
                 btn2.Visible = false;
-                type = "a";
+                
                 int x = 0;
                 timerVar = 1;
                 tpoints = "na";
@@ -378,16 +374,16 @@ namespace WebApplication1.Employee
                     checkbox4 = new CheckBox();
                     answ ch = new answ();
                     counter cnt = new counter();
-                CheckBoxList chlist = new CheckBoxList();
+                
                 //checkbox1.Attributes.Add("runat", "server");
                 //checkbox2.Attributes.Add("runat", "server");
                 //checkbox3.Attributes.Add("runat", "server");
                 //checkbox4.Attributes.Add("runat", "server");
 
-                checkbox1.Attributes.Add("onClick", "Check(this)");
-                checkbox2.Attributes.Add("onClick", "Check(this)");
-                checkbox3.Attributes.Add("onClick", "Check(this)");
-                checkbox4.Attributes.Add("onClick", "Check(this)");
+                //checkbox1.Attributes.Add("onClick", "Check(this)");
+                //checkbox2.Attributes.Add("onClick", "Check(this)");
+                //checkbox3.Attributes.Add("onClick", "Check(this)");
+                //checkbox4.Attributes.Add("onClick", "Check(this)");
 
                 //checkbox1.A
                 //checkbox1.ID = i.ToString() + "c1";
@@ -685,22 +681,33 @@ namespace WebApplication1.Employee
                                 qtext = chk.Text;
                                 writeToXml(id, qtext, qid, cor);
                                 chk.Enabled = false;
-                                if (cor == "true")
-                                {
+                            
                                     
                                     int boxid = Convert.ToInt16(chk.Attributes["group"]);
-                                    foreach(var x in list)
+                                foreach (var x in list)
+                                {
+                                    int ident = x.getId();
+
+                                    if (ident == boxid)
                                     {
-                                        int ident = x.getId();
-                                        
-                                        if(ident == boxid)
+                                        if (cor == "true")
                                         {
                                             x.setAnswer();
-                                        }
+                                            x.setTAnsw();
+                                        } 
+                                        else if(cor == "false")
+                                        {
+                                            x.setTAnsw();
+                                        }  
+                                     }
 
                                     }
-                                }
+                              
                      
+                            }
+                            else
+                            {
+                                chk.Enabled = false;
                             }
                         }
                     }
@@ -739,14 +746,9 @@ namespace WebApplication1.Employee
             total += eco;
             total += eth;
             tpoints = total.ToString();
-            if(Application["type"] != null)
-            {
-                type = Application["type"].ToString();
-            }
-            else
-            {
-                type = "a";
-            }
+            type = Request.QueryString["type"];
+            string s = Request.QueryString["id"];
+            userid = Convert.ToInt16(s);
 
             
             if (type == "a")
@@ -774,7 +776,7 @@ namespace WebApplication1.Employee
 
                 string savexml = xmldoc2.OuterXml;
                 string tn = "Licensieringstest";
-                user();
+                //user();
                 int ln = userid;
                 DateTime date = DateTime.Today;
                 string sql = "insert into license_test(name, user_id, grade, points, date, testxml) values(:tname, :user, :grd, :pts, :dt, :addxml)";
@@ -827,7 +829,7 @@ namespace WebApplication1.Employee
 
                 string savexml = xmldoc2.OuterXml;
                 string tn = "ÅKU";
-                user();
+                //user();
                 int ln = userid;
                 DateTime date = DateTime.Today;
                 string sql = "insert into license_test(name, user_id, grade, points, date, testxml) values(:tname, :user, :grd, :pts, :dt, :addxml)";
