@@ -709,6 +709,10 @@ namespace WebApplication1.Employee
                               
                      
                             }
+                            else
+                            {
+                                chk.Enabled = false;
+                            }
                         }
                     }
                 }
