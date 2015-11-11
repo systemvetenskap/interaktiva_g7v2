@@ -378,6 +378,7 @@ namespace WebApplication1.Employee
                     checkbox4 = new CheckBox();
                     answ ch = new answ();
                     counter cnt = new counter();
+                CheckBoxList chlist = new CheckBoxList();
                 //checkbox1.Attributes.Add("runat", "server");
                 //checkbox2.Attributes.Add("runat", "server");
                 //checkbox3.Attributes.Add("runat", "server");
@@ -499,6 +500,7 @@ namespace WebApplication1.Employee
                     ch.setCat(cat);
                     list.Add(ch);
                     checklist.Add(cnt);
+               
 
                 }
                 //Lägger in label i cellen
