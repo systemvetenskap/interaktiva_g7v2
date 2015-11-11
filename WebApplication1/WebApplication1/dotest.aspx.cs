@@ -685,8 +685,7 @@ namespace WebApplication1.Employee
                                 qtext = chk.Text;
                                 writeToXml(id, qtext, qid, cor);
                                 chk.Enabled = false;
-                                //if (cor == "true")
-                                //{
+                            
                                     
                                     int boxid = Convert.ToInt16(chk.Attributes["group"]);
                                 foreach (var x in list)
@@ -707,7 +706,7 @@ namespace WebApplication1.Employee
                                      }
 
                                     }
-                                //}
+                              
                      
                             }
                         }

@@ -212,7 +212,7 @@ namespace WebApplication1
                             btnLicenseTest.Enabled = false;
                             btnUpdateTest.Enabled = false;
                             DateTime newtry = last.AddDays(7);
-                            lblLicens.Text = "Underkänd. Nytt försök kan göras tidigast: " + newtry.ToShortDateString();
+                            lblAku.Text = "Underkänd. Nytt försök kan göras tidigast: " + newtry.ToShortDateString();
                             lblLicens.ForeColor = System.Drawing.Color.Tomato;
                             if (date >= newtry)
                             {
