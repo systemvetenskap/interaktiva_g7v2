@@ -166,15 +166,7 @@ namespace WebApplication1
                 lbl5.Attributes.Add("id", answerid[3].ToString());
                 lbl2.Attributes.Add("correct", tor[3].ToString());
 
-                lbl6.Text = "Svar: ";
-                if(yans.Count > 0)
-                {
-                    for(int i = 0; i < yans.Count; i++)
-                    {
-                        lbl7.Text +=yans[i].ToString()+"<br><br>";
-                    }
-
-                }
+        
                 cell1.Controls.Add(lbl1);
                 List<TableCell> clist = new List<TableCell>();
                 cell2.Controls.Add(lbl2);
