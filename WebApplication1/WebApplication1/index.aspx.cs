@@ -32,7 +32,7 @@ namespace WebApplication1
             Application["role"] = "leader";
             string s = TextBox1.Text;
             Application["user"] = s;
-            Response.Redirect("testres.aspx");
+            Response.Redirect("testres.aspx?id=9");
             //kommentar
         }
 

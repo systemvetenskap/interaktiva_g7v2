@@ -89,6 +89,7 @@
     <Content Include="oldtest.aspx" />
     <Content Include="oldtest.xml" />
     <Content Include="packages.config" />
+    <Content Include="resp.css" />
     <Content Include="testres.aspx" />
     <Content Include="XmlUpdateTest.xml" />
     <None Include="Web.Debug.config">

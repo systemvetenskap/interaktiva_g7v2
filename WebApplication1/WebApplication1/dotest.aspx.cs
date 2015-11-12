@@ -856,7 +856,8 @@ namespace WebApplication1.Employee
           }
         protected void btn2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("mytests.aspx");
+            string userid = Request.QueryString["id"];
+            Response.Redirect("mytests.aspx?id="+userid);
         }
         protected void writeToXml(string i, string q, string qid, string avalue)
         {
