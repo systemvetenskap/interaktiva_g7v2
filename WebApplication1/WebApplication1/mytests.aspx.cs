@@ -26,7 +26,7 @@ namespace WebApplication1
             if(Application["Role"] != null)
             {
                 string role = Application["role"].ToString();
-                if (role == "member")
+                if (userid != 9)
                 {
                     provresultat.Visible = false;
                 }

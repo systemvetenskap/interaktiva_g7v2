@@ -78,7 +78,7 @@
                 }
                 function onError(){
                     alert("Oväntat fel uppstod, kontakta administratören.");
-                    window.location.replace("mytests.aspx");
+                    window.location.replace("mytests.aspx?id="+id);
                 }
                 
                 return;
