@@ -9,6 +9,8 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
 
+
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -28,6 +30,7 @@
         <asp:Label id="LabelTimer" runat="server" value="Tid kvar:"></asp:Label>
         <span id="timer"></span>
             </div>
+ 
         <div class="questionbox" id="qDiv" runat="server">
 
         &nbsp;<asp:table class="tbl" id="table1" runat ="server"></asp:table> 
@@ -75,7 +78,7 @@
                 }
                 function onError(){
                     alert("Oväntat fel uppstod, kontakta administratören.");
-                    window.location.replace("mytests.aspx");
+                    window.location.replace("mytests.aspx?id="+id);
                 }
                 
                 return;

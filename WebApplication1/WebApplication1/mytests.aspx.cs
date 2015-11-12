@@ -21,11 +21,15 @@ namespace WebApplication1
         {
             loadUser();
             loadData();
-
+            if(Request.QueryString["id"] != null)
+            {
+                string s = Request.QueryString["id"];
+                userid = Convert.ToInt16(s);
+            }
             if(Application["Role"] != null)
             {
                 string role = Application["role"].ToString();
-                if (role == "member")
+                if (userid != 9)
                 {
                     provresultat.Visible = false;
                 }
@@ -316,6 +320,10 @@ namespace WebApplication1
                 else if(user == "tobbe")
                 {
                     userid = 8;
+                }
+                else if (user == "eva")
+                {
+                    userid = 9;
                 }
                 else
                 {

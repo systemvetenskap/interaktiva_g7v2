@@ -134,10 +134,10 @@
 
   <question id="13" category="ethics" multi ="false" image ="false">
     Vad är Johan Petter Johansson känd för ?<answer>
-      <answer id="1" correct="false">Han upfann tändstickan</answer>
-      <answer id="2" correct="true">Han upfann skiftnyckeln</answer>
-      <answer id="3" correct="false">Han upfann dalahästen</answer>
-      <answer id="4" correct="false">Han upfann domkraften</answer>
+      <answer id="1" correct="false">Han uppfann tändstickan</answer>
+      <answer id="2" correct="true">Han uppfann skiftnyckeln</answer>
+      <answer id="3" correct="false">Han uppfann dalahästen</answer>
+      <answer id="4" correct="false">Han uppfann domkraften</answer>
     </answer>
     <useranswer></useranswer>
   </question>

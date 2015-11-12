@@ -20,7 +20,7 @@
         <!-- Navigation -->
         <div class="nav">
             <ul class="clear">
-                <li><a href = "mytests.aspx">Mina prov</a></li>
+                <li><a href = "mytests.aspx?id=9">Mina prov</a></li>
                 <li><a class="provresultat" href = "testres.aspx">Provresultat</a></li>
             </ul> 
         </div>
